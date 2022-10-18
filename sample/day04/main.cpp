@@ -38,20 +38,29 @@ int main()
     //         break;
     //     }
     // }
-    
-    int num = 100;
-    while (num < 999)
+
+    // int num = 100;
+    // while (num < 999)
+    // {
+    //     // 取个位十位百位
+    //     int a = num/100; // 百位
+    //     int b = num/10%10; // 十位
+    //     int c = num%10; // 个位
+    //     if (a*a*a + b*b*b+ c*c*c == num)
+    //     {
+    //         cout << "水仙花数为: " << num << endl;
+    //     }
+
+    //     num++;
+    // }
+
+    for (int i = 1; i < 100; i++)
     {
-        // 取个位十位百位
-        int a = num/100; // 百位
-        int b = num/10%10; // 十位
-        int c = num%10; // 个位
-        if (a*a*a + b*b*b+ c*c*c == num)
-        {
-            cout << "水仙花数为: " << num << endl;
-        }
         
-        num++;
+        if (i % 7 == 0 || i%10==7 || i/10 == 7)
+        {
+                cout << "数字为: " << i << endl;
+        }
     }
 
     return 0;
