@@ -43,4 +43,6 @@ int main(){
         break;
     }
     return 0;
+
+    // switch和if else的区别 switch在判断的时候只能是整型或字符型不能为区间
 }
