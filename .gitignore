@@ -33,3 +33,6 @@
 
 # 生成的二进制程序
 main
+
+# vscode设置
+.vscode/
