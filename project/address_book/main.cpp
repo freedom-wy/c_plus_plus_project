@@ -8,6 +8,8 @@ using namespace std;
 int main()
 {
     int select = 0;
+    struct addressBook book;
+    book.size = 0;
     while (true)
     {
         showMenu();
@@ -15,14 +17,13 @@ int main()
         if (select == 1)
         {
             cout << "添加联系人" << endl;
-            struct addressBook book;
             // 初始化通讯录中数据个数
-            book.size = 0;
             addPerson(&book);
         }
         else if (select == 2)
         {
             cout << "显示联系人" << endl;
+            showPerson(&book);
         }
         else if (select == 3)
         {

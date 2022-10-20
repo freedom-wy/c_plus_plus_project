@@ -20,3 +20,4 @@ struct addressBook
 
 void showMenu();
 void addPerson(addressBook *book);
+void showPerson(addressBook *book);
