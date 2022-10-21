@@ -21,3 +21,5 @@ struct addressBook
 void showMenu();
 void addPerson(addressBook *book);
 void showPerson(addressBook *book);
+int checkPerson(addressBook *book, string name);
+void deletePerson(addressBook *book);

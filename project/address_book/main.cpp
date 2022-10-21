@@ -28,6 +28,7 @@ int main()
         else if (select == 3)
         {
             cout << "删除联系人" << endl;
+            deletePerson(&book);
         }
         else if (select == 4)
         {
