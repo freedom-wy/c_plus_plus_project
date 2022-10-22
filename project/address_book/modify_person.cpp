@@ -30,15 +30,13 @@ void modifyPerson(addressBook *book)
         cin >> address;
         book->addressList[i].address = address;
         cout << "请按回车键返回目录" << endl;
-        system("read");
-        system("clear");
     }
     else
     {
         // 未找到
         cout << "查无此人" << endl;
         cout << "请按回车键返回目录" << endl;
-        system("read");
-        system("clear");
     }
+    system("read");
+    system("clear");
 }

@@ -16,15 +16,13 @@ void findPerson(addressBook *book)
         cout << "\t住址: " << book->addressList[i].address;
         cout << endl;
         cout << "请按回车键返回目录" << endl;
-        system("read");
-        system("clear");
     }
     else
     {
         // 未找到
         cout << "查无此人" << endl;
         cout << "请按回车键返回目录" << endl;
-        system("read");
-        system("clear");
     }
+    system("read");
+    system("clear");
 }

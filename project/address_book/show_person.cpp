@@ -6,9 +6,6 @@ void showPerson(addressBook *book)
     {
         cout << "通讯录无数据" << endl;
         cout << "请按回车键返回目录" << endl;
-        system("read");
-        system("clear");
-        // return;
     }
     else
     {
@@ -21,7 +18,7 @@ void showPerson(addressBook *book)
             cout << endl;
         }
         cout << "请按回车键返回目录" << endl;
-        system("read");
-        system("clear");
     }
+    system("read");
+    system("clear");
 }
