@@ -2,8 +2,6 @@
 using namespace std;
 #include "utils.h"
 
-
-
 // g++ main.cpp a.cpp -o main.out
 int main()
 {
@@ -33,10 +31,12 @@ int main()
         else if (select == 4)
         {
             cout << "查找联系人" << endl;
+            findPerson(&book);
         }
         else if (select == 5)
         {
             cout << "修改联系人" << endl;
+            modifyPerson(&book);
         }
         else if (select == 6)
         {
