@@ -25,3 +25,4 @@ int checkPerson(addressBook *book, string name);
 void deletePerson(addressBook *book);
 void findPerson(addressBook *book);
 void modifyPerson(addressBook *book);
+void clearPerson(addressBook *book);

@@ -41,6 +41,7 @@ int main()
         else if (select == 6)
         {
             cout << "清空联系人" << endl;
+            clearPerson(&book);
         }
         else
         {
