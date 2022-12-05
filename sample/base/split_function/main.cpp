@@ -15,5 +15,10 @@ int main()
     int a = 1;
     int b = 2;
     swap(a, b);
+    cout << "a的值为: " << a << ", b的值为: " << b << endl;
+    int x = 1;
+    int y = 2;
+    swap_porint(&x, &y);
+    cout << "x的值为: " << x << ", y的值为: " << y << endl;
     return 0;
 }

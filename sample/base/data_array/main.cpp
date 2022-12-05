@@ -21,12 +21,13 @@ int main()
 
     // cout << "数组中元素个数为: " << sizeof(arr3) / sizeof(arr3[0]) << endl;
 
-    // // 数组首地址
+    // 数组首地址
     // cout << "数组首地址为: " << arr1 << endl;
     // cout << "数组中第一个元素的地址为: " << &arr1[0] << endl;
     // for (int i = 0; i < 5; i++)
     // {
     //     cout << "数组中数据的地址为: " << &arr3[i] << endl;
+    //     cout << "数组中数据为: " << arr3[i] << endl;
     // }
 
     // 小猪称体重

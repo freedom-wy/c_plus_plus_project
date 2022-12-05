@@ -13,9 +13,11 @@ int main(){
     cout << "hello world" << endl;
     // 定义常量
     // 在文件的上方通过#define来进行定义宏常量或通过const来修饰变量,定义后不可修改
-    // cout << "一周总共有: " << Day << "天" << endl;
-    // const int month = 12;
-    // cout << "一年总共有: " << month << "月" << endl;
+    // Day = 1; 不可修改
+    cout << "一周总共有: " << Day << "天" << endl;
+    const int month = 12;
+    // month = 1; 不可修改
+    cout << "一年总共有: " << month << "月" << endl;
     // 数据类型是变量在创建时给分配合理的内存空间,单位为字节
     // 通过sizeof来查看数据类型所占用的内存空间
     // cout << "short类型所占用的内存空间为: " << sizeof(short) << endl;

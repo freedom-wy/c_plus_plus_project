@@ -50,9 +50,12 @@ void printInfo(Teacher t[], int len)
 int main()
 {
     // 创建老师结构体变量
-    Teacher teacher[3];
+    struct Teacher teacher[3];
+    // cout << sizeof(teacher) << endl;
+    // cout << sizeof(teacher[0]) << endl;
     // 通过函数给老师添加信息
     int len = sizeof(teacher)/sizeof(teacher[0]);
+    cout << "长度数据为: " << len << endl;
     appendInfo(teacher, len);
     // 打印数据
     printInfo(teacher, len);

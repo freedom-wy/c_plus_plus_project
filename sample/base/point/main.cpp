@@ -5,23 +5,23 @@ using namespace std;
 
 int main()
 {
-    // int a = 10;
+    int a = 10;
     // 创建指针
-    // int *p1;
+    int *p1;
     // 取变量的地址
-    // p1 = &a;
-    // cout << "a的地址为: " << &a << endl;
-    // cout << "p1的值为: " << p1 << endl;
+    p1 = &a;
+    cout << "a的地址为: " << &a << endl;
+    cout << "p1的值为: " << p1 << endl;
     // 解引用*p 即为a地址所指向的变量数据
-    // *p1 = 1000; // 修改变量a的数据
-    // cout << "a的地址为: " << &a << endl;
-    // cout << "p1的值为: " << p1 << endl;
-    // cout << "a的数据为: " << a << endl;
-    // cout << "*p1解引用的数据为: " << *p1 << endl;
+    *p1 = 1000; // 修改变量a的数据
+    cout << "a的地址为: " << &a << endl;
+    cout << "p1的值为: " << p1 << endl;
+    cout << "a的数据为: " << a << endl;
+    cout << "*p1解引用的数据为: " << *p1 << endl;
 
     // 指针占用的内存空间,32位操作系统占用4个字节, 64位操作系统占用8个字节, 与类型无关
-    // cout << "指针占用的内存空间为: " << sizeof(p1) << endl;
-    // cout << "指针占用的内存空间为: " << sizeof(int *) << endl;
+    cout << "指针占用的内存空间为: " << sizeof(p1) << endl;
+    cout << "指针占用的内存空间为: " << sizeof(int *) << endl;
 
     // 空指针和野指针
     // 空指针: 指针变量指向内存中编号为0的空间, 空指针用于初始化指针变量
