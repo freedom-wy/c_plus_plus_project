@@ -17,50 +17,42 @@ void test1()
     int *p = func();
     cout << *p << endl;
     cout << *p << endl;
-    delete p;
-    cout << *p << endl;
-}
-
-void test2()
-{
-    // int a[5] = {1, 2, 3, 4, 5};
-    int a[5];
-    int *p = a;
-    for (int i = 0; i < 5; i++)
-    {
-        // cout << "数据为: " << *p << ", 地址为: " << p << endl;
-        *p = i;
-        p++;
-    }
-
-    p = a;
-
-    for (int i = 0; i < 5; i++)
-    {
-        cout << "数据为: " << *p << ", 地址为: " << p << endl;
-        p++;
-    }
+    // delete p;
+    // cout << *p << endl;
 }
 
 void test3()
 {
-    // int *p1 = new int[5];
-    // cout << p1[0] << endl;
-    // cout << p1[1] << endl;
-    // cout << p1[2] << endl;
-    // cout << p1[3] << endl;
-    // cout << p1[4] << endl;
+    int *p1 = new int[5];
 
-    int a[5] = {1, 2, 3, 4, 5};
-    int *p2 = a;
-    cout << p2 << endl;
-    cout << p2[0] << endl;
-    // cout << p2[0] << endl;
-    // cout << p2[1] << endl;
-    // cout << p2[2] << endl;
-    // cout << p2[3] << endl;
-    // cout << p2[4] << endl;
+    // 给数组赋值
+    for (int i = 0; i < 5; i++)
+    {
+        p1[i] = i + 100;
+    }
 
+    for (int i = 0; i < 5; i++)
+    {
+        cout << "数组中的数据为: " << p1[i] << endl;
+    }
+
+    delete []p1;
+    
+    for (int i = 0; i < 5; i++)
+    {
+        cout << "数组中的数据为: " << p1[i] << endl;
+    }
+
+    // int arr[5] = {1,2,3,4,5};
+    // int arr[5];
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     arr[i] = i + 100;
+    // }
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     cout << "数组中的数据为: " << arr[i] << endl;
+    // }
 }
 
 // 堆区和栈区
