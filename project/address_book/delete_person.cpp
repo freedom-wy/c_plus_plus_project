@@ -9,7 +9,7 @@ void deletePerson(addressBook *book)
     // cout << "联系人索引为: " << index << endl;
     if (index != -1)
     {
-        // 找到人了
+        // 找到人了1
         for (int i = index; i < book->size; i++)
         {
             // 后面的数据向前移动, 覆盖索引位置
