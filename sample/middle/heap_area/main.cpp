@@ -24,24 +24,30 @@ void test1()
 void test3()
 {
     int *p1 = new int[5];
-
-    // 给数组赋值
-    for (int i = 0; i < 5; i++)
+    // cout << p1 << endl;
+    for (int i = 0; i<5; i++)
     {
-        p1[i] = i + 100;
+        cout << p1 << endl;
+        p1++;
     }
 
-    for (int i = 0; i < 5; i++)
-    {
-        cout << "数组中的数据为: " << p1[i] << endl;
-    }
+    // // 给数组赋值
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     p1[i] = i + 100;
+    // }
 
-    delete []p1;
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     cout << "数组中的数据为: " << p1[i] << endl;
+    // }
+
+    // delete []p1;
     
-    for (int i = 0; i < 5; i++)
-    {
-        cout << "数组中的数据为: " << p1[i] << endl;
-    }
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     cout << "数组中的数据为: " << p1[i] << endl;
+    // }
 
     // int arr[5] = {1,2,3,4,5};
     // int arr[5];
@@ -62,5 +68,9 @@ int main()
     // test1();
     // test2();
     test3();
+    // int a = 1;
+    // int *p = &a;
+    // cout << "p的值为: " << p << endl;
+    // cout << "*p的值为:" << *p << endl;
     return 0;
 }
