@@ -36,11 +36,10 @@ int main()
     // 引用
     int a = 10;
     int b = 20;
-    int * const ref = &a;
+    // int * const ref = &a;
     // ref = &b; // 指针常量不能修改指向
-    *ref = 100;
+    // *ref = 100;
 
-    cout << "ref的值为: " << *ref << endl;
     // int &ref = a;
     // cout << "a的值为: " << a << endl;
     // cout << "ref的值为: " << ref << endl;
