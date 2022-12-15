@@ -9,6 +9,16 @@ class Point
         int p_x;
         int p_y;
     public:
+        Point()
+        {
+            cout << "point无参构造函数" << endl;
+        }
+        ~Point()
+        {
+            cout << "point析构函数" << endl;
+        }
+
+    public:
         // 定义点的方法
         void setX(int x)
         {
@@ -36,6 +46,15 @@ class Circle
         int c_r;
         // 圆心
         Point center;
+    public:
+        Circle()
+        {
+            cout << "Circle无参构造函数" << endl;
+        }
+        ~Circle()
+        {
+            cout << "Circle析构函数" << endl;
+        }
     public:
         // 设置半径
         void setR(int r)

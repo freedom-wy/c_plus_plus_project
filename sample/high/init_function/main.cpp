@@ -41,13 +41,14 @@ void doWork(Person p)
 
 void test()
 {
-    Person p; // 无参构造函数不能写括号
-    doWork(p); // 函数值传递时会调用拷贝构造函数
-    // Person p1(10);
-    // cout << "p1的年龄为" << p1.age << endl;
-    // // Person p2 = Person(p1);
-    // Person p2(p1);
-    // cout << "p2的年龄为" << p2.age << endl;
+    // Person p; // 无参构造函数不能写括号
+    // doWork(p); // 函数值传递时会调用拷贝构造函数
+    // 有参构造
+    Person p1(10);
+    cout << "p1的年龄为" << p1.age << endl;
+    // Person p2 = Person(p1);
+    Person p2(p1);
+    cout << "p2的年龄为" << p2.age << endl;
     // 匿名对象
     // Person(10);
 }
