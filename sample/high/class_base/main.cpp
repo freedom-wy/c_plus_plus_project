@@ -12,6 +12,11 @@ class Student
         // 成员方法 成员函数
         void printStudentInfo()
         {
+            // 用于判断传入的数据是否为空
+            if (this == NULL)
+            {
+                return;
+            }
             cout << "学生姓名为: " << s_name << ", 学号为: " << s_code << endl;
         }
 
@@ -24,6 +29,11 @@ class Student
         void setCode(int code)
         {
             s_code = code;
+        }
+
+        void printInfoDemo()
+        {
+            cout << "hello world" << endl;
         }
 };
 
@@ -75,19 +85,23 @@ int main()
 {
     // 实例化对象
     // Student s1;
-    // s1.name = "张三";
-    // s1.code = 001;
+    // s1.s_name = "张三";
+    // s1.s_code = 001;
     // s1.setName("张三");
     // s1.setCode(1);
     // s1.printStudentInfo();
 
-    Person p1;
-    p1.p_Name = "李四";
+    Student * p = NULL;
+    // p->printInfoDemo(); // 空指针无实例属性, 因此会报错
+    p->printStudentInfo();
+
+    // Person p1;
+    // p1.p_Name = "李四";
     // p1.p_Car = "路虎"; // 类外不能访问保护权限
     // p1.p_Password = 111111; // 类外不能访问私有权限
     // p1.func();
     // p1.func2(); // 类外不能访问
-    p1.setAge(100);
-    p1.getAge();
+    // p1.setAge(100);
+    // p1.getAge();
     return 0;
 }

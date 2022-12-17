@@ -4,6 +4,8 @@ using namespace std;
 class Person
 {
     public:
+        // string p_name;
+        // long p_C;
         // 类成员变量
         int p_A;
         // 静态成员变量, 类内声明, 类外初始化
@@ -36,9 +38,16 @@ void test2()
     p1.func();
 }
 
+void test3()
+{
+    Person p3;
+    cout << sizeof(p3) << endl;
+}
+
 int main()
 {
-    test1();
-    test2();
+    // test1();
+    // test2();
+    test3();
     return 0;
 }
