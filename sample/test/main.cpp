@@ -36,14 +36,15 @@ int main()
     // 引用
     int a = 10;
     int b = 20;
-    // int * const ref = &a;
-    // ref = &b; // 指针常量不能修改指向
-    // *ref = 100;
 
-    // int &ref = a;
+    // int &ref = a; // 引用必须初始化, 引用初始化后, 不可以改变
     // cout << "a的值为: " << a << endl;
     // cout << "ref的值为: " << ref << endl;
     // ref = 100;
     // cout << "a的值为: " << a << endl;
     // cout << "ref的值为: " << ref << endl;
+
+    // int * const ref = &a;
+    // ref = &b; // 指针常量不能修改指向
+    // *ref = 100;
 }
