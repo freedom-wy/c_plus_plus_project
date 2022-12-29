@@ -16,6 +16,47 @@ void test1()
     printf("ch的新值为: %c\n", ch);
 }
 
+void test2()
+{
+    int abc = 10;
+    printf("abc='%6d'\n", abc); // 6调整数据输出宽度
+}
+
+void test3()
+{
+    // 从右向左运算
+    int a= 10;
+    // a+=a*=a+=a+=a/=a*=a+=a;
+    // a+= a*= a+= a+= a/= a*= a+=a; 32
+    printf("a的值为: %d\n", a);
+}
+
+void test4()
+{
+    // 隐式转换 int转char
+    int num = 353; // 转成2进制为9位, 一个ch为1个字节8位, 舍弃最高位, 最终放入的二进制转成10进制为97, 因此输出为a
+    char ch = num;
+    printf("%c\n", ch);
+}
+
+void test5()
+{
+    // 强制类型转换
+    float f = 3.14f;
+    int num = 0;
+    // num = (int)f; // 强制类型转换
+    num = f;
+    printf("num的值为: %d\n", num);
+}
+
+void test6()
+{
+    int a = 1;
+    int b = 2;
+    int c = a>b?a:b;
+    printf("c的值为: %d\n", c);
+}
+
 
 int main()
 {
@@ -39,6 +80,7 @@ int main()
     // printf("%s\n", "hello world");
     // char str[] = "hello world";
     // printf("占用空间大小为: %d\n", sizeof(str));
-    test1();
+    // test1();
+    test6();
     return 0;
 }
