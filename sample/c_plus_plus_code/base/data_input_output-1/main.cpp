@@ -5,7 +5,9 @@ using namespace std;
 // 定义常量
 #define Day 7
 
+
 int main(){
+
     // 变量
     // int a = 10;
     // cout << "a = " << a << endl;
@@ -13,7 +15,8 @@ int main(){
     cout << "hello world" << endl;
     // 定义常量
     // 在文件的上方通过#define来进行定义宏常量或通过const来修饰变量,定义后不可修改
-    // Day = 1; 不可修改
+    // 通过define定义时不写等号和分号
+    // Day = 1; // 不可修改
     cout << "一周总共有: " << Day << "天" << endl;
     const int month = 12;
     // month = 1; 不可修改
@@ -27,9 +30,12 @@ int main(){
     // float f1 = 3.1415926f;
     // 默认输出6位有效数字
     // cout << "圆周率为: " << f1 << endl;
+
+    // 字符型
     // 输出字符, 单引号中只有一个字符, 占1个字节
     // char ch = 'a';
     // cout << "字符为: " << ch << endl;
+    
     // 字符串类型
     // string a = "hello world"; //主意需要#include <string>
     // char b[] = "hello world";

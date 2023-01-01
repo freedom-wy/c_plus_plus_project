@@ -59,29 +59,29 @@ int main()
 {
     struct Student s1 = {"张三", 18};
     // 结构体指针
-    // struct Student *p = &s1;
+    struct Student *p = &s1;
 
     // 通过函数访问结构体信息
     printStudent1(s1);
     cout << "main函数中学生姓名: " << s1.name << " 学生年龄: " << s1.age << endl;
-    printStudent2(&s1);
-    cout << "main函数中学生姓名: " << s1.name << " 学生年龄: " << s1.age << endl;
+    // printStudent2(&s1);
+    // cout << "main函数中学生姓名: " << s1.name << " 学生年龄: " << s1.age << endl;
 
-    // 结构体嵌套
-    struct Teacher t1;
-    t1.id = 1000;
-    t1.name = "李老师";
-    // 学生数据
-    t1.s1.name = "李四";
-    t1.s1.age = 19;
-    cout << "老师姓名: " << t1.name << " 老师辅导的学生姓名: " << t1.s1.name << endl;
-    printStudent1(t1.s1);
-    cout << "main函数中学生姓名: " << t1.s1.name << " 学生年龄: " << t1.s1.age << endl;
-    printStudent2(&t1.s1);
-    cout << "main函数中学生姓名: " << t1.s1.name << " 学生年龄: " << t1.s1.age << endl;
+    // // 结构体嵌套
+    // struct Teacher t1;
+    // t1.id = 1000;
+    // t1.name = "李老师";
+    // // 学生数据
+    // t1.s1.name = "李四";
+    // t1.s1.age = 19;
+    // cout << "老师姓名: " << t1.name << " 老师辅导的学生姓名: " << t1.s1.name << endl;
+    // printStudent1(t1.s1);
+    // cout << "main函数中学生姓名: " << t1.s1.name << " 学生年龄: " << t1.s1.age << endl;
+    // printStudent2(&t1.s1);
+    // cout << "main函数中学生姓名: " << t1.s1.name << " 学生年龄: " << t1.s1.age << endl;
     
     // 通过箭头来访问结构体指针数据
-    // cout << "姓名: " << p->name << " 年龄: " << p->age << endl;
+    cout << "姓名: " << p->name << " 年龄: " << p->age << endl;
     // 值传递在函数中的弊端为, 当结构体中数据很多会造成大量的数据拷贝
     // 地址传递在函数中的优势为, 虽然结构体中数据很多, 但是传递的参数为指针, 仅传递一个指针的字节大小
 
