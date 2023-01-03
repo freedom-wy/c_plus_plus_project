@@ -55,7 +55,7 @@ class Coffee: public Base
         }
 
     public:
-        int *c_A;
+        int *c_A = NULL;
     public:
         void shaoShui()
         {
@@ -77,6 +77,7 @@ class Coffee: public Base
         ~Coffee()
         {
             cout << "子类Coffee的析构方法" << endl;
+            // cout << "c_A的值为: " << *c_A << endl;
             if (c_A != NULL)
             {
                 delete c_A;
@@ -114,8 +115,9 @@ void makeDrink(Base &b)
 
 int main()
 {
-    // Coffee c;
-    // makeDrink(c);
+    // 父类指针或引用指向子类对象
+    Coffee c;
+    makeDrink(c);
 
     // Tea t;
     // makeDrink(t);
@@ -131,9 +133,9 @@ int main()
     // Base &b = c;
     // b._do();
 
-    Base *b = new Coffee(1);
-    b->_do();
-    delete b;
+    // Base *b = new Coffee(1);
+    // b->_do();
+    // delete b;
 
     return 0;
 }

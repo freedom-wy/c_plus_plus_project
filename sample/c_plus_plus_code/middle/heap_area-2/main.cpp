@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+// 函数返回类型为int * 整形指针类型
 int *func()
 {
     // 栈区的形参和局部变量不要返回
@@ -11,17 +12,32 @@ int *func()
     int *p = new int(10);
     return p;
     
-    // int *p1 = new int[5];
-    // // 给数组赋值
-    // for (int i = 0; i < 5; i++)
-    // {
-    //     p1[i] = i + 100;
-    // }
+}
 
-    // for (int i = 0; i < 5; i++)
-    // {
-    //     cout << "数组中的数据为: " << p1[i] << endl;
-    // }
+int *func2()
+{
+    int *p1 = new int[5];
+    for(int i=0; i<5; i++)
+    {
+        p1[i] = i;
+    }
+    return p1;
+}
+
+void test2()
+{
+    // 在堆区创建数组
+    int *p1 = new int[5];
+    // 给数组赋值
+    for (int i = 0; i < 5; i++)
+    {
+        p1[i] = i + 100;
+    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        cout << "数组中的数据为: " << p1[i] << endl;
+    }
     // return p1;
 }
 
@@ -36,7 +52,7 @@ void test1()
 
 void test3()
 {
-    int *p1 = func();
+    int *p1 = func2();
     for (int i = 0; i<5; i++)
     {
         cout << "test3数组中的数据为: " << p1[i] << endl;
@@ -52,12 +68,8 @@ void test3()
 
 int main()
 {
-    test1();
+    // test1();
     // test2();
     // test3();
-    // int a = 1;
-    // int *p = &a;
-    // cout << "p的值为: " << p << endl;
-    // cout << "*p的值为:" << *p << endl;
     return 0;
 }

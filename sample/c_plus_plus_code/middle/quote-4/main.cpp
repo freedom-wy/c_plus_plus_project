@@ -1,8 +1,18 @@
 #include <iostream>
 using namespace std;
 
+
+// 引用 实质是能改值不能改指向
+
 int main()
 {
+    // 引用的实质是指针常量
+    // int a = 10;
+    // int* const p1 = &a;
+    // int b = 20;
+    // // p1 = &b;
+    // *p1 = 20;
+    // cout << "a的值为: " << a << endl;
     int a = 10;
     int &b = a;
     b = 100;

@@ -100,7 +100,7 @@ class IntelVideoCard: public VideoCard
 
 int main()
 {
-    //第一台电脑零件
+    //第一台电脑零件 多态
 	CPU * intelCpu = new IntelCPU;
 	VideoCard * intelCard = new IntelVideoCard;
 	Memory * intelMem = new IntelMemory;

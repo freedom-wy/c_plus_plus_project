@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+// 通过多态方式实现计算器
+
 class AbstractCalculator
 {
     public:

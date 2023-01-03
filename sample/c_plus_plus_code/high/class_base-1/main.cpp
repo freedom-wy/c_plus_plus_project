@@ -15,6 +15,7 @@ class Student
             // 用于判断传入的数据是否为空
             if (this == NULL)
             {
+                cout << "传入的数据为空" << endl;
                 return;
             }
             cout << "学生姓名为: " << s_name << ", 学号为: " << s_code << endl;
@@ -92,14 +93,14 @@ int main()
     // s1.printStudentInfo();
 
     Student * p = NULL;
-    // p->printInfoDemo(); // 空指针无实例属性, 因此会报错
-    p->printStudentInfo();
+    // p->printInfoDemo(); 
+    p->printStudentInfo(); // 空指针无实例属性, 因此会报错
 
-    // Person p1;
+    Person p1;
     // p1.p_Name = "李四";
     // p1.p_Car = "路虎"; // 类外不能访问保护权限
     // p1.p_Password = 111111; // 类外不能访问私有权限
-    // p1.func();
+    p1.func();
     // p1.func2(); // 类外不能访问
     // p1.setAge(100);
     // p1.getAge();

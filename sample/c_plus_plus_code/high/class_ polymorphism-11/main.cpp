@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+// 多态
+
 class Animal
 {
     public:
@@ -13,12 +15,13 @@ class Animal
 class Cat :public Animal
 {
     public:
-        void speak()
+        void speak() //子类重写父类中的虚函数
         {
             cout << "猫在说话" << endl;
         }
 };
 
+// 父类指针或引用指向子类对象
 void doSpeak(Animal &animal)
 {
     animal.speak();
@@ -26,7 +29,7 @@ void doSpeak(Animal &animal)
 
 void test1()
 {
-    Cat cat;
+    Cat cat; // 父类指针或引用指向子类对象
     doSpeak(cat);
 }
 
