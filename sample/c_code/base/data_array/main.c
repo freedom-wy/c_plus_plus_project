@@ -103,15 +103,54 @@ void test5()
     printf("无符号整形占用空间大小为: %d\n", sizeof(b));
  }
 
- void test11(int a=10, int b = 20)
- {
-    printf("a的值为: %d");
- }
+// c语言不支持函数的默认参数
+//  void test11(int a=10, int b=20)
+//  {
+//     printf("a的值为: %d", a);
+//  }
+
+
+
+void test11(int *arr, int arr_len)
+{
+    printf("数组大小为: %d\n", sizeof(arr));
+    for(int i = 0; i < arr_len; i++)
+    {
+        printf("数组中元素的值为: %d\n", arr[i]);
+        // arr++;
+    }
+}
+
+void test12(int arr[], int arr_len)
+{
+    printf("数组大小为: %d\n", sizeof(arr));
+    for(int i = 0; i < arr_len; i++)
+    {
+        printf("数组中的元素值为: %d\n", arr[i]);
+    }
+}
+
+void test13()
+{ 
+    // char str1[5] = {'h', 'e', 'l', 'l', 'o'}; // 不是字符串, 是字符数组, 无论数组是否限定长度, 都不会在后面添加\0
+    // printf("str1的值为: %s\n", str1); // 因为str后面没有\0结束符, 因此输出hello后会输出乱码
+    // char str2[10] = {'h', 'e', 'l', 'l', 'o'}; // 字符数组, 是字符串, 后面会通过\0补齐
+    // printf("str2的值为: %s\n", str2);
+    // char str3[2] = "hello world"; // 自动添加\0
+    char str3[2] = "hello world"; // 自动添加\0, 如果越界, 会舍弃\0, 造成乱码
+    printf("str3的值为: %s\n", str3);
+
+    char* str4 = "hello world"; // 字符常量, 不能修改
+    char str5[20] = "hello world"; // 用数组存的字符串, 是变量, 可以修改
+
+}
 
 int main()
 {
     // MAX = 200;
     // test9();
-    test10();
+    // int arr[5] = {1, 2, 3, 4, 5};
+    // test11(arr, 5);
+    test13();
     return 0;
 }
