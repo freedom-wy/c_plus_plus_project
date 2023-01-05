@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 
 void test1()
@@ -60,9 +61,66 @@ void test4()
     printf("字符串拼接结果: %s\n", strcat(str1, str2));
 }
 
+void test5()
+{
+    // char buf[1024] = "hello sb world";
+    // char* ret = strstr(buf, "sb");
+    // strncpy(ret, "**", 2);
+    // printf("屏蔽后的字符串为: %s\n", buf);
+
+    char buf[1024] = {'0'};
+    fgets(buf, sizeof(buf), stdin);
+    char* p = buf;
+    while(1)
+    {
+        char* ret = strstr(p, "sb");
+        if(ret != NULL)
+        {
+            strncpy(ret, "**", 2);
+            p = p+2;
+        }
+        else
+        {
+            printf("屏蔽后的结果为: %s\n", buf);
+            break;
+        }
+    }
+
+}
+
+void test6()
+{
+    char buf[1024] = "张三:李四:王五:赵六:陈七";
+	char* names[64] = { '0' };
+	int i = 0;
+	// char* ret = strtok(buf, ":");
+	// printf("字符串结果为: %s\n", ret);
+    names[i] = strtok(buf, ":");
+	while (names[i] != NULL)
+	{
+		i++;
+		names[i] = strtok(NULL, ":");
+	}
+
+	for (int i = 0; i < sizeof(names) / sizeof(names[i]); i++)
+	{
+        if(names[i] != NULL)
+        {
+            printf("名称为: %s\n", names[i]);
+        }
+	}
+}
+
+void test7()
+{
+    char str1[] = "123";
+    int num = 0;
+    num = atoi(str1);
+    printf("转换后的数字为: %d\n", num);
+}
 
 int main()
 {
-    test4();
+    test7();
     return 0;
 }
