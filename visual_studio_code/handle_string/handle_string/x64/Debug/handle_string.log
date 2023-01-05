@@ -1,7 +1,17 @@
 ﻿  main.c
-E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(8,2): warning C4013: “strcpy”未定义；假设外部返回 int
-E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(11,2): warning C4013: “strncpy”未定义；假设外部返回 int
+E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(9,2): warning C4013: “strcpy”未定义；假设外部返回 int
+E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(12,2): warning C4013: “strncpy”未定义；假设外部返回 int
 E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(15,37): warning C4013: “strlen”未定义；假设外部返回 int
 E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(16,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
 E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(16,9): message : 请考虑在格式字符串中使用“%zd”
+E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(27,6): warning C4013: “strcmp”未定义；假设外部返回 int
+E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(43,2): warning C4013: “strcat”未定义；假设外部返回 int
+E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(84,14): warning C4013: “strchr”未定义；假设外部返回 int
+E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(91,10): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“__int64”
+E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(91,10): message : 请考虑在格式字符串中使用“%lld”
+E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(91,10): message : 请考虑在格式字符串中使用“%Id”
+E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(91,10): message : 请考虑在格式字符串中使用“%I64d”
+E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(84,8): warning C4047: “初始化”:“char *”与“int”的间接级别不同
+E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(110,14): warning C4013: “strstr”未定义；假设外部返回 int
+E:\code\c_plus_plus_project\visual_studio_code\handle_string\handle_string\main.c(110,8): warning C4047: “初始化”:“char *”与“int”的间接级别不同
   handle_string.vcxproj -> E:\code\c_plus_plus_project\visual_studio_code\handle_string\x64\Debug\handle_string.exe
