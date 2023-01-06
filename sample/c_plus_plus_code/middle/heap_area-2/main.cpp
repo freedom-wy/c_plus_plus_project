@@ -4,7 +4,6 @@ using namespace std;
 // 函数返回类型为int * 整形指针类型
 int *func()
 {
-    // 栈区的形参和局部变量不要返回
     // int a = 10;
     // return &a;
 
