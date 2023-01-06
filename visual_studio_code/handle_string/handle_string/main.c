@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <stdlib.h>
 
 void test1()
 {
@@ -106,14 +107,63 @@ void test7()
 	//printf("字符串位置: %d\n", ret - buf);
 	// strncpy(ret, "**", 2);
 	// printf("屏蔽后的字符串为: %s\n", buf);
-	char buf[1024] = "hello sb world";
-	char* ret = strstr(buf, "sb");
-	strncpy(ret, "**", 2);
-	printf("屏蔽后的字符串为: %s\n", buf);
+	// char buf[1024] = "hello sb world";
+	// char* ret = strstr(buf, "sb");
+	//strncpy(ret, "**", 2);
+	// printf("屏蔽后的字符串为: %s\n", buf);
+	char buf[1024] = { '0' };
+	fgets(buf, sizeof(buf), stdin);
+	char* p = buf;
+	while (1)
+	{
+		char* ret = strstr(p, "sb");
+		if (ret != NULL)
+		{
+			strncpy(ret, "**", 2);
+			p = p + 2;
+		}
+		else
+		{
+			printf("屏蔽后的结果为: %s\n", buf);
+			break;
+		}
+	}
+}
+
+void test8()
+{
+	char buf[1024] = "张三:李四:王五:赵六:陈七";
+	char* names[64] = { '0' };
+	int i = 0;
+	// char* ret = strtok(buf, ":");
+	// printf("字符串结果为: %s\n", ret);
+	names[i] = strtok(buf, ":");
+	while (names[i] != NULL)
+	{
+		i++;
+		names[i] = strtok(NULL, ":");
+	}
+
+	for (int i = 0; i < sizeof(names) / sizeof(names[i]); i++)
+	{
+		if (names[i] != NULL)
+		{
+			printf("名称为: %s\n", names[i]);
+		}
+	}
+
+}
+
+void test9()
+{
+	char str1[] = "123";
+	int num = 0;
+	num = atoi(str1);
+	printf("转换后的数字为: %d\n", num);
 }
 
 int main()
 {
-	test7();
+	test8();
 	return 0;
 }

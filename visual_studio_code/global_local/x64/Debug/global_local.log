@@ -1,0 +1,3 @@
+﻿  handle_local.c
+E:\code\c_plus_plus_project\visual_studio_code\global_local\handle_local.c(6): warning C4172: 返回局部变量或临时变量的地址: a
+  global_local.vcxproj -> E:\code\c_plus_plus_project\visual_studio_code\handle_string\x64\Debug\global_local.exe
