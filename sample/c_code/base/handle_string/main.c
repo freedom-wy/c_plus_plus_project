@@ -6,15 +6,19 @@
 void test1()
 {
     // char dest[20] = {'0'};
-    char dest[20]; // 长度需足够, 否则会报错
-    char src[] = "hello world"; // 包含\0
-    strcpy(dest, src);
-    printf("%s\n", dest);
-    printf("dest的sizeof值为: %d\n", sizeof(dest));
-    printf("dest的strlen的值为: %d\n", strlen(dest));
-    for(int i=0; i<sizeof(dest); i++)
+    char dest1[20]; // 长度需足够, 否则会报错
+    char dest2[20];
+    char src1[] = "hello world"; // 包含\0
+    char src2[] = "hello\0world";
+    strcpy(dest1, src1);
+    strcpy(dest2, src2); //遇到\0停止, 为拷贝\0, 因此下面输出有乱码
+    printf("%s\n", dest1);
+    printf("%s\n", dest2);
+    printf("dest的sizeof值为: %d\n", sizeof(dest2));
+    printf("dest的strlen的值为: %d\n", strlen(dest2));
+    for(int i=0; i<sizeof(dest2); i++)
     {
-        printf("字符值为: %c\n", dest[i]);
+        printf("字符值为: %c\n", dest2[i]);
     }
 }
 
@@ -121,6 +125,6 @@ void test7()
 
 int main()
 {
-    test7();
+    test1();
     return 0;
 }
