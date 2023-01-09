@@ -46,18 +46,56 @@ void test1()
     free(arr);
 }
 
-void setValue(int* aa)
+void setValue(int** aa)
 {
-    aa = malloc(sizeof(int));
-    memset(aa, 0, sizeof(int));
-    *aa = 100;
+    printf("aa的值为: %p\n", aa);
+    printf("*aa的地址为: %p\n", *aa);
+    // 地址传递, 由于实参是指针地址, 因此形参需要用二级指针接收
+    *aa = malloc(sizeof(int)); // 需解引用到一级指针, int* a = malloc(sizeof(int));
+    memset(*aa, 0, sizeof(int));
 }
+
+// int* returnLocalPoint()
+// {
+//     int a = 10;
+//     int* p;
+//     p = &a;
+//     return p;
+// }
+
+// int* returnMallocPoint()
+// {
+//     int* p = malloc(sizeof(int));
+//     // *p = 100;
+//     return p;
+// }
 
 void test2()
 {
-    int* a = NULL;
-    setValue(a);
+    int num = 10;
+    int* a = &num;
+    // printf("NULL的地址为: %p\n", &NULL); // 不能取NULL的地址
+    printf("num的地址为: %p\n", &num);
+    printf("a的地址为: %p\n", &a);
+    // 传入指针地址
+    setValue(&a);
+    *a = 1000;
     printf("a的值为: %d\n", *a);
+    free(a);
+    // int* a = returnMallocPoint();
+}
+
+void test3()
+{
+    // 二级指针
+    int a = 10;
+    int* p = &a;
+    printf("a的地址为: %p\n", p);
+    printf("p的值为: %p\n", &a);
+    // 二级指针
+    int** pp = &p; //*pp解引用的值为p的值, 即为&a; **pp解引用即为a的值, 为10.
+    printf("&p的值为: %p\n", &p);
+    printf("pp的地址为: %p\n", pp);
 }
 
 int main()
