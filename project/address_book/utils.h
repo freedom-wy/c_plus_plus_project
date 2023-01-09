@@ -14,7 +14,7 @@ struct person
 // 定义通讯录结构体
 struct addressBook
 {
-    person addressList[1000];
+    person addressList[1000]; // 数据类型 数组名 数组长度
     int size;
 };
 
