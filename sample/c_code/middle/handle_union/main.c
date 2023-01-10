@@ -1,94 +1,7 @@
-#### 函数不要返回局部变量的地址和局部变量引用, 可以返回静态变量地址, 或返回malloc申请的内存
-```c
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-int* test1()
-{
-	// 不能返回局部变量的地址
-	int a = 10;
-	return &a;
-}
-
-int main()
-{
-
-	int* a = test1();
-	
-	printf("a的值为: %d\n", *a);
-	printf("a的值为: %d\n", *a);
-	printf("a的值为: %d\n", *a);
-	printf("a的值为: %d\n", *a);
-	printf("a的值为: %d\n", *a);
-	return 0;
-}
-```
-#### 如果函数声明有默认参数, 函数实现就不能写默认参数, 声明和实现中只能有一个存在默认参数
-```c++
-int test2(int a=1, int b=1);
-
-int test2(int a, int b)
-{
-    return a+b;
-}
-
-
-int main()
-{
-    int x = test2();
-    cout << "x的值为: " << x << endl;
-    return 0;
-}
-```
-#### 函数重载, 尽量避免使用默认参数
-```c++
-#include <iostream>
-using namespace std;
-
-void test1()
-{
-    cout << "重载1" << endl;
-}
-
-void test1(int a)
-{
-    cout << "重载2" << endl;
-}
-
-void test1(float a, int b)
-{
-    cout << "重载3" << endl;
-}
-
-// 报错, 不能重载不同类型的函数
-// int test1()
-// {
-//     cout << "重载3" << endl;
-// }
-
-int main()
-{
-    test1(3.14, 1);
-    return 0;
-}
-```
-#### c语言不支持函数的默认参数
-#### 二级指针
-```c
-void test3()
-{
-    // 二级指针
-    int a = 10;
-    int* p = &a;
-    printf("a的地址为: %p\n", p);
-    printf("p的值为: %p\n", &a);
-    // 二级指针
-    int** pp = &p; //*pp解引用的值为p的值, 即为&a; **pp解引用即为a的值, 为10.
-    printf("&p的值为: %p\n", &p);
-    printf("pp的地址为: %p\n", pp);
-}
-```
-#### 联合体 空间大小等于最大数据类型
-```c
 void test1()
 {
     union DATA
@@ -106,9 +19,7 @@ void test1()
     printf("求和: %d\n", data.a+data.b+data.c); // 值为90, 30+30+30
     // 如果数据超出数据类型空间大小, 按照数据类型空间大小存储数据
 }
-```
-#### 枚举 在C语言中没有BOOL类型, C++中有BOOL类型
-```c
+
 void test2()
 {
     // 创建枚举类型, 如不赋初始值, 则从0开始, 每个变量递增, 定义后不可修改
@@ -127,9 +38,7 @@ void test2()
     printf("梅花的值为: %d\n", MEIHUA);
     printf("方片的值为: %d\n", FANGPIAN);
 }
-```
-#### typedef 给类型创建别名
-```c
+
 void test3()
 {
     // 别名
@@ -175,4 +84,9 @@ void test4()
     printf("p3的大小为: %d\n", sizeof(p3)); // 8
     printf("p4的大小为: %d\n", sizeof(p4)); // 8
 }
-```
+
+int main()
+{
+    test4();
+    return 0;
+}
