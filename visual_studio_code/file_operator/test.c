@@ -15,7 +15,7 @@ void createQuestion()
 	}
 	int num1, num2;
 	char ch;
-	char symbol[4] = { '+', '-', '*', '/' };
+	char symbol[4] = { '+', '-', '*', '/' }; // 字符数组
 	// printf("大小： %d\n", sizeof(symbol));
 	srand((size_t)time(NULL));
 	for (int i = 0; i < 50; i++)
