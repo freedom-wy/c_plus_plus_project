@@ -7,5 +7,6 @@
 int main()
 {
 	createQuestion();
+	answerQuestion();
 	return 0;
 }
