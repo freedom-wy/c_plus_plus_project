@@ -38,4 +38,52 @@ void createQuestion()
 void answerQuestion()
 {
 	// 解答问题
+	// 先将题目读取出来
+	FILE* f_read = fopen("question.txt", "r");
+	if (f_read == NULL)
+	{
+		printf("问题文件打开失败\n");
+		return;
+	}
+
+	// 将结果放入新文件中
+	FILE* f_write = fopen("answer.txt", "w");
+	if (f_write == NULL)
+	{
+		printf("答案文件打开失败\n");
+		return;
+	}
+
+	int num1, num2;
+	char ch;
+	int result = 0;
+	char buf[32] = { 0 };
+	while (fgets(buf, sizeof(buf), f_read))
+	{
+		sscanf(buf, "%d %c %d", &num1, &ch, &num2);
+		if (ch == '+')
+		{
+			result = num1 + num2;
+		}
+		if (ch == '-')
+		{
+			result = num1 - num2;
+		}
+		if (ch == '*')
+		{
+			result = num1 * num2;
+		}
+		if (ch == '/')
+		{
+			result = num1 / num2;
+		}
+
+		// 将结果重新拼接
+		char buf1[32] = { 0 };
+		sprintf(buf1, "%d %c %d=%d\n", num1, ch, num2, result);
+		fputs(buf1, f_write);
+	}
+	fclose(f_write);
+	fclose(f_read);
+	printf("解答完毕");
 }
