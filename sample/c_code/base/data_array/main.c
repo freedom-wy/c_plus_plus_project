@@ -39,9 +39,9 @@ void test3()
 
 void test4()
 {
-    char buf4[14] = "hello world\n";
-    // puts(buf4); // 带换行
-    fputs(buf4, stdout); // 不带换行
+    char buf4[14] = "hello world";
+    puts(buf4); // 自动添加换行
+    fputs(buf4, stdout); // 不会自动添加换行
 }
 
 void test5()
@@ -151,6 +151,6 @@ int main()
     // test9();
     // int arr[5] = {1, 2, 3, 4, 5};
     // test11(arr, 5);
-    test13();
+    test3();
     return 0;
 }
