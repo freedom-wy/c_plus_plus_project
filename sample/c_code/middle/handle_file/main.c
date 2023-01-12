@@ -182,7 +182,8 @@ void test7()
         // 读文件 [英雄姓名]刘备 [英雄攻击力]20 [英雄防御力]100
         // 英雄姓名: 刘备, 英雄攻击力: 20, 英雄防御力: 100
         // fscanf(f_read, "[英雄姓名]%s [英雄攻击力]%d [英雄防御力]%d\n", heroArray[i].name, &heroArray[i].atk, &heroArray[i].def);
-        fscanf(f_read, "英雄姓名: %s, 英雄攻击力: %d, 英雄防御力: %d\n", heroArray[i].name, &heroArray[i].atk, &heroArray[i].def);
+        // 遇到逗号停止
+        fscanf(f_read, "英雄姓名: %[^,], 英雄攻击力: %d, 英雄防御力: %d\n", heroArray[i].name, &heroArray[i].atk, &heroArray[i].def);
         i++;
     }
     printf("读取完成\n");
@@ -191,6 +192,13 @@ void test7()
         printf("结果为: 英雄姓名: %s, 英雄攻击力: %d, 英雄防御力: %d\n", heroArray[i].name, heroArray[i].atk, heroArray[i].def);
     }
     fclose(f_read);
+}
+
+void test8()
+{
+    char buf[32];
+    scanf("%s", buf); // 输入helloworld可以正常输出, hello world只能输出hello
+    printf("数据为: %s\n", buf);
 }
 
 int main()
