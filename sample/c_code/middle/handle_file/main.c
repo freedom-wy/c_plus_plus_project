@@ -196,13 +196,18 @@ void test7()
 
 void test8()
 {
-    char buf[32];
-    scanf("%s", buf); // 输入helloworld可以正常输出, hello world只能输出hello
-    printf("数据为: %s\n", buf);
+    // char buf[32];
+    // scanf("%s", buf); // 输入helloworld可以正常输出, hello world只能输出hello
+    // printf("数据为: %s\n", buf);
+    FILE* f_read = fopen("no_file.txt", "r");
+    if(f_read == NULL)
+    {
+        perror("错误信息"); // 错误信息: No such file or directory
+    }
 }
 
 int main()
 {
-    test7();
+    test8();
     return 0;
 }
