@@ -31,8 +31,8 @@ void test6()
     FILE* f_write = fopen("hero.txt", "w");
     for (int i = 0; i < 3; i++)
     {
-        fprintf(f_write, "[Ó¢ÐÛÐÕÃû]%s [Ó¢ÐÛ¹¥»÷Á¦]%d [Ó¢ÐÛ·ÀÓùÁ¦]%d\n", heroArray[i].name, heroArray[i].atk, heroArray[i].def);
-        // fprintf(f_write, "Ó¢ÐÛÐÕÃû: %s, Ó¢ÐÛ¹¥»÷Á¦: %d, Ó¢ÐÛ·ÀÓùÁ¦: %d\n", heroArray[i].name, heroArray[i].atk, heroArray[i].def);
+        // fprintf(f_write, "[Ó¢ÐÛÐÕÃû]%s [Ó¢ÐÛ¹¥»÷Á¦]%d [Ó¢ÐÛ·ÀÓùÁ¦]%d\n", heroArray[i].name, heroArray[i].atk, heroArray[i].def);
+        fprintf(f_write, "Ó¢ÐÛÐÕÃû: %s, Ó¢ÐÛ¹¥»÷Á¦: %d, Ó¢ÐÛ·ÀÓùÁ¦: %d\n", heroArray[i].name, heroArray[i].atk, heroArray[i].def);
     }
 
     fclose(f_write);
@@ -55,8 +55,8 @@ void test7()
     {
         // ¶ÁÎÄ¼þ [Ó¢ÐÛÐÕÃû]Áõ±¸ [Ó¢ÐÛ¹¥»÷Á¦]20 [Ó¢ÐÛ·ÀÓùÁ¦]100
         // Ó¢ÐÛÐÕÃû: Áõ±¸, Ó¢ÐÛ¹¥»÷Á¦: 20, Ó¢ÐÛ·ÀÓùÁ¦: 100
-        fscanf(f_read, "[Ó¢ÐÛÐÕÃû]%s [Ó¢ÐÛ¹¥»÷Á¦]%d [Ó¢ÐÛ·ÀÓùÁ¦]%d\n", heroArray[i].name, &heroArray[i].atk, &heroArray[i].def);
-        // fscanf(f_read, "Ó¢ÐÛÐÕÃû: %s, Ó¢ÐÛ¹¥»÷Á¦: %d, Ó¢ÐÛ·ÀÓùÁ¦: %d\n", heroArray[i].name, &heroArray[i].atk, &heroArray[i].def);
+        // fscanf(f_read, "[Ó¢ÐÛÐÕÃû]%s [Ó¢ÐÛ¹¥»÷Á¦]%d [Ó¢ÐÛ·ÀÓùÁ¦]%d\n", heroArray[i].name, &heroArray[i].atk, &heroArray[i].def);
+        fscanf(f_read, "Ó¢ÐÛÐÕÃû: %[^,], Ó¢ÐÛ¹¥»÷Á¦: %d, Ó¢ÐÛ·ÀÓùÁ¦: %d\n", heroArray[i].name, &heroArray[i].atk, &heroArray[i].def);
         i++;
     }
     printf("¶ÁÈ¡Íê³É\n");
