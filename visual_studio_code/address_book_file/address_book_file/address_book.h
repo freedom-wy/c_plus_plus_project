@@ -13,11 +13,13 @@
 7、退出程序
 */
 
+#define ADDRESSBOOKFILENAME "person.txt"
+
 struct Person
 {
 	char name[64];
 	int age;
-	char phone[11];
+	char phone[12]; // 注意手机号码长度问题
 	char address[128];
 };
 
@@ -36,3 +38,8 @@ void findPerson(struct addressBook* adb);
 void modifyPerson(struct addressBook* adb);
 void clearPerson(struct addressBook* adb);
 void exitProgram();
+
+void saveBookToFile(struct addressBook* adb);
+void loadFileToBook(struct addressBook* adb);
+
+int addressBookIsEmpty(struct addressBook* adb);

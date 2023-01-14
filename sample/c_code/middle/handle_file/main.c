@@ -196,13 +196,68 @@ void test7()
 
 void test8()
 {
-    // char buf[32];
-    // scanf("%s", buf); // 输入helloworld可以正常输出, hello world只能输出hello
-    // printf("数据为: %s\n", buf);
-    FILE* f_read = fopen("no_file.txt", "r");
-    if(f_read == NULL)
+    system("chcp 65001");
+    char buf[32];
+    scanf("%s", buf); // 输入helloworld可以正常输出, hello world只能输出hello
+    printf("数据为: %s\n", buf);
+    // FILE* f_read = fopen("no_file.txt", "r");
+    // if(f_read == NULL)
+    // {
+    //     perror("错误信息"); // 错误信息: No such file or directory
+    // }
+}
+
+void test9()
+{
+    struct Person
     {
-        perror("错误信息"); // 错误信息: No such file or directory
+        char name[64];
+        int age;
+        char phone[12];
+        char address[128];
+    };
+
+    struct addressBook
+    {
+        struct Person addressList[1000];
+        int size;
+    };
+
+    // 通讯录初始化
+    struct addressBook book;
+    book.size = 0;
+
+    char name[64] = { '0' };
+    printf("请输入联系人姓名: ");
+    scanf("%s", name);
+    printf("姓名为: %s\n", name);
+    strcpy(book.addressList[book.size].name, name);
+
+    int age = 0;
+    printf("请输入联系人年龄: ");
+    scanf("%d", &age);
+    book.addressList[book.size].age = age;
+
+    char phone[12] = { '0' };
+    printf("请输入联系电话: ");
+    scanf("%s", phone);
+    printf("电话长度为: %d\n", strlen(phone));
+    strcpy(book.addressList[book.size].phone, phone);
+    printf("电话为: %s\n", phone);
+
+    char address[128] = { '0' };
+    printf("请输入通信地址: ");
+    scanf("%s", address);
+    strcpy(book.addressList[book.size].address, address);
+
+    for (int i = 0; i < 1; i++)
+    {
+        printf("姓名: %s, 年龄: %d, 电话: %s, 地址: %s\n",
+            book.addressList[i].name,
+            book.addressList[i].age,
+            book.addressList[i].phone,
+            book.addressList[i].address
+        );
     }
 }
 
