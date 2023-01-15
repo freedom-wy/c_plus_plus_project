@@ -29,7 +29,7 @@ struct addressBook
 	int size;
 };
 
-void menu();
+void showMenu();
 void addPerson(struct addressBook* adb);
 void showPerson(struct addressBook* adb);
 int checkPerson(struct addressBook* adb);
