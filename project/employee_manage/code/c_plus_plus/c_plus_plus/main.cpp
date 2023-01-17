@@ -69,6 +69,7 @@ int main()
     class Person1 : public Base
     {
         public:
+            Person1(){}
             Person1(char* name, int age)
             {
                 strcpy(this->name, name);
@@ -116,37 +117,60 @@ int main()
             }
     };
 
-
     class Test
     {
-    public:
-        int num;
-        Base** array;
+        public:
+            int num;
+            Base** array;
+        public:
+            void handle()
+            {
+                num = 2;
+                array = new Base*[2];
+                for (int i = 0; i < 2; i++)
+                {
+                    char name[32] = { "zhangsan" };
+                    Base* base = NULL;
+                    base = new Person2(name, i);
+                    array[i] = base;
+                }
+            }
+            void save()
+            {
+                ofstream ofs;
+                ofs.open("test.txt", ios::out);
+                for (int i = 0; i < num; i++)
+                {
+                    ofs << array[i]->name << " " << array[i]->age << endl;
+                }
+                ofs.close();
+            }
+            void load()
+            {
+                array = new Base * [2];
+                int i = 0;
+                ifstream ifs;
+                ifs.open("test.txt", ios::in);
+                char name[32];
+                int age;
+                while (ifs >> name && ifs >> age)
+                {
+                    Base* base = NULL;
+                    base = new Person2(name, age);
+                    this->array[i] = base;
+                    i++;
+                }
+
+                for (int i = 0; i < 2; i++)
+                {
+                    array[i]->getInfo();
+                }
+            }
     };
 
     Test t1;
-    //t1.num = 2;
-    //// 在堆区创建数据, 数据为抽象类Base的指针, 因此使用**接
-    //t1.array = new Base * [t1.num];
-    //char name1[32] = { "zhangsan" };
-    //t1.array[0] = new Person1(name1, 18);
-    //char name2[32] = { "lisi" };
-    //t1.array[1] = new Person2(name2, 20);
-
-    //// 写入文件
-    //ofstream ofs;
-    //ofs.open("test.txt", ios::out);
-    //ofs.write((const char*)&t1, sizeof(t1));
-    //ofs.close();
-
-    ifstream ifs;
-    ifs.open("test.txt", ios::in);
-    ifs.read((char*)&t1, sizeof(t1));
-    for (int i = 0; i < t1.num; i++)
-    {
-        t1.array[i]->getInfo();
-    }
-
+    //t1.handle();
+    t1.load();
 
 #else
 	employeeManager em;
