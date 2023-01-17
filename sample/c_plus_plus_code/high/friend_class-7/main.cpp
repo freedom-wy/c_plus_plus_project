@@ -32,6 +32,7 @@ using namespace std;
 
 // 声明类
 class Building;
+
 class goodGay
 {
     private:
@@ -45,6 +46,7 @@ class goodGay
 
 class Building
 {
+    // 类做友元
     friend class goodGay;
     private:
         string b_SittingRoom;
@@ -52,16 +54,21 @@ class Building
         int age;
     
     public:
-        Building(int age);
+        Building(int age)
+        {
+            this->b_BedRoom = "卧室";
+            this->b_SittingRoom = "客厅";
+            this->age = age;
+        }
 };
 
 // 类外实现构造函数
-Building::Building(int age)
-{
-    this->b_BedRoom = "卧室";
-    this->b_SittingRoom = "客厅";
-    this->age = age;
-}
+// Building::Building(int age)
+// {
+//     this->b_BedRoom = "卧室";
+//     this->b_SittingRoom = "客厅";
+//     this->age = age;
+// }
 
 goodGay::goodGay()
 {

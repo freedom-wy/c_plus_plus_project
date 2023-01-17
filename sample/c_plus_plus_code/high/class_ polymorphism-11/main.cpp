@@ -29,8 +29,10 @@ void doSpeak(Animal &animal)
 
 void test1()
 {
-    Cat cat; // 父类指针或引用指向子类对象
-    doSpeak(cat);
+    // Cat cat; // 父类指针或引用指向子类对象
+    // doSpeak(cat);
+    Animal* cat = new Cat();
+    cat->speak();
 }
 
 int main()
