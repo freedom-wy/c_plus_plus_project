@@ -4,6 +4,7 @@ employeeManager::employeeManager()
 {
 	// 构造具体实现
     // 初始化人数和指针
+    loadData();
     this->e_EmpNum = 0;
     this->e_EmpArry = NULL;
 }
@@ -11,6 +12,7 @@ employeeManager::employeeManager()
 employeeManager::~employeeManager()
 {
 	// 析构具体实现
+    saveData();
 }
 
 void employeeManager::showMenu()
@@ -41,7 +43,7 @@ void employeeManager::addEmployee()
         // 附加原有空间
         int newSize = this->e_EmpNum + addNum;
         
-        // 创建指针数组
+        // 在堆区创建指针数组
         Worker** newSpace = new Worker* [newSize];
         if (this->e_EmpArry != NULL)
         {
@@ -302,25 +304,73 @@ void employeeManager::findEmployee()
 
 void employeeManager::saveData()
 {
-    //// 保存数据, 尝试通过二进制方式保存
-    //// 打开文件
-    //ofstream ofs;
-    //ofs.open("employee.txt", ios::app | ios::binary);
-    //if (!ofs.is_open())
-    //{
-    //    cout << "文件打开失败" << endl;
-    //    return;
-    //}
-    //if (this->e_EmpNum == 0)
-    //{
-    //    return;
-    //}
-    //// 按行写入数据
-    //for (int i = 0; i < this->e_EmpNum; i++)
-    //{
-    //    ofs.write((const char*)this->e_EmpArry[i], sizeof(this->e_EmpArry[i]));
-    //}
-    //// 关闭文件
-    //ofs.close();
+    // 保存数据, 尝试通过二进制方式保存
+    if (this->e_EmpNum == 0)
+    {
+        return;
+    }
+
+    // 打开文件
+    ofstream ofs;
+    ofs.open(FILENAME, ios::out | ios::binary);
+    if (!ofs.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return;
+    }
+
+    // 按行写入数据
+    for (int i = 0; i < this->e_EmpNum; i++)
+    {
+        ofs.write((const char*)this->e_EmpArry[i], sizeof(this->e_EmpArry[i]));
+    }
+    // 关闭文件
+    ofs.close();
+
+    // 尝试通过文本方式写入, 写入结果为乱码
+    /*ofstream ofs;
+    ofs.open("employee.txt", ios::app);
+    for (int i = 0; i < this->e_EmpNum; i++)
+    {
+        ofs.write((const char*)this->e_EmpArry[i], sizeof(this->e_EmpArry[i]));
+    }
+    ofs.close();*/
+}
+
+void employeeManager::loadData()
+{
+    // 加载数据
+    // 无数据源文件
+    ifstream ifs;
+    ifs.open(FILENAME, ios::in);
+    if (!ifs.is_open())
+    {
+        cout << "数据源文件不存在" << endl;
+        this->e_EmpNum = 0;
+        this->e_EmpArry = NULL;
+        ifs.close();
+        return;
+    }
+    // 有数据源文件但无数据
+    char ch;
+    ifs >> ch;
+    if (ifs.eof())
+    {
+        cout << "文件中无数据" << endl;
+        this->e_EmpNum = 0;
+        this->e_EmpArry = NULL;
+        ifs.close();
+        return;
+    }
+    ifs.close();
+    // 有数据
+    ifstream ifs_data;
+    ifs_data.open(FILENAME, ios::in);
+    Worker* worker = NULL;
+    /*while (ifs_data.read((char*)&worker, sizeof(worker)))
+    {
+        cout << worker->w_DeptID << endl;
+    }*/
     
+    ifs_data.close();
 }

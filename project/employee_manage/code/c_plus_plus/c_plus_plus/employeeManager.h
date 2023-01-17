@@ -7,6 +7,8 @@
 #include <fstream>
 using namespace std;
 
+#define FILENAME "employee.txt"
+
 class employeeManager
 {
 	public:
@@ -27,4 +29,5 @@ class employeeManager
 		void modifyEmployee();
 		void findEmployee();
 		void saveData();
+		void loadData();
 };

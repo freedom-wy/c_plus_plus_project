@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-#if 0
+#if 1
 	/*Worker* worker = NULL;
 	worker = new Employee(1, "张三", 1);
 	worker->showInfo();
@@ -35,7 +35,7 @@ int main()
 		cout << "元素值为: " << *array[i] << endl;
 	}*/
 
-	int* array[5];
+	/*int* array[5];
 	for (int i = 0; i < 5; i++)
 	{
 		array[i] = new int(i);
@@ -44,7 +44,7 @@ int main()
 	for (int i = 0; i < sizeof(array) / sizeof(int*); i++)
 	{
 		cout << "元素的值为: " << *array[i] << endl;
-	}
+	}*/
 
 
 #else
@@ -76,6 +76,7 @@ int main()
 			case 6:
 				break;
 			case 7:
+				//em.saveData();
 				em.exitProgram();
 				break;
 			default:
