@@ -4,6 +4,7 @@
 #include "employee.h"
 #include "manager.h"
 #include "boss.h"
+#include <fstream>
 using namespace std;
 
 class employeeManager
@@ -21,4 +22,9 @@ class employeeManager
 		void exitProgram();
 		void addEmployee();
 		void showEmployee();
+		void delEmployee();
+		int employeeIsExist(int id);
+		void modifyEmployee();
+		void findEmployee();
+		void saveData();
 };

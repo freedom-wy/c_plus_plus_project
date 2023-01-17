@@ -35,6 +35,17 @@ int main()
 		cout << "元素值为: " << *array[i] << endl;
 	}*/
 
+	int* array[5];
+	for (int i = 0; i < 5; i++)
+	{
+		array[i] = new int(i);
+	}
+	delete array[0];
+	for (int i = 0; i < sizeof(array) / sizeof(int*); i++)
+	{
+		cout << "元素的值为: " << *array[i] << endl;
+	}
+
 
 #else
 	employeeManager em;
@@ -54,10 +65,13 @@ int main()
 				em.showEmployee();
 				break;
 			case 3:
+				em.delEmployee();
 				break;
 			case 4:
+				em.findEmployee();
 				break;
 			case 5:
+				em.modifyEmployee();
 				break;
 			case 6:
 				break;
