@@ -52,15 +52,15 @@ class Base
             cout << "Base的析构方法" << endl;
         }
         // virtual ~Base() = 0;
-        virtual void setAge(int age) = 0;
         virtual void getInfo() = 0;
 };
 
 class Person1: public Base
 {
     public:
-        Person1(char* name, int age)
+        Person1(int age)
         {
+            char name[32] = "zhangsan";
             strcpy(this->name, name);
             this->age = age;
             cout << "Person1的构造方法" << endl;
@@ -68,14 +68,6 @@ class Person1: public Base
         ~Person1()
         {
             cout << "Person1的析构方法" << endl;
-        }
-        void setAge(int age)
-        {
-            this->age = age;
-        }
-        void setName(char* name)
-        {
-            strcpy(this->name, name);
         }
         void getInfo()
         {
@@ -86,9 +78,10 @@ class Person1: public Base
 class Person2: public Base
 {
     public:
-        Person2(char* name, int age)
+        Person2(int age)
         {
             cout << "person2的构造方法" << endl;
+            char name[32] = "lisi";
             strcpy(this->name, name);
             this->age = age;
         }
@@ -96,20 +89,46 @@ class Person2: public Base
         {
             cout << "Person2的析构方法" << endl;
         }
-        void setAge(int age)
-        {
-            this->age = age;
-        }
         void getInfo()
         {
             cout << "姓名: " << this->name << " 年龄: " << this->age << endl;
         }
 };
 
-void doTest(Base &b)
+class Test
 {
-    b.getInfo();
-}
+    public:
+        int num;
+        Base** array;
+    public:
+        Test()
+        {
+            cout << "Test类的构造方法" << endl;
+            this->num = 2;
+            this->array = new Base*[this->num];
+        }
+        ~Test()
+        {
+            cout << "test类的析构方法" << endl;
+        }
+
+        void handle()
+        {
+            for(int i=1;i<3;i++)
+            {
+                Base* base = NULL;
+                if(i==1)
+                {
+                    base = new Person1(i);
+                }
+                else
+                {
+                    base = new Person2(i);
+                }
+                this->array[i-1] = base;
+            }
+        }
+};
 
 
 void test3()
@@ -138,27 +157,6 @@ void test3()
     // Base* p2 = new Person2("lisi");
     // p2->setAge(19);
     // p2->getInfo();
-    class Test
-    {
-        public:
-            int num;
-            Base** array;
-    };
-
-    Test t1;
-    t1.num = 2;
-    // 在堆区创建数据, 数据为抽象类Base的指针, 因此使用**接
-    t1.array = new Base*[t1.num];
-    char name1[32] = {"zhangsan"};
-    t1.array[0] = new Person1(name1, 18);
-    char name2[32] = {"lisi"};
-    t1.array[1] = new Person2(name2, 20);
-
-    // 写入文件
-    ofstream ofs;
-    ofs.open("test.txt", ios::out);
-    ofs.write((const char*)&t1, sizeof(t1));
-    ofs.close();
 }
 
 void test4()
@@ -171,26 +169,6 @@ void test4()
         cout << "文件打开失败" << endl;
         return;
     }
-
-    class Test
-    {
-        public:
-            int num;
-            Base** array;
-    };
-
-    Test t1;
-
-    // Person p;
-    while(ifs.read((char*)&t1, sizeof(t1)))
-    {
-        // cout << "姓名: " << p.name << " 年龄: " << p.age << endl;
-        for(int i=0;i<t1.num;i++)
-        {
-            t1.array[i]->getInfo();
-        }
-    }
-
     // 按行输出
     // char buf[1024] = {0};
     // while(ifs.getline(buf, sizeof(buf)))
@@ -203,6 +181,6 @@ void test4()
 
 int main()
 {
-    test4();
+    test3();
     return 0;
 }
