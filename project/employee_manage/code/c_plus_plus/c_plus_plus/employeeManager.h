@@ -14,6 +14,7 @@ class employeeManager
 	public:
 		int e_EmpNum; // 记录员工数
 		Worker** e_EmpArry;
+		//bool e_FileIsEmpty;
 	// 职工管理
 	public:
 		employeeManager();
@@ -30,4 +31,6 @@ class employeeManager
 		void findEmployee();
 		void saveData();
 		void loadData();
+		int getEmployeeNum();
+		void emptyEmployee();
 };

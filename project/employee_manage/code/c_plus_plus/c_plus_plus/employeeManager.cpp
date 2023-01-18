@@ -4,15 +4,28 @@ employeeManager::employeeManager()
 {
 	// 构造具体实现
     // 初始化人数和指针
-    loadData();
-    this->e_EmpNum = 0;
-    this->e_EmpArry = NULL;
+    int num = getEmployeeNum();
+    if (num > 0)
+    {
+        this->e_EmpNum = num;
+        loadData();
+    }
 }
 
 employeeManager::~employeeManager()
 {
 	// 析构具体实现
     saveData();
+    if (this->e_EmpArry != NULL)
+    {
+        for (int i = 0; i < this->e_EmpNum; i++)
+        {
+            delete this->e_EmpArry[i];
+        }
+        delete[] this->e_EmpArry;
+        this->e_EmpNum = 0;
+        this->e_EmpArry = NULL;
+    }
 }
 
 void employeeManager::showMenu()
@@ -141,10 +154,9 @@ void employeeManager::delEmployee()
     int id = 0;
     cin >> id;
     int index = employeeIsExist(id);
-    // TODO 检查其他项目代码该处BUG
     if (index != -1)
     {
-        for (int i = index; i < this->e_EmpNum - 1; i++)
+        for (int i = index; i < this->e_EmpNum; i++)
         {
             this->e_EmpArry[i] = this->e_EmpArry[i + 1];
             this->e_EmpNum--;
@@ -304,7 +316,7 @@ void employeeManager::findEmployee()
 
 void employeeManager::saveData()
 {
-    // 保存数据, 尝试通过二进制方式保存
+    // 保存数据
     if (this->e_EmpNum == 0)
     {
         return;
@@ -312,7 +324,7 @@ void employeeManager::saveData()
 
     // 打开文件
     ofstream ofs;
-    ofs.open(FILENAME, ios::out | ios::binary);
+    ofs.open(FILENAME, ios::out);
     if (!ofs.is_open())
     {
         cout << "文件打开失败" << endl;
@@ -322,22 +334,50 @@ void employeeManager::saveData()
     // 按行写入数据
     for (int i = 0; i < this->e_EmpNum; i++)
     {
-        ofs.write((const char*)this->e_EmpArry[i], sizeof(this->e_EmpArry[i]));
+        ofs << this->e_EmpArry[i]->w_ID << " "
+            << this->e_EmpArry[i]->w_Name << " "
+            << this->e_EmpArry[i]->w_DeptID << endl;
     }
     // 关闭文件
     ofs.close();
-
-    // 尝试通过文本方式写入, 写入结果为乱码
-    /*ofstream ofs;
-    ofs.open("employee.txt", ios::app);
-    for (int i = 0; i < this->e_EmpNum; i++)
-    {
-        ofs.write((const char*)this->e_EmpArry[i], sizeof(this->e_EmpArry[i]));
-    }
-    ofs.close();*/
 }
 
 void employeeManager::loadData()
+{
+    // 加载数据
+    ifstream ifs;
+    ifs.open(FILENAME, ios::in);
+    int w_ID; // 工号
+    string w_Name; // 姓名
+    int w_DeptID; // 部门编号
+    //cout << this->e_EmpNum << "构造方法" << endl;
+    this->e_EmpArry = new Worker * [this->e_EmpNum];
+    
+    int index = 0;
+    while (ifs >> w_ID && ifs >> w_Name && ifs >> w_DeptID)
+    {
+        Worker* worker = NULL;
+        switch (w_DeptID)
+        {
+        case 1:
+            worker = new Employee(w_ID, w_Name, w_DeptID);
+            break;
+        case 2:
+            worker = new Manager(w_ID, w_Name, w_DeptID);
+            break;
+        case 3:
+            worker = new Boss(w_ID, w_Name, w_DeptID);
+            break;
+        default:
+            break;
+        }
+        this->e_EmpArry[index] = worker;
+        index++;
+    }
+    ifs.close();
+}
+
+int employeeManager::getEmployeeNum()
 {
     // 加载数据
     // 无数据源文件
@@ -345,32 +385,58 @@ void employeeManager::loadData()
     ifs.open(FILENAME, ios::in);
     if (!ifs.is_open())
     {
-        cout << "数据源文件不存在" << endl;
+        //cout << "数据源文件不存在" << endl;
         this->e_EmpNum = 0;
         this->e_EmpArry = NULL;
+        //this->e_FileIsEmpty = true;
         ifs.close();
-        return;
+        return -1;
     }
     // 有数据源文件但无数据
     char ch;
     ifs >> ch;
     if (ifs.eof())
     {
-        cout << "文件中无数据" << endl;
+        //cout << "文件中无数据" << endl;
         this->e_EmpNum = 0;
         this->e_EmpArry = NULL;
+        //this->e_FileIsEmpty = true;
         ifs.close();
-        return;
+        return -1;
     }
-    ifs.close();
     // 有数据
-    ifstream ifs_data;
-    ifs_data.open(FILENAME, ios::in);
-    Worker* worker = NULL;
-    /*while (ifs_data.read((char*)&worker, sizeof(worker)))
+    ifstream ifs_num;
+    ifs_num.open(FILENAME, ios::in);
+    int num = 0;
+    int w_ID; // 工号
+    string w_Name; // 姓名
+    int w_DeptID; // 部门编号
+    while (ifs_num >> w_ID && ifs_num >> w_Name && ifs_num >> w_DeptID)
     {
-        cout << worker->w_DeptID << endl;
-    }*/
-    
-    ifs_data.close();
+        num++;
+    }
+    ifs_num.close();
+    //this->e_FileIsEmpty = false;
+    return num;
+}
+
+void employeeManager::emptyEmployee()
+{
+    ofstream ofs;
+    ofs.open(FILENAME, ios::trunc);
+    ofs.close();
+
+    if (this->e_EmpArry != NULL)
+    {
+        for (int i = 0; i < this->e_EmpNum; i++)
+        {
+            delete this->e_EmpArry[i];
+        }
+        delete[] this->e_EmpArry;
+        this->e_EmpNum = 0;
+        this->e_EmpArry = NULL;
+    }
+    cout << "清除员工数据成功" << endl;
+    system("pause");
+    system("cls");
 }
