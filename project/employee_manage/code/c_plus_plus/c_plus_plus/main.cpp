@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-#if 1
+#if 0
 	/*Worker* worker = NULL;
 	worker = new Employee(1, "ÕÅÈý", 1);
 	worker->showInfo();
@@ -126,13 +126,21 @@ int main()
             void handle()
             {
                 num = 2;
-                array = new Base*[2];
+                this->array = new Base*[2];
                 for (int i = 0; i < 2; i++)
-                {
-                    char name[32] = { "zhangsan" };
+                {  
                     Base* base = NULL;
-                    base = new Person2(name, i);
-                    array[i] = base;
+                    if (i == 0)
+                    {
+                        char name[32] = { "zhangsan" };
+                        base = new Person1(name, i);
+                    }
+                    else
+                    {
+                        char name[32] = { "lisi" };
+                        base = new Person2(name, i);
+                    }
+                    this->array[i] = base;
                 }
             }
             void save()
@@ -141,13 +149,13 @@ int main()
                 ofs.open("test.txt", ios::out);
                 for (int i = 0; i < num; i++)
                 {
-                    ofs << array[i]->name << " " << array[i]->age << endl;
+                    ofs << this->array[i]->name << " " << this->array[i]->age << endl;
                 }
                 ofs.close();
             }
             void load()
             {
-                array = new Base * [2];
+                this->array = new Base * [2];
                 int i = 0;
                 ifstream ifs;
                 ifs.open("test.txt", ios::in);
@@ -156,20 +164,28 @@ int main()
                 while (ifs >> name && ifs >> age)
                 {
                     Base* base = NULL;
-                    base = new Person2(name, age);
+                    if (age == 0)
+                    {
+                        base = new Person1(name, age);
+                    }
+                    else
+                    {
+                        base = new Person2(name, age);
+                    }
                     this->array[i] = base;
                     i++;
                 }
 
                 for (int i = 0; i < 2; i++)
                 {
-                    array[i]->getInfo();
+                    this->array[i]->getInfo();
                 }
             }
     };
 
     Test t1;
     //t1.handle();
+    //t1.save();
     t1.load();
 
 #else
@@ -199,9 +215,10 @@ int main()
 				em.modifyEmployee();
 				break;
 			case 6:
+                em.emptyEmployee();
 				break;
 			case 7:
-				//em.saveData();
+				em.saveData();
 				em.exitProgram();
 				break;
 			default:

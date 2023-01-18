@@ -1,2 +1,2 @@
 zhangsan 0
-zhangsan 1
+lisi 1
