@@ -86,9 +86,9 @@ int main()
     */
 
     int len_arr = sizeof(arr) / sizeof(arr[0]);
-    for (int i = 1; i < len_arr; i++)
+    for (int i = 0; i < len_arr; i++)
     {
-        for (int j = 0; j < len_arr - i; j++)
+        for (int j = 0; j < len_arr - i-1; j++)
         {
             if (arr[j] > arr[j + 1])
             {
@@ -97,13 +97,13 @@ int main()
                 arr[j] = tmp;
             }
         }
-        // // break;
-        // cout << "分割线-----" << endl;
-        // for (int k = 0; k < len_arr; k++)
-        // {
-        //     cout << "数据为: " << arr[k] << endl;
-        // }
     }
+
+    for(int i=0;i<len_arr;i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
 
     return 0;
 }
