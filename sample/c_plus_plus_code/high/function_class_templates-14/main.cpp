@@ -48,6 +48,48 @@ T add2(T a, T b)
     return a + b;
 }
 
+// 类模板
+template<class nameType, class ageType=int> // 可以使用默认参数类型
+class Person
+{
+    public:
+        nameType p_name;
+        ageType p_age;
+    public:
+        Person(nameType name, ageType age)
+        {
+            this->p_name = name;
+            this->p_age = age;
+        }
+        void showInfo()
+        {
+            cout << "名字为: " << this->p_name << ", " << "年龄为: " << this->p_age << endl;
+        }
+};
+
+void printPerson1(Person<string> &p)
+{
+    // 指定传入类型
+    p.showInfo();
+}
+
+// 参数模板化
+template<class T1, class T2>
+void printPerson2(Person<T1, T2> &p)
+{
+    p.showInfo();
+    cout << "传入的类型: " << typeid(T1).name() << endl;
+    cout << "传入的类型: " << typeid(T2).name() << endl;
+}
+
+// 整个类模板化
+template<class T>
+void printPerson3(T &p)
+{
+    p.showInfo();
+    cout << "传入的类型: " << typeid(T).name() << endl;
+}
+
 
 
 void test1()
@@ -92,8 +134,20 @@ void test3()
     cout << add2<int>(a, c) << endl; // 指定类型可以进行隐式类型转换
 }
 
+void test4()
+{
+    Person<string>p1("孙悟空", 999);
+    p1.showInfo();
+}
+
+void test5()
+{
+    Person<string>p("孙悟空", 999);
+    printPerson3(p);
+}
+
 int main()
 {
-    test3();
+    test5();
     return 0;
 }
