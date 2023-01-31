@@ -90,6 +90,8 @@ void printPerson3(T &p)
     cout << "传入的类型: " << typeid(T).name() << endl;
 }
 
+// 子类继承模板
+
 
 
 void test1()
