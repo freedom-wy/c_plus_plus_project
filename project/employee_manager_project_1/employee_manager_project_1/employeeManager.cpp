@@ -23,6 +23,16 @@ employeeManager::~employeeManager()
 {
     // 析构方法
     cout << "employeeManager析构方法" << endl;
+    if (this->eEmpArry != NULL)
+    {
+        for (int i = 0; i < this->eEmpNum; i++)
+        {
+            delete this->eEmpArry[i];
+        }
+        delete[] this->eEmpArry;
+        this->eEmpArry = NULL;
+        this->eEmpNum = 0;
+    }
 }
 
 void employeeManager::showMenu()

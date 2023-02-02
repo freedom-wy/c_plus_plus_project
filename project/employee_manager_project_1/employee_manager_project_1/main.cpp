@@ -43,11 +43,11 @@ int main()
 
 	Person p1;
 #else
-	employeeManager em;
+	employeeManager* em = new employeeManager();
 	int choice = 0;
 	while (1)
 	{
-		em.showMenu();
+		em->showMenu();
 		cout << "请输入菜单号: " << endl;
 		cin >> choice;
 		switch (choice)
@@ -55,11 +55,11 @@ int main()
 			case 1:
 				// 添加员工信息
 				cout << "添加员工信息" << endl;
-				em.addEmployee();
+				em->addEmployee();
 				break;
 			case 2:
 				cout << "显示员工信息" << endl;
-				em.showEmployee();
+				em->showEmployee();
 				break;
 			case 3:
 				cout << "删除员工" << endl;
@@ -74,9 +74,11 @@ int main()
 				cout << "清空员工" << endl;
 				break;
 			case 7:
-				em.saveData();
-				em.exitProgram();
-				break;
+				delete em;
+				exit(0);
+				/*em.saveData();
+				em.exitProgram();*/
+				//break;
 			default:
 				cout << "输入有误, 请重新输入" << endl;
 				system("pause");
