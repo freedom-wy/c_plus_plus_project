@@ -189,38 +189,40 @@ int main()
     t1.load();
 
 #else
-	employeeManager em;
+	employeeManager* em = new employeeManager();
 	int choice = 0;
 	while (1)
 	{
-		em.showMenu();
+        em->showMenu();
 		cout << "请输入菜单编号: " << endl;
 		cin >> choice;
 		switch (choice)
 		{
 			case 1:
 				// 添加联系人
-				em.addEmployee();
+				em->addEmployee();
 				break;
 			case 2:
-				em.showEmployee();
+				em->showEmployee();
 				break;
 			case 3:
-				em.delEmployee();
+				em->delEmployee();
 				break;
 			case 4:
-				em.findEmployee();
+				em->findEmployee();
 				break;
 			case 5:
-				em.modifyEmployee();
+				em->modifyEmployee();
 				break;
 			case 6:
-                em.emptyEmployee();
+                em->emptyEmployee();
 				break;
 			case 7:
-				em.saveData();
-				em.exitProgram();
-				break;
+				//em.saveData();
+				//em.exitProgram();
+                delete em;
+                exit(0);
+				//break;
 			default:
 				cout << "输入有误, 重新输入" << endl;
 				system("pause");

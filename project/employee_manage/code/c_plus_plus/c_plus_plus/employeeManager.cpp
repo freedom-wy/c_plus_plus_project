@@ -4,6 +4,7 @@ employeeManager::employeeManager()
 {
 	// 构造具体实现
     // 初始化人数和指针
+    cout << "employeeManager构造方法" << endl;
     int num = getEmployeeNum();
     if (num > 0)
     {
@@ -14,6 +15,7 @@ employeeManager::employeeManager()
 
 employeeManager::~employeeManager()
 {
+    cout << "employeeManager析构方法" << endl;
 	// 析构具体实现
     saveData();
     if (this->e_EmpArry != NULL)

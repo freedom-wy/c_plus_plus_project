@@ -24,6 +24,25 @@
 
 int main()
 {
+#if 0
+	class Person
+	{
+		private:
+			string name;
+			int age;
+		public:
+			Person()
+			{
+				cout << "构造方法" << endl;
+			}
+			~Person()
+			{
+				cout << "析构方法" << endl;
+			}
+	};
+
+	Person p1;
+#else
 	employeeManager em;
 	int choice = 0;
 	while (1)
@@ -65,4 +84,6 @@ int main()
 				break;
 		}
 	}
+#endif
+	return 0;
 }

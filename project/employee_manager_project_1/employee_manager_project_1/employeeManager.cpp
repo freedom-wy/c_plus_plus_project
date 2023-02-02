@@ -4,6 +4,8 @@
 // 员工管理系统具体实现
 employeeManager::employeeManager()
 {
+    cout << "employeeManager构造方法" << endl;
+    // 构造方法
     int num = this->getEmployeeNum();
     if (num > 0)
     {
@@ -15,6 +17,12 @@ employeeManager::employeeManager()
         // 初始化员工管理系统信息
         this->eEmpNum = 0;
     }
+}
+
+employeeManager::~employeeManager()
+{
+    // 析构方法
+    cout << "employeeManager析构方法" << endl;
 }
 
 void employeeManager::showMenu()

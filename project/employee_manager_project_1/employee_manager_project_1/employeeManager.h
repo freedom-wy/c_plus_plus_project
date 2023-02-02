@@ -16,7 +16,7 @@ class employeeManager
 	public:
 		// 构造方法
 		employeeManager();
-
+		~employeeManager();
 		// 成员方法
 		void showMenu();
 		void exitProgram();
