@@ -114,6 +114,52 @@ void test4()
 {
 	string s1;
 	cout << "s1的值为: " << s1 << endl;
+	// 将C语言风格的字符串转换为c++的字符串
+	const char* str = "hello world";
+	cout << "类型为: " << typeid(str).name() << endl;
+	string s2(str);
+	cout << "字符串为: " << s2 << ", 类型为: " << typeid(s2).name() << endl;
+	string s3(s2);
+	cout << "调用了拷贝构造函数: " << s3 << endl;
+
+	string s4 = "hello world";
+	int pos = s4.find("a"); // 查找到为索引位置, 找不到为-1
+	cout << "索引位置为: " << pos << endl;
+
+	string s5 = "hello world";
+	s5.replace(1, 2, "abcdefg"); // replace在替换时，要指定从哪个位置起，多少个字符，替换成什么样的字符串
+	cout << "替换后的结果为: " << s5 << endl;
+
+	string s6 = "hello world";
+	string s7 = "hello world";
+	int value = s6.compare(s7); // 等于0为字符串相等
+	cout << "比较结果为: " << value << endl;
+
+	// 字符串遍历
+	string s8 = "hello world";
+	//for (int i = 0; i < s8.size(); i++) //字符串.size()返回字符串大小
+	//{
+	//	cout << s8[i] << endl;
+	//}
+	for (int i = 0; i < s8.size(); i++)
+	{
+		cout << s8.at(i) << endl;
+	}
+
+	s8[0] = 'a';
+	s8.at(1) = 'b';
+	cout << "字符串结果为: " << s8 << endl;
+
+	string s9 = "hello world";
+	s9.insert(1, "abc");
+	cout << "字符串结果为: " << s9 << endl;
+	s9.erase(1, 3);
+	cout << "字符串结果为: " << s9 << endl;
+
+	string email = "test@test.com";
+	int pos1 = email.find("@"); // 找到字符串索引
+	string username = email.substr(0, pos1);
+	cout << "用户名为: " << username << endl;
 }
 
 int main()
