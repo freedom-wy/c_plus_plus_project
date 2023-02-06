@@ -162,8 +162,100 @@ void test4()
 	cout << "用户名为: " << username << endl;
 }
 
+void printVectorData(vector<int>& v)
+{
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+void test5()
+{
+	// 创建容器
+	vector<int> v1;
+	for (int i = 0; i < 10; i++)
+	{
+		v1.push_back(i);
+	}
+	printVectorData(v1);
+
+	vector<int>v2(v1.begin(), v1.end());
+	printVectorData(v2);
+
+	vector<int>v3(10, 100);
+	printVectorData(v3);
+
+	vector<int>v4(v3);
+	printVectorData(v4);
+
+	vector<int>v5;
+	v5 = v4;
+	printVectorData(v5);
+
+	vector<int>v6;
+	v6.assign(v1.begin(), v1.end());
+	printVectorData(v6);
+
+	if (v1.empty())
+	{
+		cout << "v1为空" << endl;
+	}
+	else
+	{
+		cout << "v1不为空" << endl;
+		cout << "v1的容量为: " << v1.capacity() << endl;
+		cout << "v1的大小为: " << v1.size() << endl;
+	}
+
+	v1.resize(15); // 调整大小, 容量动态扩展
+	cout << "v1的容量为: " << v1.capacity() << endl;
+	cout << "v1的大小为: " << v1.size() << endl;
+	printVectorData(v1);
+
+	/*v1.resize(2);
+	cout << "v1的容量为: " << v1.capacity() << endl;
+	cout << "v1的大小为: " << v1.size() << endl;*/
+
+	v1.pop_back();
+	printVectorData(v1);
+
+	v1.insert(v1.begin(), 100);
+	printVectorData(v1);
+
+	v1.erase(v1.begin());
+	printVectorData(v1);
+
+	/*v1.erase(v1.begin(), v1.end());*/
+	v1.clear();
+	printVectorData(v1);
+}
+
+void test6()
+{
+	vector<int>v1;
+	for (int i = 0; i < 10; i++)
+	{
+		v1.push_back(i);
+	}
+	printVectorData(v1);
+
+	vector<int>v2;
+	for (int i = 100; i < 110; i++)
+	{
+		v2.push_back(i);
+	}
+	printVectorData(v2);
+
+	v1.swap(v2);
+	printVectorData(v1);
+	printVectorData(v2);
+
+}
+
 int main()
 {
-	test4();
+	test6();
 	return 0;
 }
