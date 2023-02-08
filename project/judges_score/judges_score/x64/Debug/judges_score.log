@@ -1,0 +1,3 @@
+﻿  main.cpp
+E:\code\c_plus_plus_project\project\judges_score\judges_score\main.cpp(71,33): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  judges_score.vcxproj -> E:\code\c_plus_plus_project\project\judges_score\x64\Debug\judges_score.exe

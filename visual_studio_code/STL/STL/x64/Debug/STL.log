@@ -1,4 +1,4 @@
 ﻿  main.cpp
-E:\code\c_plus_plus_project\visual_studio_code\STL\STL\main.cpp(126,24): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-E:\code\c_plus_plus_project\visual_studio_code\STL\STL\main.cpp(160,28): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+E:\code\c_plus_plus_project\visual_studio_code\STL\STL\main.cpp(129,24): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+E:\code\c_plus_plus_project\visual_studio_code\STL\STL\main.cpp(163,28): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
   STL.vcxproj -> E:\code\c_plus_plus_project\visual_studio_code\STL\x64\Debug\STL.exe

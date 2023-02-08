@@ -1,5 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <deque>
+#include<algorithm>
+
 using namespace std;
 
 void test1()
@@ -171,6 +174,15 @@ void printVectorData(vector<int>& v)
 	cout << endl;
 }
 
+void printConstVectorData(const vector<int>& v)
+{
+	for (vector<int>::const_iterator it = v.begin(); it != v.end(); it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
 void test5()
 {
 	// 创建容器
@@ -239,23 +251,83 @@ void test6()
 	{
 		v1.push_back(i);
 	}
-	printVectorData(v1);
+	printConstVectorData(v1);
 
 	vector<int>v2;
 	for (int i = 100; i < 110; i++)
 	{
 		v2.push_back(i);
 	}
-	printVectorData(v2);
+	printConstVectorData(v2);
 
 	v1.swap(v2);
-	printVectorData(v1);
-	printVectorData(v2);
+	printConstVectorData(v1);
+	printConstVectorData(v2);
+
+}
+
+void test7()
+{
+	vector<int>v1;
+	v1.reserve(100000); // 不预留空间, 扩充30次
+	int num = 0;
+	int* p = NULL;
+	for (int i = 0; i < 100000; i++)
+	{
+		v1.push_back(i);
+		if (p != &v1[0])
+		{
+			p = &v1[0];
+			num++;
+		}
+	}
+
+	cout << "次数为: " << num << endl;
+}
+
+void printDeque(const deque<int>& d)
+{
+	for (deque<int>::const_iterator it = d.begin(); it != d.end(); it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+void test8()
+{
+	deque<int>v1;
+	for (int i = 0; i < 10; i++)
+	{
+		v1.push_back(i);
+	}
+	printDeque(v1);
+
+	v1.push_back(100);
+	v1.push_front(200);
+	printDeque(v1);
+	v1.pop_back();
+	v1.pop_front();
+	printDeque(v1);
+
+	v1.insert(v1.begin(), 100);
+	printDeque(v1);
+
+	deque<int>d2;
+	d2.push_back(10);
+	d2.push_back(20);
+	d2.push_back(50);
+	d2.push_back(100);
+	d2.push_back(1);
+	d2.push_back(8);
+	printDeque(d2);
+	sort(d2.begin(), d2.end());
+	printDeque(d2);
 
 }
 
 int main()
 {
-	test6();
+	test8();
 	return 0;
 }
