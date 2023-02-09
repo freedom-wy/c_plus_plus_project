@@ -1,5 +1,6 @@
 #include <iostream>
 #include "employeeManager.h"
+#include <fstream>
 using namespace std;
 
 /*
@@ -29,10 +30,27 @@ int main()
 			break;
 		case 3:
 			cout << "退出程序" << endl;
+			//em->saveData();
 			delete em;
 			exit(0);
 		default:
 			break;
 		}
 	}
+
+	//ifstream ifs;
+	//ifs.open(FILENAME, ios::in);
+	//int b_id;
+	//string name;
+	//int d_id;
+
+	//while (ifs >> b_id && ifs >> name && ifs >> d_id)
+	//{
+	//	cout << "编号: " << b_id <<
+	//		", 姓名: " << name <<
+	//		", 部门id" << d_id << endl;
+	//}
+
+	//ifs.close();
+
 }
