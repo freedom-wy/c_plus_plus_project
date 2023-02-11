@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <deque>
+#include <stack>
+#include <queue>
 #include<algorithm>
 
 using namespace std;
@@ -326,8 +328,57 @@ void test8()
 
 }
 
+void test9()
+{
+	stack<int> s;
+	s.push(1);
+	s.push(2);
+	s.push(3);
+	cout << "栈大小为" << s.size() << endl;
+	while (!s.empty())
+	{
+		cout << "栈顶元素为" << s.top() << endl;
+		s.pop();
+	}
+}
+
+void test10()
+{
+	class Person
+	{
+	public:
+		string name;
+		int age;
+	public:
+		Person(string name, int age)
+		{
+			this->name = name;
+			this->age = age;
+		}
+	};
+
+	Person p1("唐僧", 1);
+	Person p2("孙悟空", 2);
+	Person p3("猪八戒", 3);
+	Person p4("沙僧", 4);
+
+	queue<Person> q;
+	q.push(p1);
+	q.push(p2);
+	q.push(p3);
+	q.push(p4);
+
+	while (!q.empty())
+	{
+		cout << "队头元素姓名" << q.front().name << endl;
+		cout << "队尾元素姓名" << q.back().name << endl;
+
+		q.pop();
+	}
+}
+
 int main()
 {
-	test8();
+	test10();
 	return 0;
 }
