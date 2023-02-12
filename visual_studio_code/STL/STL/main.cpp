@@ -3,6 +3,7 @@
 #include <deque>
 #include <stack>
 #include <queue>
+#include <list>
 #include<algorithm>
 
 using namespace std;
@@ -377,8 +378,59 @@ void test10()
 	}
 }
 
+void PrintList(const list<int>& L)
+{
+	for (list<int>::const_iterator it = L.begin(); it != L.end(); it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+void test11()
+{
+	list<int> L1;
+	L1.push_back(10);
+	L1.push_back(20);
+	L1.push_back(30);
+	L1.push_back(40);
+	PrintList(L1);
+
+	list<int> L2;
+	L2.push_back(1);
+	L2.push_back(2);
+	L2.push_back(3);
+	L2.push_back(4);
+	PrintList(L2);
+	cout << "½»»»ºó" << endl;
+	L1.swap(L2);
+	PrintList(L1);
+	PrintList(L2);
+
+	L1.push_front(100);
+	L1.push_front(200);
+	L1.push_front(300);
+	PrintList(L1);
+	L1.pop_back();
+	PrintList(L1);
+	L1.pop_front();
+	PrintList(L1);
+	L1.insert(L1.begin(), 1000);
+	PrintList(L1);
+	list<int>::iterator it = L1.begin();
+	it++;
+	L1.erase(it);
+	PrintList(L1);
+	L1.push_back(50);
+	L1.push_back(50);
+	L1.push_back(50);
+	PrintList(L1);
+	L1.remove(50);
+	PrintList(L1);
+	L1.clear();
+	PrintList(L1);
+}
 int main()
 {
-	test10();
+	test11();
 	return 0;
 }
