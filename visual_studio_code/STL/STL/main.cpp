@@ -4,6 +4,8 @@
 #include <stack>
 #include <queue>
 #include <list>
+#include <set>
+#include <map>
 #include<algorithm>
 
 using namespace std;
@@ -429,8 +431,186 @@ void test11()
 	L1.clear();
 	PrintList(L1);
 }
+
+void PrintSet(set<int>& s)
+{
+	for (set<int>::iterator it = s.begin(); it != s.end(); it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+void PrintMultiset(const multiset<int>& m)
+{
+	for (multiset<int>::const_iterator it = m.begin(); it != m.end(); it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+void test12()
+{
+	set<int> s1;
+	s1.insert(10);
+	s1.insert(30);
+	s1.insert(20);
+	s1.insert(40);
+	s1.insert(10);
+	pair<set<int>::iterator, bool> ret = s1.insert(50);
+	if (ret.second)
+	{
+		cout << "第一次插入50成功" << endl;
+	}
+	else
+	{
+		cout << "插入失败" << endl;
+	}
+	ret = s1.insert(50);
+	if (ret.second)
+	{
+		cout << "第二次插入50成功" << endl;
+	}
+	else
+	{
+		cout << "插入失败" << endl;
+	}
+	PrintSet(s1);
+
+	set<int> s3;
+	s3.insert(100);
+	s3.insert(300);
+	s3.insert(200);
+	s3.insert(400);
+	s3.insert(100);
+	PrintSet(s3);
+
+	multiset<int> s2;
+	s2.insert(10);
+	s2.insert(30);
+	s2.insert(20);
+	s2.insert(40);
+	s2.insert(10);
+	PrintMultiset(s2);
+
+	cout << "s2的大小为: " << s2.size() << endl;
+
+	s1.swap(s3);
+	PrintSet(s1);
+	PrintSet(s3);
+
+	/*s1.erase(s1.begin());
+	PrintSet(s1);
+	s1.erase(200);
+	PrintSet(s1);
+	s1.clear();
+	PrintSet(s1);*/
+
+	int num = s2.count(10);
+	cout << "s2中10的个数为: " << num << endl;
+	multiset<int>::iterator pos = s2.find(10);
+	if (pos != s2.end())
+	{
+		cout << "找到10" << endl;
+	}
+	else
+	{
+		cout << "未找到10" << endl;
+	}
+}
+
+void test13()
+{
+	pair<string, int>p1(string("张三"), 20);
+	cout << "姓名: " << p1.first << "年龄: " << p1.second << endl;
+	pair<string, int>p2 = make_pair("李四", 30);
+	cout << "姓名: " << p2.first << "年龄: " << p2.second << endl;
+}
+
+void test14()
+{
+	class MyCompare
+	{
+	public:
+		bool operator()(int v1, int v2)const
+		{
+			// 重写括号运算符, 降序
+			return v1 > v2;
+		}
+	};
+	set<int, MyCompare> s1;
+	s1.insert(10);
+	s1.insert(20);
+	s1.insert(30);
+	s1.insert(40);
+	s1.insert(50);
+	
+	for (set<int, MyCompare>::iterator it = s1.begin(); it != s1.end(); it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+
+void PrintMap(map<int, int>& m)
+{
+	for (map<int, int>::iterator it = m.begin(); it != m.end(); it++)
+	{
+		cout << "key: " << it->first << ", value: " << it->second << endl;
+	}
+}
+
+void test15()
+{
+	map<int, int> m;
+	// 两种插入方法
+	m.insert(make_pair(1, 10));
+	m.insert(pair<int, int>(2, 20));
+	m.insert(make_pair(3, 30));
+	m.insert(make_pair(4, 40));
+	PrintMap(m);
+}
+
+void test16()
+{
+	class Person
+	{
+	public:
+		string name;
+		int age;
+
+		Person(string name, int age)
+		{
+			this->name = name;
+			this->age = age;
+		}
+	};
+
+	class MyCompare
+	{
+	public:
+		bool operator()(Person p1, Person p2)const
+		{
+			return p1.age > p2.age;
+		}
+	};
+
+	map<Person, int, MyCompare> m1;
+	m1.insert(make_pair(Person("张三", 18), 1));
+	m1.insert(pair<Person, int>(Person("李四", 20), 2));
+	m1.insert(make_pair(Person("王五", 11), 3));
+	m1.insert(make_pair(Person("赵六", 30), 4));
+	m1.insert(make_pair(Person("陈七", 25), 5));
+
+	for (map<Person, int, MyCompare>::iterator it = m1.begin(); it != m1.end(); it++)
+	{
+		cout << "key: " << it->first.name << ", age: " << it->first.age << endl;
+	}
+	
+}
+
 int main()
 {
-	test11();
+	test16();
 	return 0;
 }
