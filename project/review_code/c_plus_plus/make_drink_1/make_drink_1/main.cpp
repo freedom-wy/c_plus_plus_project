@@ -8,10 +8,12 @@ public:
 	{
 		cout << "构造方法" << endl;
 	}
-	~Base()
-	{
-		cout << "析构方法" << endl;
-	}
+	//virtual ~Base()
+	//{
+	//	// 需要设置需析构, 否则只能调用base的析构, 不能调用子类的析构
+	//	cout << "析构方法" << endl;
+	//}
+	virtual ~Base() = 0;
 	virtual void ShaoShui() = 0;
 	virtual void FangYuanLiao() = 0;
 	virtual void Wait() = 0;
@@ -25,6 +27,11 @@ public:
 		this->DaoRuBeiZhong();
 	}
 };
+
+Base::~Base()
+{
+	cout << "纯虚析构" << endl;
+}
 
 class Coffee :public Base
 {
@@ -57,8 +64,11 @@ public:
 
 void test1()
 {
-	Coffee c1;
-	c1._do();
+	/*Coffee c1;
+	c1._do();*/
+	Base* c1 = new Coffee;
+	c1->_do();
+	delete c1;
 }
 
 
