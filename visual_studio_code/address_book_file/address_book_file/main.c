@@ -305,8 +305,8 @@ int main()
     // 通讯录初始化
     struct addressBook book;
     memset(book.addressList, 0, sizeof(book.addressList));
-    /*book.size = 0;*/
-    loadFileToBook(&book);
+    book.size = 0;
+    //loadFileToBook(&book);
     /*for (int i = 0; i < book.size; i++)
     {
         printf("%s, %d, %s, %s\n",
