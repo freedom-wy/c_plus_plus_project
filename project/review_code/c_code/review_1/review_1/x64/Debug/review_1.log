@@ -1,3 +1,5 @@
 ﻿  main.c
-E:\code\c_plus_plus_project\project\review_code\c_code\review_1\review_1\main.c(10): warning C4172: 返回局部变量或临时变量的地址: a
+E:\code\c_plus_plus_project\project\review_code\c_code\review_1\review_1\main.c(40,11): warning C4098: “test1”:“void”函数返回值
+E:\code\c_plus_plus_project\project\review_code\c_code\review_1\review_1\main.c(64,11): warning C4098: “test2”:“void”函数返回值
+E:\code\c_plus_plus_project\project\review_code\c_code\review_1\review_1\main.c(11): warning C4172: 返回局部变量或临时变量的地址: a
   review_1.vcxproj -> E:\code\c_plus_plus_project\project\review_code\c_code\review_1\x64\Debug\review_1.exe

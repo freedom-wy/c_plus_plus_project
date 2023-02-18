@@ -218,6 +218,55 @@ int* func3()
 	return tmp;
 }
 ```
+#### 结构体
+```c
+struct Stu
+{
+	char name[50];
+	int age;
+};
+
+int main()
+{
+	/*struct Stu s1 = { "zhangsan", 18 };
+	struct Stu s2;
+	strcpy(s2.name, "李四");
+	s2.age = 19;
+
+	printf("s1的姓名: %s, 年龄: %d\n", s1.name, s1.age);
+	printf("s2的姓名: %s, 年龄: %d\n", s2.name, s2.age);*/
+
+	/*struct Stu s3[5] = {
+		{"张三", 10},
+		{"李四", 20},
+		{"王五", 30},
+		{"赵六", 40},
+		{"陈七", 50}
+	};
+	int len = sizeof(s3) / sizeof(s3[0]);
+	for (int i = 0; i < len; i++)
+	{
+		printf("姓名: %s, 年龄: %d\n", s3[i].name, s3[i].age);
+	}*/
+
+	struct Stu s1 = { "张三", 18 };
+	struct Stu* p = &s1;
+	printf("姓名: %s, 年龄: %d\n", p->name, p->age);
+	return 0;
+}
+```
+#### 结构体在堆区申请数据
+```c
+// 在堆区申请数据
+struct Stu* p = NULL;
+p = (struct Stu*)malloc(sizeof(struct Stu));
+strcpy(p->name, "张三");
+p->age = 18;
+printf("姓名为: %s, 年龄: %d\n", p->name, p->age);
+free(p);
+p = NULL;
+```
+#### fprintf输出即为写文件 fscanf输入即为读文件
 
 
 
