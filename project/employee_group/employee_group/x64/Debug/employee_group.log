@@ -2,4 +2,5 @@
 E:\code\c_plus_plus_project\project\employee_group\employee_group\main.cpp(55,28): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
 E:\code\c_plus_plus_project\project\employee_group\employee_group\main.cpp(63,25): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
 E:\code\c_plus_plus_project\project\employee_group\employee_group\main.cpp(71,24): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+E:\code\c_plus_plus_project\project\employee_group\employee_group\main.cpp(137,24): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
   employee_group.vcxproj -> E:\code\c_plus_plus_project\project\employee_group\x64\Debug\employee_group.exe

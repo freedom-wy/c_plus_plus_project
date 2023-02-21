@@ -103,6 +103,7 @@ void test1()
 	}
 	
 	//PrintEmployeeInfo(v1);
+	// 分组
 	multimap<int, Employee> m1;
 	SetEmployeeGroup(v1, m1);
 	PrintEmployeeGroupInfo(m1);
@@ -125,6 +126,31 @@ void test2()
 	printf("黑桃的值为: %d\n", HEITAO);
 	printf("梅花的值为: %d\n", MEIHUA);
 	printf("方片的值为: %d\n", FANGPIAN);
+}
+
+void test3()
+{
+	//string s1 = "abcdefg";
+	//s1.replace(1, 3, "1111"); // 从b开始将1111替换bcd
+	//cout << "替换后的字符为: " << s1 << endl;
+
+	string s1 = "test@test.com";
+	int pos = s1.find("@");
+	cout << "@符号的位置: " << pos << endl;
+	string username = s1.substr(0, pos);
+	cout << "用户名为: " << username << endl;
+}
+
+void test4()
+{
+	vector<int> v1;
+	for (int i = 0; i < 10000; i++)
+	{
+		v1.push_back(i);
+	}
+
+	cout << "容量为: " << v1.capacity() << endl;
+	cout << "大小为: " << v1.size() << endl;
 }
 
 

@@ -1,4 +1,8 @@
 #### STL
+```txt
+vector数据结构和数组非常相似, 也称为单端数组, 与普通数组的区别为：vector可以动态扩展, 而数组是静态空间
+deque双端数组, 可以对头部和尾部插入数据
+```
 ```c++
 // v.begin()返回迭代器，这个迭代器指向容器中第一个数据
 // v.end()返回迭代器，这个迭代器指向容器元素的最后一个元素的下一个位置
@@ -13,6 +17,14 @@ stack是一种先进后出的数据结构，它只有一个出口
 ```txt
 queue是一种先进先出的数据结构， 他有两个出口
 队列中只有队头和队尾可以被外界使用， 因此队列不允许有遍历行为，入队和出队
+push入队列, 向队尾添加元素, pop弹出队头元素
+```
+#### list容器
+```txt
+push_back(elem);//在容器尾部加入一个元素
+pop_back();//删除容器中最后一个元素
+push_front(elem);//在容器开头插入一个元素
+pop_front();//从容器开头移除第一个元素
 ```
 #### set容器
 ```txt
@@ -53,6 +65,19 @@ int main()
 	return 0;
 }
 ```
+#### 对组
+```c++
+void test2()
+{
+	pair<string, int> p1(string("tom"), 20);
+	pair<string, int> p2 = make_pair("jerry", 10);
+
+	cout << "P1的姓名为: " << p1.first << ", 年龄为: " << p1.second << endl;
+	cout << "p2的姓名为: " << p2.first << ", 年龄为: " << p2.second << endl;
+}
+```
+#### 修改set排序规则
+
 #### map容器
 ```txt
 map中所有容器都为pair

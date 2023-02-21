@@ -1,5 +1,6 @@
 #include <iostream>
 #include <list>
+#include <set>
 using namespace std;
 
 class Person
@@ -63,10 +64,43 @@ void test1()
 	}
 }
 
+void test2()
+{
+	pair<string, int> p1(string("tom"), 20);
+	pair<string, int> p2 = make_pair("jerry", 10);
+
+	cout << "P1的姓名为: " << p1.first << ", 年龄为: " << p1.second << endl;
+	cout << "p2的姓名为: " << p2.first << ", 年龄为: " << p2.second << endl;
+}
+
+void test3()
+{
+	class MyCompare
+	{
+	public:
+		bool operator()(int v1, int v2)const
+		{
+			return v1 > v2;
+		}
+	};
+	// set默认排序规则为从小到大
+	set<int, MyCompare>s1;
+	s1.insert(20);
+	s1.insert(10);
+	s1.insert(30);
+	s1.insert(50);
+	s1.insert(40);
+
+	for (set<int, MyCompare>::iterator it = s1.begin(); it != s1.end(); it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+}
 
 
 int main()
 {
-	test1();
+	test3();
 	return 0;
 }
