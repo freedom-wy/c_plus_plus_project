@@ -68,3 +68,16 @@ floatÀàÐÍÔÚÄÚ´æÖÐÕ¼4¸ö×Ö½Ú, ×î¸ßÎ»ÓÃÓÚ±íÊ¾·ûºÅ, ÔÚÊ£Óà31Î»ÖÐ, ´Ó×óÏòÓÒÈ¡8Î»±íÊ¾Ö
 Ê®Ò».Ò»¡¢È¡³ö·µ»ØµØÖ·²¢°´´Ë×öÁ÷³Ì¸üÐÂ, µÖ´ïÐÂµØÖ·ºóÓÉµ÷ÓÃ·½ÇåÀí²ÎÊý, __cdecl
 Ê®Ò».¶þ¡¢È¡³ö·µ»ØµØÖ·²¢ÇåÀí²ÎÊý£¬È»ºó°´·µ»ØµØÖ·×öÁ÷³Ì¸üÐÂ, __stdcall, __fastcall
 ```
+#### Êý×éÇóµØÖ·¹«Ê½
+```txt
+Int i[5]£¬ÒÑÖªiµÄÊ×µØÖ·ÊÇ0012FF6C£¬Çói[4]
+0012FF6C+4¡Á4= 0012FF6C+10£¨Ê®½øÖÆÊÇ16£©= 0012FF7C
+
+ary:0x0019ff1c
+int n=8
+ary[3]=0x0019FF28
+ary[n]=0x0019FF3C
+ary[n-5]=0x0019FF28
+ary[5-n]=0x0019FF10
+
+```
