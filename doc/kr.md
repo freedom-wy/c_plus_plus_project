@@ -114,3 +114,92 @@ wprintf(l"%s\n", wszBuf);
 ```txt
 受语法约束的全局变量, 在当前函数中有效
 ```
+```c
+#include <iostream>
+using namespace std;
+
+
+// 在c++中，无法在内存中观测到静态局部变量数据，在c中可以
+
+// 在C++中可以通过这种方法对常量进行初始化, 在C中不行
+int getInt()
+{
+    return 1;
+}
+
+int g_a = getInt();
+// cout << "全局变量值为: " << g_a << endl;
+// printf("全局变量值为: %d\n", g_a);
+
+
+void foo()
+{
+    static char str[] = "hello world";
+    // cout << "foo中静态变量值为: " << str << endl;
+    printf("foo中静态变量为: %s\n", str);
+}
+
+
+int main()
+{
+    foo();
+    static int a = 100;
+    // cout << "main中静态变量值为: " << a << endl;
+    printf("foo中静态变量为: %d\n", a);
+    return 0;
+}
+```
+```c
+// 在C中可观测静态局部变量数据, 在C++中无法观测
+#include <stdio.h>
+
+
+static char g_szBuf[] = "Hello CR40!";
+
+extern void foo();
+
+// 在C语言中无法通过该方法给全局变量赋值
+/*int GetInt()
+{
+	return 0x87654321;
+}
+
+int g_nTest = GetInt();*/
+
+
+int main()
+{
+    static int stcnTest = 100;
+	foo();
+
+    return 0;
+}
+
+void foo()
+{
+    static int stcnTest = 0x88888888;
+	printf("%d",stcnTest);
+}
+```
+```c++
+// 静态变量仅初始化一次，在内存中有标识，可修改表示，让静态变量重复赋值
+#include <stdio.h>
+
+void foo(int num)
+{
+    static int val = num;
+    printf("值为: %d\n", val);
+    printf("地址为: %p\n", &val);
+    printf("地址为: %p\n", &(&val)[-1]);
+    (&val)[-1] = 0;
+}
+
+
+int main()
+{
+    foo(10);
+    foo(20);
+    foo(30);
+    return 0;
+}
+```
