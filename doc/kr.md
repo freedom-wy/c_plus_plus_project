@@ -203,3 +203,94 @@ int main()
     return 0;
 }
 ```
+#### 宏定义
+```txt
+宏定义如#define 语句结束无分号
+有参宏也叫表达式宏 #define GET_AREA(r) ((r)*(r)*3.14)
+```
+```c++
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// 解决在6.0中重复定义for循环中变量冲突问题
+#define for if(1)for
+// 转换后, 通过if语句包裹
+/*
+if(1)
+{
+    for(int i=0;i<5;i++)
+        {
+            printf("hello world\n");
+        }
+}
+*/
+
+int main()
+{
+    // 在visual c++6.0中是局部作用域
+	for(int i=0;i<5;i++)
+    {
+        printf("hello world\n");
+    }
+	for(int i=0;i<5;i++)
+    {
+        printf("hello world\n");
+    }
+    return 0;
+}
+```
+```c++
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define while if // 将while替换为if
+/*
+int main()
+{
+    int i = 0;
+    if (i<5)
+    {
+        printf("hello world\n");
+        i++;
+    }
+    return 0;
+}
+*/
+
+int main()
+{
+    int i = 0;
+    while (i<5)
+    {
+        printf("hello world\n");
+        i++;
+    }
+    return 0;
+}
+```
+#### 通过宏解决重复包含问题
+```c
+// main.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "test1.h"
+#include "test1.h"
+#include "test1.h"
+
+int main()
+{
+    printf("a=%d\n", a);
+    return 0;
+}
+
+// test1.h
+// guidgen
+// #pragma once
+#ifndef KR_94B9BDB0_2B69_4202_8179_13CA7205E622
+#define KR_94B9BDB0_2B69_4202_8179_13CA7205E622
+int a = 100;
+#endif // KR_94B9BDB0_2B69_4202_8179_13CA7205E622
+```
