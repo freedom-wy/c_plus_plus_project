@@ -321,3 +321,31 @@ p3++; // 移动2个字节
 ```txt
 修改WRES，打开二进制文件后，找到rdata，两行半，将40的4转换为二进制0100，修改为1100，即为C0，则常量可修改
 ```
+#### 指针函数
+```txt
+用于保存函数首地址的指针变量被称为函数指针
+不能返回局部变量和参数地址
+```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int testAdd(int a, int b)
+{
+    return a+b;
+}
+
+// 通过typedef定义新的类型
+typedef int(*PFNTESTADD)(int, int);
+
+int main()
+{
+    PFNTESTADD pfntestAdd = NULL;
+    //int(*p)(int, int)=NULL; // 定义一个函数指针
+    pfntestAdd = testAdd; // 指针变量赋值
+    int c = (*pfntestAdd)(1, 2); // 指针函数调用和传参
+    printf("c=%d\n", c);
+    return 0;
+}
+```
