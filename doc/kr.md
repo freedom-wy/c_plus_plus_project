@@ -349,3 +349,96 @@ int main()
     return 0;
 }
 ```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/*int testAdd(int a, int b)
+{
+    return a+b;
+}
+
+// 通过typedef定义新的类型
+typedef int(*PFNTESTADD)(int, int);*/
+
+
+void SortA(int aryCard[], int nCount)
+{
+    printf("A排序方法\n");
+}
+
+void SortB(int aryCard[], int nCount)
+{
+    printf("B排序方法\n");
+}
+
+// 通过typedef定义函数指针别名
+typedef void (*PFNSORT)(int [], int);
+
+void PlayCard(int aryCard[], int nCount, PFNSORT pfnSort=NULL)
+{
+    // 洗牌
+    pfnSort(aryCard, nCount);
+}
+
+
+
+int main()
+{
+    /*PFNTESTADD pfntestAdd = NULL;
+    //int(*p)(int, int)=NULL; // 定义一个函数指针
+    pfntestAdd = testAdd; // 指针变量赋值
+    int c = pfntestAdd(1, 2); // 指针函数调用和传参
+    printf("c=%d\n", c);*/
+    
+    int card[54];
+    PlayCard(card, 54, SortA);
+    return 0;
+}
+```
+#### 指针数组
+```txt
+数组名是数组第0个元素类型的地址常量
+如果数组内数据为指针，则数组名是指针类型的地址常量，即指针的地址，用**
+```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void MySwap(int* p1, int* p2)
+{
+    // 无法交换
+    /*int* pTmp = p1;
+    p1 = p2;
+    p2 = pTmp;*/
+    // 必须要有间接访问才会有交换
+    int tmp = 0;
+    tmp = *p1;
+    *p1 = *p2;
+    *p2 = tmp;
+}
+
+
+int main()
+{
+    // 地址传递大坑
+    int a = 1;
+    int b = 2;
+    MySwap(&a, &b);
+    printf("交换后a=%d, b=%d\n", a, b);
+    return 0;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
