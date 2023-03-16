@@ -2,20 +2,38 @@
 #include <stdlib.h>
 #include <string.h>
 
-int testAdd(int a, int b)
-{
-    return a+b;
-}
+/*
+设编译器对齐方式为Zp，默认为8
+设成员变量到结构体之间的地址差为member offset
+member必须满足	member offset % min(Zp,sizeof(member type)) == 0;
 
-// 通过typedef定义新的类型
-typedef int(*PFNTESTADD)(int, int);
+设结构体自身对齐为StructAlign
+stryctAlign必须满足
+StructAlign = max(sizeof(member1 type),sizeof(member2 type)···,sizeof(membern type));
+StructAlign = min(Zp,StructAlign);
+sizeof(结构体变量)必须满足
+sizeof(结构体变量)%structAlign == 0;
+
+
+结构体寻址公式：结构体首地址+成员偏移量
+structObj.member or pstructObj->member
+*(member type*)((int)(&structObj)+ member offset)
+和offsetof关键字展开后的结果相同。
+*/
+
+
+
+// 定义结构体
+struct tagStuInfo = {
+    char szName[5]; // +0 // 8 % min(8,sizeof(char)) == 0;
+    float fHeight; // +8
+    short int wScore; // +12
+    int nAge; // +16
+    char cGender; // +20
+    double dblWeight; // +24
+}; // 32
 
 int main()
 {
-    PFNTESTADD pfntestAdd = NULL;
-    //int(*p)(int, int)=NULL; // 定义一个函数指针
-    pfntestAdd = testAdd; // 指针变量赋值
-    int c = (*pfntestAdd)(1, 2); // 指针函数调用和传参
-    printf("c=%d\n", c);
     return 0;
 }
