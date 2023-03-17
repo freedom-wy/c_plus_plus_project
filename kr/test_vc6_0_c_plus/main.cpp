@@ -2,29 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-<<<<<<< HEAD
-void MySwap(int* p1, int* p2)
-{
-    // 无法交换
-    /*int* pTmp = p1;
-    p1 = p2;
-    p2 = pTmp;*/
-    // 必须要有间接访问才会有交换
-    int tmp = 0;
-    tmp = *p1;
-    *p1 = *p2;
-    *p2 = tmp;
-}
 
-
-int main()
-{
-    // 地址传递大坑
-    int a = 1;
-    int b = 2;
-    MySwap(&a, &b);
-    printf("交换后a=%d, b=%d\n", a, b);
-=======
 /*
 设编译器对齐方式为Zp，默认为8
 设成员变量到结构体之间的地址差为member offset
@@ -45,19 +23,48 @@ structObj.member or pstructObj->member
 */
 
 
+struct tagDateOfBirth //结构体嵌套
+{
+    short int wDay; // 0
+    int nYear; // 4
+    char cMonth; // 8
+}; // 12
 
-// 定义结构体
-struct tagStuInfo = {
-    char szName[5]; // +0 // 8 % min(8,sizeof(char)) == 0;
-    float fHeight; // +8
-    short int wScore; // +12
-    int nAge; // +16
-    char cGender; // +20
-    double dblWeight; // +24
-}; // 32
+
+struct tagPerson
+{
+    char szName[5]; // 0
+    float fHeight; // 8
+    double dblWeight; // 16
+    char cGender; // 24
+    struct tagDateOfBirth DOB; // 28
+    __int64 i64; // 40
+    char c; // 48
+    int nID; // 52
+    unsigned short int wAge; // 56
+}; // 64
+
 
 int main()
 {
->>>>>>> 6fa4a1a360c63343d4ed4a307ca55ea4fca8950e
+    int a = 100;
+    printf("sizeof __int64=%d\n", sizeof(__int64));
+    struct tagPerson p1= {
+        "abc",
+        185.0f,
+        75.0,
+        'U',
+        {
+            17,
+            2023,
+            3
+        },
+        100,
+        'A',
+        1234,
+        17
+    };
+
+    printf("sizeof tagPerson p1 = %d\n", sizeof(p1)); // 40
     return 0;
 }
