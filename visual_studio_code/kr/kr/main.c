@@ -2,16 +2,14 @@
 
 int main()
 {
-	int a = 0;
-	printf("&a=%08x\n", &a);
-	int* p1 = NULL;
-	printf("&p1=%08x\n", &p1);
-	system("pause");
-	p1 = &a;
-	*p1 = 100;
-	printf("*p1=%d\n", *p1);
-	printf("a=%d\n", a);
-	system("pause");
-
+	int a = 100;
+	if (a % 2 == 0)
+	{
+		printf("这是一个偶数\n");
+	}
+	else
+	{
+		printf("这是一个基数\n");
+	}
 	return 0;
 }

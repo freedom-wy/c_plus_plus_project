@@ -1,16 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-void foo(int val)
-{
-    return val;
-}
+#include "test1.h"
+#include "test1.h"
+#include "test1.h"
 
 int main()
 {
-    int a = 100;
-    foo(a);
-    printf("hello world\n");
+    printf("a=%d\n", a);
     return 0;
 }

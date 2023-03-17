@@ -1,0 +1,3 @@
+﻿  main.cpp
+E:\code\c_plus_plus_project\visual_studio_code\container_algorithm\container_algorithm\main.cpp(218,10): warning C4244: “初始化”: 从“__int64”转换到“int”，可能丢失数据
+  container_algorithm.vcxproj -> E:\code\c_plus_plus_project\visual_studio_code\container_algorithm\x64\Debug\container_algorithm.exe

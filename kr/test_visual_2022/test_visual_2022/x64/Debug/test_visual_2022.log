@@ -1,4 +1,2 @@
-﻿cl : 命令行  warning D9025: 正在重写“/sdl”(用“/GS-”)
-  main.c
-E:\code\c_plus_plus_project\kr\test_visual_2022\test_visual_2022\main.c(7,15): warning C4098: “foo”:“void”函数返回值
+﻿  main.c
   test_visual_2022.vcxproj -> E:\code\c_plus_plus_project\kr\test_visual_2022\x64\Debug\test_visual_2022.exe

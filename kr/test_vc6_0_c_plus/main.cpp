@@ -2,20 +2,26 @@
 #include <stdlib.h>
 #include <string.h>
 
-int testAdd(int a, int b)
+void MySwap(int* p1, int* p2)
 {
-    return a+b;
+    // 无法交换
+    /*int* pTmp = p1;
+    p1 = p2;
+    p2 = pTmp;*/
+    // 必须要有间接访问才会有交换
+    int tmp = 0;
+    tmp = *p1;
+    *p1 = *p2;
+    *p2 = tmp;
 }
 
-// 通过typedef定义新的类型
-typedef int(*PFNTESTADD)(int, int);
 
 int main()
 {
-    PFNTESTADD pfntestAdd = NULL;
-    //int(*p)(int, int)=NULL; // 定义一个函数指针
-    pfntestAdd = testAdd; // 指针变量赋值
-    int c = (*pfntestAdd)(1, 2); // 指针函数调用和传参
-    printf("c=%d\n", c);
+    // 地址传递大坑
+    int a = 1;
+    int b = 2;
+    MySwap(&a, &b);
+    printf("交换后a=%d, b=%d\n", a, b);
     return 0;
 }
