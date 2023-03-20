@@ -513,6 +513,71 @@ int main()
     return 0;
 }
 ```
+#### 共用体 枚举
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+enum eScoreType
+{
+    TY_FLOAT,
+    TY_INT,
+    TY_CHAR,
+    TY_TEXT
+};
+
+union tagScore
+{
+    float fScore;
+    int nScore;
+    char chLevel;
+    char* pszText;
+};
+
+struct data
+{
+    // int nType;
+    enum eScoreType nType;
+    union tagScore s1;
+};
+
+void ShowScore(struct data d1)
+{
+    switch(d1.nType)
+    {
+    case TY_FLOAT:
+        printf("%f\n", d1.s1.fScore);
+        break;
+    case TY_INT:
+        printf("%d\n", d1.s1.nScore);
+        break;
+    case TY_CHAR:
+        printf("%c\n", d1.s1.chLevel);
+        break;
+    case TY_TEXT:
+        printf("%s\n", d1.s1.pszText);
+        break;
+    }
+}
+
+
+int main()
+{
+    struct data d1;
+    d1.nType = TY_FLOAT;
+    d1.s1.fScore = 59.9f;
+    ShowScore(d1);
+
+    struct data d2;
+    d2.nType = TY_INT;
+    d2.s1.nScore = 100;
+    ShowScore(d2);
+
+    return 0;
+}
+```
 
 
 
