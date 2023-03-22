@@ -578,8 +578,138 @@ int main()
     return 0;
 }
 ```
+#### 函数嵌套调用
+```c
+#include <string.h>
+ 
+int fun3(int x, float y)
+{
+    int n = 30;
+    float m = 15.3f;
+    return 0;
+}
+int fun2(int x)
+{
+    int n = 20;
+    float m = 14.3f;
+    fun3(n, m);
+    return 0;
+}
+int fun1(int *p)
+{
+    int n = 10;
+    float m = 13.8f;   
+    fun2(10);
+    return 0;
+}
+int main()
+{
+    struct tagTest
+    {
+        char ch;
+        float f;
+        double d;
+        char strBuf[5];
+        int n;       
+    }test;
+    test.ch = 'B';
+    test.f = 10.5;
+    test.d = 15.6;
+    strcpy(test.strBuf, "hell");
+    test.n = 10;
+    fun1((int *)&test);
+    return 0;
+}
+```
+```txt
+main
+1.参数入栈
+0019FF38  01 00 00 00  ....
+0019FF3C  48 12 6A 00  H.j.
+0019FF40  00 13 6A 00  ..j.
+
+2.返回地址入栈
+0019FF34  89 14 40 00  ..@.
+
+3.保存栈底
+0019FF30  70 FF 19 00  p...
+
+4.变量入栈
+0019FF10  42 CC CC CC  B烫.        // 42转成10进制66对应ASCII表	B
+0019FF14  00 00 28 41  ..(A
+0019FF18  33 33 33 33  3333
+0019FF1C  33 33 2F 40  33/@
+0019FF20  68 65 6C 6C  hell        // hell
+0019FF24  00 CC CC CC  .烫.
+0019FF28  0A 00 00 00  ....                // int 10
+0019FF2C  CC CC CC CC  烫烫
+
+5.保存CPU环境(/Zi 稳定保存12字节)
+0019FEC4  A0 13 40 00  ..@.
+0019FEC8  A0 13 40 00  ..@.
+0019FECC  00 30 37 00  .07.
 
 
+fun1
+1.参数入栈
+0019FEC0  10 FF 19 00  ....                   // main函数中变量0019FF10  42 CC CC CC  B烫.     // 42转成10进制66对应ASCII表	B
+
+2.返回地址入栈
+0019FEBC  82 11 40 00  ..@.
+
+3.保存栈底
+0019FEB8  30 FF 19 00  0...
+
+4.变量入栈
+0019FEB0  CD CC 5C 41  吞\A
+0019FEB4  0A 00 00 00  ....          // int 10
+
+5.保存CPU环境(/Zi 稳定保存12字节)
+0019FE64  30 FF 19 00  0...            // 栈顶
+0019FE68  A0 13 40 00  ..@.
+0019FE6C  00 30 37 00  .07.
+
+
+fun2
+1.参数入栈
+0019FE60  0A 00 00 00  ....                // int 10
+
+2.返回地址入栈
+0019FE5C  FD 10 40 00  ..@.
+
+3.保存栈底
+0019FE58  B8 FE 19 00  羹..
+
+4.变量入栈
+0019FE50  CD CC 64 41  吞dA
+0019FE54  14 00 00 00  ....                  // int 20
+
+5.保存CPU环境(/Zi 稳定保存12字节)
+0019FE04  B8 FE 19 00  羹..
+0019FE08  A0 13 40 00  ..@.
+0019FE0C  00 30 37 00  .07.
+
+
+fun3
+1.参数入栈
+0019FDFC  14 00 00 00  ....               // int 20
+0019FE00  CD CC 64 41  吞dA
+
+2.返回地址入栈
+0019FDF8  A3 10 40 00  ..@.
+
+3.保存栈底
+0019FDF4  58 FE 19 00  X...
+
+4.变量入栈
+0019FDEC  CD CC 74 41  吞tA
+0019FDF0  1E 00 00 00  ....                // int 30
+
+5.保存CPU环境(/Zi 稳定保存12字节)
+0019FDA0  58 FE 19 00  X...
+0019FDA4  A0 13 40 00  ..@.
+0019FDA8  00 30 37 00  .07.
+```
 
 
 
