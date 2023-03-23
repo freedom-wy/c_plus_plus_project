@@ -715,26 +715,55 @@ fun3
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <crtdbg.h>
+
+
+#ifdef _DEBUG
+#define malloc(n) _malloc_dbg(n, _NORMAL_BLOCK, __FILE__, __LINE__);
+#endif
+
+
+ /*
+    未初始化（调试版）：CD CD中文字符“屯”,发布版堆不做初始化动作,空闲  ：FE FE （有的操作系统是DD DD）中文字符“葺”或者“铪”。
+ */
 
 
 int main()
 {
-    /*
-        未初始化（调试版）：CD CD中文字符“屯”,发布版堆不做初始化动作,空闲  ：FE FE （有的操作系统是DD DD）中文字符“葺”或者“铪”。
-    */
-    char* psz = NULL;
-    psz = (char*)malloc(10);
-    if(psz == NULL)
+    char* psz = NULL; // 0x0012ff7c
+    psz = (char*)malloc(10); // return heap address 0x00381000
+    if(psz==NULL)
     {
-        printf("申请内存空间失败");
-        return 0;
+        printf("get memory error");
     }
     memset(psz, 0, 10);
     strcpy(psz, "hello");
-    printf("字符串为: %s\n", psz);
+
+    int* pn1 = NULL;
+    pn1 = (int*)malloc(10); // 0012FF78
+    if(pn1==NULL)
+    {
+        printf("get memory error");
+    }
+    memset(pn1, 0, 10);
+    *pn1 = 100;
+
     free(psz);
-    return 0;
+    free(pn1);
+
+	return 0;
 }
+```
+```txt
+00380FE0  98 07 38 00 00 00 00 00 00 00 00 00 00 00 00 00  ..8.............
+00380FF0  0A 00 00 00 01 00 00 00 28 00 00 00 FD FD FD FD  ........(.......
+00381000  CD CD CD CD CD CD CD CD CD CD FD FD FD FD AD BA  ................         // psz = (char*)malloc(10);
+
+
+00381028  E0 0F 38 00 00 00 00 00 00 00 00 00 00 00 00 00  ..8.............
+00381038  0A 00 00 00 01 00 00 00 29 00 00 00 FD FD FD FD  ........).......
+00381048  CD CD CD CD CD CD CD CD CD CD FD FD FD FD AD BA  ................         // pn1 = (int*)malloc(10);
+
 ```
 
 
