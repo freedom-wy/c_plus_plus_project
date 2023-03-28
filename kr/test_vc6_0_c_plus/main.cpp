@@ -3,21 +3,62 @@
 #include <string.h>
 
 
+struct tagTest{
+    int a;
+    float b;
+    double c;
+    char d[20];
+};
+
 int main()
 {
-    /*
-        未初始化（调试版）：CD CD中文字符“屯”,发布版堆不做初始化动作,空闲  ：FE FE （有的操作系统是DD DD）中文字符“葺”或者“铪”。
-    */
-    char* psz = NULL;
-    psz = (char*)malloc(10);
-    if(psz == NULL)
+    struct tagTest test[] = {
+        {1, 3.14f, 0.618, "Hello"},
+        {2, 4.14f, 1.618, "Jack"},
+        {3, 5.14f, 2.618, "jjyy"},
+    };
+
+    FILE* fp = NULL;
+
+    fp = fopen("test.bin", "rb+");
+    if (fp == NULL)
     {
-        printf("申请内存空间失败");
-        return 0;
+        fp = fopen("test.bin", "wb+");
+        if(fp == NULL)
+        {
+            exit(-1);
+        }
     }
-    memset(psz, 0, 10);
-    strcpy(psz, "hello");
-    printf("字符串为: %s\n", psz);
-    free(psz);
+
+    if(fwrite(test, sizeof(test), 1, fp)!=1)
+    // if(fwrite(test, sizeof(test[0]), 3, fp)!=3)
+    {
+        int nError = ferror(fp);
+        exit(nError);
+    }
+
+    // commit data
+    if(EOF == fflush(fp))
+    {
+        int nError = ferror(fp);
+        exit(nError);
+    }
+
+    // rewrite data
+    int nSize = sizeof(struct tagTest);
+    fseek(fp, -nSize, SEEK_CUR);
+    test[2].a = 6;
+    if(fwrite(&test[2], sizeof(test[2]), 1, fp)!=1)
+    {
+        int nError = ferror(fp);
+        exit(nError);
+    }
+
+    if(fp)
+    {
+        fclose(fp);
+    }
+
+
     return 0;
 }
