@@ -294,6 +294,71 @@ int main()
 int a = 100;
 #endif // KR_94B9BDB0_2B69_4202_8179_13CA7205E622
 ```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// 无参数宏
+#define IN scanf
+#define OUT printf
+
+// 带参数宏
+#define PI 3.1415926f
+#define S(r) PI*(r)*(r)
+
+// 符号常量宏
+#define FILE_OPEN_ERROR -1
+
+// #define ISDEBUG 1
+
+void defineInOut()
+{
+    char str[20];
+    IN("%s", str);
+    // int strLen = strlen(str);
+    // str[strLen] = '\0';
+    OUT("%s\n", str);
+}
+
+void definePiS()
+{
+    float r;
+    IN("%f", &r);
+    float circle_s = S(r);
+    printf("result = %f\n", circle_s);
+}
+
+int defineOpenFile()
+{
+    FILE* fp = fopen("test.txt", "r");
+    if (fp==NULL)
+    {
+        return FILE_OPEN_ERROR;
+    }
+    fclose(fp);
+    return 0;
+}
+
+void defineDebug()
+{
+    // __FILE__ 文件名称 __LINE__ 文件行数
+    // 编译预处理, 在debug参数中定义
+#ifdef _DEBUG
+    printf("%s:%d\n", __FILE__, __LINE__);
+#endif
+}
+
+int main()
+{
+    // defineInOut();
+    // definePiS();
+    // int openCode = defineOpenFile();
+    // printf("%d\n", openCode);
+    defineDebug();
+    return 0;
+}
+```
 #### 指针
 ```txt
 指针是特殊的地址，地址不一定是指针
@@ -833,7 +898,39 @@ int main()
     return 0;
 }
 ```
+#### 变量交换
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+
+void swap1(int* px, int* py)
+{
+    printf("px=%p\n", px);
+    int* pTemp = px;
+    px = py;
+    py = pTemp;
+}
+
+void swap2(int* px, int* py)
+{
+    int pTemp = *px;
+    *px = *py;
+    *py = pTemp;
+}
+
+
+int main()
+{
+    int a = 1;
+    int b = 2;
+    // swap1(&a, &b);
+    swap2(&a, &b);
+    printf("a=%d, b=%d\n", a, b);
+    return 0;
+}
+```
 
 
 
