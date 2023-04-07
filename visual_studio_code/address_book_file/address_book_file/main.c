@@ -164,8 +164,9 @@ void deletePerson(struct addressBook* adb)
         for (int i = return_index; i < adb->size; i++)
         {
             adb->addressList[i] = adb->addressList[i + 1];
-            adb->size--;
+            // adb->size--;
         }
+        adb->size--;
         printf("联系人删除成功\n");
         system("pause");
         system("cls");
