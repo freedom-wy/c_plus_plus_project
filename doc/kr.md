@@ -1,3 +1,4 @@
+### C语言
 #### 无符号整数
 ```txt
 无符号整数占4个字节, 由8个16进制数组成，当无符号整型不足32位时，用0来填充高位
@@ -932,8 +933,27 @@ int main()
 }
 ```
 
+### C++
+#### 输入和输出
+```c++
+#include <iostream>
 
+using namespace std;
 
+int main()
+{
+    int a = 0;
+    cin >> a;
+    // cout.setf(ios_base::dec);
+    cout << oct << a << endl; // 8进制
+    cout << dec << a << endl; // 10进制
+    cout << hex << a << endl; // 16进制
+    return 0;
+}
+```
+#### 构造函数可以重载, 构造函数可以传参, 析构函数不能重载, 析构函数不能传参
+#### 空或空结构体占用1字节空间
+#### size_t 为无符号整形
 
 
 
