@@ -1,0 +1,33 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: encode_decode_data - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP851E.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/encode_decode_data.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"E:\code\c_plus_plus_project\project\encode_decode_data\encode_code.cpp"
+]
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP851E.tmp" 
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP851F.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/encode_decode_data.pdb" /debug /machine:I386 /out:"Debug/encode_decode_data.exe" /pdbtype:sept 
+.\Debug\decode_code.obj
+.\Debug\encode_code.obj
+]
+Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP851F.tmp"
+<h3>Output Window</h3>
+Compiling...
+encode_code.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+encode_decode_data.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
