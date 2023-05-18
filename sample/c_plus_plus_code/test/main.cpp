@@ -1,50 +1,61 @@
 #include <iostream>
 using namespace std;
 
-// struct Person
-// {
-//     string name;
-//     int age;
-// };
+class Person{
+    public:
+        Person()
+        {
+            cout << "默认构造方法" << endl;
+        }
+        ~Person()
+        {
+            cout << "析构" << endl;
+        }
+        Person(const Person& p)
+        {
+            cout << "拷贝构造" << endl;
+            this->age = p.age;
+            strcpy(this->name, p.name);
+        }
+    public:
+        int age;
+        char name[32];
+    
+    public:
+        void setAge(int age)
+        {
+            this->age = age;
+        }
 
-// struct Address
-// {
-//     struct Person p[10];
-//     int size;
-// };
+        int getAge()
+        {
+            return this->age;
+        }
+
+        void setName(char* new_ame)
+        {
+            strcpy(this->name, new_ame);
+        }
+
+        char* getName()
+        {
+            return this->name;
+        }
+};
 
 int main()
 {
-    // struct Address address;
-    // address.size = 0;
-    // address.p[address.size].name = "张三";
-    // address.p[address.size].age = 11;
-    // address.size = address.size + 1;
+    Person p1;
+    p1.setAge(10);
+    char newName[32] = "zhangsan";
+    p1.setName(newName);
 
-    // address.p[address.size].name = "李四";
-    // address.p[address.size].age = 22;
-    // address.size = address.size + 1;
-
-    // // address.p[1] = address.p[2];
-    // // address.size = address.size-1;
-
-    // for (int i = 0; i < address.size; i++)
-    // {
-    //     cout << "数据为: " << address.p[i].name << endl;
-    // }
-
-    // 引用
-    int a = 10;
-    int b = 20;
-
-    // int &ref = a; // 引用必须初始化, 引用初始化后, 不可以改变
-    // cout << "a的值为: " << a << endl;
-    // cout << "ref的值为: " << ref << endl;
-    // ref = 100;
-    // cout << "a的值为: " << a << endl;
-    // cout << "ref的值为: " << ref << endl;
-
-    // int * const ref = &a;
-    // ref = &b; // 指针常量不能修改指向
-    // *ref = 100;
+    // 拷贝构造
+    Person p2 = p1;
+    // cout << "姓名为: " << p2.getName() << ", 年龄为: " << p2.getAge() << endl;
+    
+    // 拷贝构造
+    Person p3(p2);
+    cout << "姓名为: " << p3.getName() << ", 年龄为: " << p3.getAge() << endl;
+    return 0;
 }
