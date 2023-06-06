@@ -3,62 +3,67 @@
 #include <string.h>
 
 
-struct tagTest{
-    int a;
-    float b;
-    double c;
-    char d[20];
+class CBuff
+{
+
+private:
+    char* m_pBuff;
+    size_t m_nSize;
+
+public:
+    CBuff()
+    {
+        this->m_pBuff = NULL;
+        this->m_nSize = 0;
+
+        this->m_pBuff = new char[20];
+    }
+
+    CBuff(char* pBuff, size_t nSize)
+    {
+        this->m_pBuff = NULL;
+        this->m_nSize = 0;
+    }
+
+	~CBuff()
+	{
+		delete [] this->m_pBuff;
+		this->m_pBuff = NULL;
+	}
+
+    void SetData(const char* pBuff, size_t nSize)
+    {
+        memcpy(this->m_pBuff, pBuff, nSize);
+        this->m_nSize = nSize;
+    }
+
+    char* GetData() const 
+    {
+		return this->m_pBuff;
+    };
+
+	size_t GetSize() const
+	{
+		return this->m_nSize;
+	}
 };
+
+void PrintBuf(CBuff buf)
+{
+	for(int i=0;i<buf.GetSize();i++)
+	{
+		printf("%c\n", buf.GetData()[i]);
+	}
+}
+
+
 
 int main()
 {
-    struct tagTest test[] = {
-        {1, 3.14f, 0.618, "Hello"},
-        {2, 4.14f, 1.618, "Jack"},
-        {3, 5.14f, 2.618, "jjyy"},
-    };
-
-    FILE* fp = NULL;
-
-    fp = fopen("test.bin", "rb+");
-    if (fp == NULL)
-    {
-        fp = fopen("test.bin", "wb+");
-        if(fp == NULL)
-        {
-            exit(-1);
-        }
-    }
-
-    if(fwrite(test, sizeof(test), 1, fp)!=1)
-    // if(fwrite(test, sizeof(test[0]), 3, fp)!=3)
-    {
-        int nError = ferror(fp);
-        exit(nError);
-    }
-
-    // commit data
-    if(EOF == fflush(fp))
-    {
-        int nError = ferror(fp);
-        exit(nError);
-    }
-
-    // rewrite data
-    int nSize = sizeof(struct tagTest);
-    fseek(fp, -nSize, SEEK_CUR);
-    test[2].a = 6;
-    if(fwrite(&test[2], sizeof(test[2]), 1, fp)!=1)
-    {
-        int nError = ferror(fp);
-        exit(nError);
-    }
-
-    if(fp)
-    {
-        fclose(fp);
-    }
-
-
-    return 0;
+    CBuff buf;
+    char str[] = "hello world";
+    buf.SetData(str, sizeof(str));
+    printf("result = %s\n", buf.GetData());
+	PrintBuf(buf);
+	return 0;
 }
