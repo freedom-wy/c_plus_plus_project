@@ -37,9 +37,15 @@ CMyString::CMyString(const char* szStr)
 
 CMyString::CMyString(const CMyString& obj)
 {
+    cout << "拷贝构造" << endl;
 }
 
 CMyString::~CMyString()
+{
+    unit();
+}
+
+void CMyString::unit()
 {
     if (this->m_szBuff != NULL) {
         delete[] this->m_szBuff;
@@ -59,12 +65,43 @@ unsigned int CMyString::GetLen()
     return 0;
 }
 
-void CMyString::Append(char* szStr)
+void CMyString::Append(const char* szStr)
 {
+    cout << "向原字符串添加新的字符串" << endl;
+    if (szStr == NULL) {
+        return;
+    }
+    unsigned int szStrLen = strlen(szStr);
+    if (szStrLen + this->m_nLen < this->m_nSize) {
+        // 缓冲空间足够
+        strcat(this->m_szBuff, szStr);
+        this->m_nLen = this->m_nLen + szStrLen;
+    }
+    else {
+        unsigned int szStrSize = szStrLen + this->m_nLen + 1;
+        // 开辟新的空间
+        char* newszBuff = new char[szStrSize];
+        if (newszBuff == NULL) {
+            cout << "new 空间失败" << endl;
+            return;
+        }
+        memset(newszBuff, 0, szStrSize);
+        strcpy(newszBuff, this->m_szBuff);
+        strcat(newszBuff, szStr);
+
+        // 释放原始空间
+        unit();
+        // 更新指向
+        this->m_szBuff = newszBuff;
+        this->m_nSize = szStrSize;
+        this->m_nLen = szStrSize - 1;
+    }
 }
 
 void CMyString::Append(const CMyString& obj)
 {
+    cout << "向原字符串添加新的object" << endl;
+    this->Append(obj.m_szBuff);
 }
 
 void CMyString::Append(int n)
@@ -80,9 +117,11 @@ void CMyString::Append(char n)
 }
 
 int main() {
-    // CMyString s1("hello world");
-    CMyString* s1 = new CMyString("hello world");
-    cout << "str: " << s1->GetStr() << endl;
-    delete s1;
+    CMyString s1("hello world");
+    s1.Append(" aaa");
+    cout << "str: " << s1.GetStr() << endl;
+    CMyString s2("bbb");
+    s1.Append(s2);
+    cout << "str: " << s1.GetStr() << endl;
     return 0;
 }

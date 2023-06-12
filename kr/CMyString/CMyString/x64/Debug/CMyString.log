@@ -1,0 +1,8 @@
+﻿  CMyString.cpp
+E:\venustech\code\c_plus_plus_project\kr\CMyString\CMyString\CMyString.cpp(25,37): warning C4267: “=”: 从“size_t”转换到“unsigned int”，可能丢失数据
+E:\venustech\code\c_plus_plus_project\kr\CMyString\CMyString\CMyString.cpp(34,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\venustech\code\c_plus_plus_project\kr\CMyString\CMyString\CMyString.cpp(74,42): warning C4267: “初始化”: 从“size_t”转换到“unsigned int”，可能丢失数据
+E:\venustech\code\c_plus_plus_project\kr\CMyString\CMyString\CMyString.cpp(77,9): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\venustech\code\c_plus_plus_project\kr\CMyString\CMyString\CMyString.cpp(89,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\venustech\code\c_plus_plus_project\kr\CMyString\CMyString\CMyString.cpp(90,9): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  CMyString.vcxproj -> E:\venustech\code\c_plus_plus_project\kr\CMyString\x64\Debug\CMyString.exe
