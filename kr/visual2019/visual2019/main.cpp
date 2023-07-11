@@ -93,17 +93,24 @@ public:
 	{
 		return *(this->age);
 	}
+public:
+	static int m_A; //静态成员变量，类内声明，类外初始化
 private:
 	string name;
 	int* age;
 };
 
+int Person::m_A = 10;
+
 void test2()
 {
 	Person p1 = Person("哈哈", 18);
-	cout << "姓名: " << p1.getName() << ", 年龄: " << p1.getAge() << endl;
+	p1.m_A = 100;
+	cout << "姓名: " << p1.getName() << ", 年龄: " << p1.getAge() << ", m_A的值为: " << p1.m_A << endl;
 	Person p2 = Person(p1); // 调用拷贝构造方法
-	cout << "姓名: " << p2.getName() << ", 年龄: " << p2.getAge() << endl;
+	p2.m_A = 200;
+	cout << "姓名: " << p2.getName() << ", 年龄: " << p2.getAge() << ", m_A的值为: " << p2.m_A << endl;
+	cout << "通过类名访问m_A的值: " << Person::m_A << endl;
 }
 
 
