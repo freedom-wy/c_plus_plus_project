@@ -113,6 +113,67 @@ void test2()
 	cout << "通过类名访问m_A的值: " << Person::m_A << endl;
 }
 
+class CBuff
+{
+public:
+	CBuff()
+	{
+		cout << "默认构造方法" << endl;
+		this->m_pBuff = NULL;
+		this->m_nSize = 0;
+	}
+	CBuff(const CBuff& obj)
+	{
+		cout << "拷贝构造" << endl;
+		this->m_pBuff = new char[obj.m_nSize];
+		memset(this->m_pBuff, 0, obj.m_nSize);
+		memcpy(this->m_pBuff, obj.m_pBuff, obj.m_nSize);
+		this->m_nSize = obj.m_nSize;
+	}
+	~CBuff()
+	{
+		cout << "析构方法" << endl;
+		if (this->m_pBuff != NULL)
+		{
+			delete [] this->m_pBuff;
+			this->m_pBuff = NULL;
+			this->m_nSize = 0;
+		}
+	}
+	void Set(const char* pBuff, int nSize)
+	{
+		if (this->m_pBuff != NULL)
+		{
+			delete[] this->m_pBuff;
+			this->m_pBuff = NULL;
+			this->m_nSize = 0;
+		}
+		this->m_pBuff = new char[nSize];
+		memset(this->m_pBuff, 0, nSize);
+		memcpy(this->m_pBuff, pBuff, nSize);
+		this->m_nSize = nSize;
+	}
+
+	char* Get()
+	{
+		return this->m_pBuff;
+	}
+
+private:
+	char* m_pBuff;
+	int m_nSize;
+};
+
+void test3()
+{
+	CBuff buf;
+	buf.Set("\x55\x55\x55\x55", 4);
+
+	CBuff buf1 = buf;
+	buf1.Set("\x44\x44\x44\x44\x44\x44\x44\x44\x44\x44\x44\x44", 13);
+
+}
+
 
 int main() {
 	//int* p1 = func1();
@@ -127,7 +188,8 @@ int main() {
 	int b = 20;
 	mySwap01(a, b);
 	cout << "交换后的a: " << a << ", 交换后的b: " << b << endl;*/
-	test2();
+	//test2();
+	test3();
 	cout << "hello world" << endl;
 	return 0;
 }
