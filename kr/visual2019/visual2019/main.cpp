@@ -77,7 +77,7 @@ public:
 	}
 	~Person()
 	{
-		if (this->age != NULL)
+		if (this->age != nullptr)
 		{
 			cout << "析构" << endl;
 			delete this->age;
@@ -115,40 +115,60 @@ void test2()
 
 class CBuff
 {
+private:
+	void init()
+	{
+		this->m_pBuff = nullptr;
+		this->m_nSize = 0;
+		this->m_pnRefCount = nullptr;
+	}
+	void uninit()
+	{
+		if (this->m_pnRefCount != nullptr)
+		{
+			--(*this->m_pnRefCount);
+		}
+		if (this->m_pnRefCount == nullptr)
+		{
+			delete[] this->m_pBuff;
+			delete this->m_pnRefCount;
+			this->m_pBuff = nullptr;
+			this->m_pnRefCount = nullptr;
+			this->m_nSize = 0;
+		}
+	}
 public:
 	CBuff()
 	{
 		cout << "默认构造方法" << endl;
-		this->m_pBuff = NULL;
-		this->m_nSize = 0;
+		init();
 	}
 	CBuff(const CBuff& obj)
 	{
-		cout << "拷贝构造" << endl;
-		this->m_pBuff = new char[obj.m_nSize];
+		cout << "拷贝构造-浅拷贝" << endl;
+		if (obj.m_pnRefCount != nullptr)
+		{
+			this->m_pBuff = obj.m_pBuff;
+			this->m_nSize = obj.m_nSize;
+			this->m_pnRefCount = obj.m_pnRefCount;
+		}
+
+		++(*this->m_pnRefCount);
+		/*this->m_pBuff = new char[obj.m_nSize];
 		memset(this->m_pBuff, 0, obj.m_nSize);
 		memcpy(this->m_pBuff, obj.m_pBuff, obj.m_nSize);
-		this->m_nSize = obj.m_nSize;
+		this->m_nSize = obj.m_nSize;*/
 	}
 	~CBuff()
 	{
 		cout << "析构方法" << endl;
-		if (this->m_pBuff != NULL)
-		{
-			delete [] this->m_pBuff;
-			this->m_pBuff = NULL;
-			this->m_nSize = 0;
-		}
+		uninit();
 	}
 	void Set(const char* pBuff, int nSize)
 	{
-		if (this->m_pBuff != NULL)
-		{
-			delete[] this->m_pBuff;
-			this->m_pBuff = NULL;
-			this->m_nSize = 0;
-		}
+		uninit();
 		this->m_pBuff = new char[nSize];
+		this->m_pnRefCount = new int(1);
 		memset(this->m_pBuff, 0, nSize);
 		memcpy(this->m_pBuff, pBuff, nSize);
 		this->m_nSize = nSize;
@@ -159,18 +179,29 @@ public:
 		return this->m_pBuff;
 	}
 
+public:
+	static int value; // 静态变量公用
+
 private:
 	char* m_pBuff;
 	int m_nSize;
+	int* m_pnRefCount; //计数器
 };
+
+int CBuff::value = 1;
 
 void test3()
 {
-	CBuff buf;
-	buf.Set("\x55\x55\x55\x55", 4);
+	CBuff *buf = new CBuff();
+	buf->Set("\x55\x55\x55\x55", 4);
 
-	CBuff buf1 = buf;
-	buf1.Set("\x44\x44\x44\x44\x44\x44\x44\x44\x44\x44\x44\x44", 13);
+	CBuff* buf1 = new CBuff();
+	buf1->Set("\x44\x44\x44\x44\x44\x44\x44\x44\x44\x44\x44\x44", 100);
+
+	CBuff *buf3 = buf1;
+	delete buf;
+	delete buf1;
+	delete buf3;
 
 }
 
