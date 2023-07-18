@@ -205,6 +205,73 @@ void test3()
 
 }
 
+class CA
+{
+public:
+	void TestA()
+	{
+		cout << "CA::TestA()" << endl;
+	}
+	void TestA(const char*)
+	{
+		cout << "CA::Test(const char*)" << endl;
+	}
+protected:
+	int m_n = 0xAAAAAAAA;
+};
+
+class CB :public CA
+{
+public:
+	void TestA()
+	{
+		cout << "CB：：Test()" << endl;
+		m_n = 0xDDDDDDDD;//优先调用自己的。
+		CA::m_n = 0xEEEEEEEE; //显示的调用父类的。
+	}
+private:
+	int m_n = 0xBBBBBBBB;
+};
+
+class Animal
+{
+public:
+	virtual void speak()
+	{
+		cout << "动物在说话" << endl;
+	}
+};
+
+class Cat :public Animal
+{
+public:
+	void speak()
+	{
+		cout << "小猫在说话" << endl;
+	}
+};
+
+class Dog :public Animal
+{
+public:
+	void speak()
+	{
+		cout << "小狗在说话" << endl;
+	}
+};
+
+void DoSpeak(Animal& animal)
+{
+	animal.speak();
+}
+void test4()
+{
+	/*Cat cat;
+	DoSpeak(cat);*/
+	Animal* cat = new Cat();
+	cat->speak();
+	delete cat;
+}
 
 int main() {
 	//int* p1 = func1();
@@ -215,12 +282,15 @@ int main() {
 	//delete p2;
 	// cout << "返回堆区数据" << *p2 << endl; // 删除对象后无法查看内存指向数据
 	// test1();
-	/*int a = 10;
-	int b = 20;
+	/*int a = 1;
+	int b = 2;
 	mySwap01(a, b);
 	cout << "交换后的a: " << a << ", 交换后的b: " << b << endl;*/
 	//test2();
-	test3();
+	// test3();
+	/*CB b;
+	b.TestA();*/
+	test4();
 	cout << "hello world" << endl;
 	return 0;
 }
