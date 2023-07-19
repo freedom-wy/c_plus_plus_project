@@ -236,41 +236,180 @@ private:
 class Animal
 {
 public:
+	Animal()
+	{
+		this->a = 1;
+	}
 	virtual void speak()
 	{
 		cout << "动物在说话" << endl;
 	}
+	virtual void run()
+	{
+		cout << "动物在跑" << endl;
+	}
+private:
+	int a;
 };
 
 class Cat :public Animal
 {
 public:
+	Cat()
+	{
+		this->b = 2;
+	}
 	void speak()
 	{
 		cout << "小猫在说话" << endl;
 	}
-};
-
-class Dog :public Animal
-{
-public:
-	void speak()
+	virtual void run()
 	{
-		cout << "小狗在说话" << endl;
+		cout << "动物在跑" << endl;
 	}
+private:
+	int b;
 };
 
-void DoSpeak(Animal& animal)
-{
-	animal.speak();
-}
-void test4()
+//class Dog :public Animal
+//{
+//public:
+//	Dog()
+//	{
+//		this->c = 3;
+//	}
+//	void speak()
+//	{
+//		cout << "小狗在说话" << endl;
+//	}
+//private:
+//	int c;
+//};
+
+//void DoSpeak(Animal& animal)
+//{
+//	animal.speak();
+//}
+int test4()
 {
 	/*Cat cat;
 	DoSpeak(cat);*/
-	Animal* cat = new Cat();
+	/*Animal* cat = new Cat();
 	cat->speak();
-	delete cat;
+	delete cat;*/
+	Cat cat;
+	Animal* a = &cat;
+	return 0;
+}
+
+class CHero
+{
+public:
+	//CHero(int nType)
+	//{
+	//	this->m_nType = nType;
+	//}
+
+	virtual void Skill(int nIdx)
+	{
+		switch (nIdx)
+		{
+		case 0:
+			cout << "平A" << endl;
+			break;
+		case 1:
+			cout << "回血" << endl;
+			break;
+		default:
+			break;
+		}
+	}
+
+//private:
+//	int m_nType;
+};
+
+class CSodier :public CHero
+{
+public:
+	void Skill(int nIdx)
+	{
+		switch (nIdx)
+		{
+		case 0:
+			cout << "战士平A" << endl;
+			break;
+		case 1:
+			cout << "战士回血" << endl;
+			break;
+		case 2:
+			cout << "小李飞刀" << endl;
+			break;
+		case 3:
+			cout << "铁砂掌" << endl;
+			break;
+		case 4:
+			cout << "金钟罩, 铁布衫" << endl;
+			break;
+		default:
+			break;
+		}
+	}
+};
+
+class CWizard :public CHero
+{
+public:
+	void Skill(int nIdx)
+	{
+		switch (nIdx)
+		{
+		case 0:
+			cout << "法师平A" << endl;
+			break;
+		case 1:
+			cout << "法师回血" << endl;
+			break;
+		case 2:
+			cout << "六脉神剑" << endl;
+			break;
+		case 3:
+			cout << "降龙十八掌" << endl;
+			break;
+		case 4:
+			cout << "大威天龙, 大罗法咒" << endl;
+			break;
+		default:
+			break;
+		}
+	}
+};
+
+int test5()
+{
+	CHero* aryHeros[6]; //存放指针
+	for (int i = 0; i < 6; i++)
+	{
+		CHero* c = NULL;
+		if (i % 2 == 0)
+		{
+			c = new CSodier();
+		}
+		else
+		{
+			c = new CWizard();
+		}
+		aryHeros[i] = c;
+	}
+
+	for (int i = 0; i < 6; i++)
+	{
+		aryHeros[i]->Skill(i);
+	}
+
+	delete[] aryHeros;
+
+	return 0;
 }
 
 int main() {
@@ -291,6 +430,7 @@ int main() {
 	/*CB b;
 	b.TestA();*/
 	test4();
+	//test5();
 	cout << "hello world" << endl;
 	return 0;
 }
