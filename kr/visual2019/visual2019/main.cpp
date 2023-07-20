@@ -238,8 +238,13 @@ class Animal
 public:
 	Animal()
 	{
-		this->a = 1;
+		this->speak();
 	}
+	/*virtual ~Animal()
+	{
+		cout << "Animal虚析构" << endl;
+	}*/
+	virtual ~Animal() = 0;
 	virtual void speak()
 	{
 		cout << "动物在说话" << endl;
@@ -248,16 +253,23 @@ public:
 	{
 		cout << "动物在跑" << endl;
 	}
-private:
-	int a;
 };
+
+Animal::~Animal()
+{
+	cout << "Animal纯虚析构" << endl;
+}
 
 class Cat :public Animal
 {
 public:
 	Cat()
 	{
-		this->b = 2;
+		this->speak();
+	}
+	~Cat()
+	{
+		cout << "Cat析构代码" << endl;
 	}
 	void speak()
 	{
@@ -267,8 +279,6 @@ public:
 	{
 		cout << "动物在跑" << endl;
 	}
-private:
-	int b;
 };
 
 //class Dog :public Animal
@@ -297,8 +307,9 @@ int test4()
 	/*Animal* cat = new Cat();
 	cat->speak();
 	delete cat;*/
-	Cat cat;
-	Animal* a = &cat;
+	Animal* a = new Cat();
+	a->speak();
+	delete a;
 	return 0;
 }
 
