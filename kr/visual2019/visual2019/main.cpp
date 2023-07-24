@@ -423,6 +423,89 @@ int test5()
 	return 0;
 }
 
+class CInteger
+{
+public:
+	CInteger()
+	{
+		cout << "无参构造" << endl;
+	}
+
+	CInteger(int a, int b)
+	{
+		this->m1 = a;
+		this->m2 = b;
+	}
+
+	void SetM1(int a)
+	{
+		this->m1 = a;
+	}
+
+	void SetM2(int b)
+	{
+		this->m2 = b;
+	}
+
+	int GetM1()
+	{
+		return this->m1;
+	}
+
+	int GetM2()
+	{
+		return this->m2;
+	}
+
+	/*CInteger operator+(CInteger& obj)
+	{
+		CInteger temp;
+		temp.m1 = this->m1 + obj.m1;
+		temp.m2 = this->m2 + obj.m2;
+		return temp;
+	}
+
+	CInteger operator+(int a)
+	{
+		CInteger temp;
+		temp.m1 = this->m1 + a;
+		temp.m2 = this->m2 + a;
+		return temp;
+	}*/
+
+	CInteger& operator+(CInteger& obj)
+	{
+		this->m1 = this->m1 + obj.m1;
+		this->m2 = this->m2 + obj.m2;
+		return *this;
+	}
+
+	CInteger& operator+(int a)
+	{
+		this->m1 = this->m1 + a;
+		this->m2 = this->m2 + a;
+		return *this;
+	}
+private:
+	int m1;
+	int m2;
+};
+
+int test6()
+{
+	CInteger d1;
+	d1.SetM1(1);
+	d1.SetM2(2);
+	cout << "m1的值为: " << d1.GetM1() << ", m2的值为: " << d1.GetM2() << endl;
+	// 两个对象相加
+	CInteger d2(3, 4);
+	CInteger d3 = d1 + d2;
+	cout << "m1的值为: " << d3.GetM1() << ", m2的值为: " << d3.GetM2() << endl;
+	CInteger d4 = d3 + 2;
+	cout << "m1的值为: " << d4.GetM1() << ", m2的值为: " << d4.GetM2() << endl;
+	return 0;
+}
+
 int main() {
 	//int* p1 = func1();
 	//cout << "不要返回局部变量的地址" << *p1 << endl; // 10
@@ -440,8 +523,9 @@ int main() {
 	// test3();
 	/*CB b;
 	b.TestA();*/
-	test4();
+	// test4();
 	//test5();
+	test6();
 	cout << "hello world" << endl;
 	return 0;
 }
