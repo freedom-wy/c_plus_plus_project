@@ -425,37 +425,28 @@ int test5()
 
 class CInteger
 {
+	friend ostream& operator<<(ostream& out, CInteger temp);
 public:
 	CInteger()
 	{
 		cout << "无参构造" << endl;
 	}
 
-	CInteger(int a, int b)
+	CInteger(int a)
 	{
 		this->m1 = a;
-		this->m2 = b;
+		/*this->m2 = b;
+		this->m3 = new int(c);*/
 	}
 
-	void SetM1(int a)
-	{
-		this->m1 = a;
-	}
-
-	void SetM2(int b)
-	{
-		this->m2 = b;
-	}
-
-	int GetM1()
-	{
-		return this->m1;
-	}
-
-	int GetM2()
-	{
-		return this->m2;
-	}
+	//~CInteger()
+	//{
+	//	cout << "析构" << endl;
+	//	/*if (this->m3 != NULL)
+	//	{
+	//		delete this->m3;
+	//	}*/
+	//}
 
 	/*CInteger operator+(CInteger& obj)
 	{
@@ -473,38 +464,108 @@ public:
 		return temp;
 	}*/
 
+	CInteger& operator=(CInteger& obj)
+	{
+		this->m1 = obj.m1;
+		/*this->m2 = obj.m2;
+		if (this->m3 != NULL)
+		{
+			delete this->m3;
+			this->m3 = NULL;
+		}
+
+		this->m3 = new int(*(obj.m3));*/
+
+		return *this;
+	}
+
 	CInteger& operator+(CInteger& obj)
 	{
 		this->m1 = this->m1 + obj.m1;
-		this->m2 = this->m2 + obj.m2;
+		//this->m2 = this->m2 + obj.m2;
 		return *this;
 	}
 
 	CInteger& operator+(int a)
 	{
 		this->m1 = this->m1 + a;
-		this->m2 = this->m2 + a;
+		//this->m2 = this->m2 + a;
 		return *this;
 	}
+
+	CInteger& operator++()
+	{
+		this->m1++;
+		return *this;
+	}
+
+	CInteger operator++(int)
+	{
+		CInteger temp = *this;
+		this->m1++;
+		return temp;
+	}
+
+	int GetM1()
+	{
+		return this->m1;
+	}
+
+	/*int GetM2()
+	{
+		return this->m2;
+	}
+
+	int GetM3()
+	{
+		return *(this->m3);
+	}*/
 private:
 	int m1;
-	int m2;
+	//int m2;
+	//int* m3; // 数据开辟到堆区
 };
+
+ostream& operator<<(ostream& out, CInteger temp)
+{
+	out << temp.m1;
+	return out;
+}
 
 int test6()
 {
-	CInteger d1;
-	d1.SetM1(1);
-	d1.SetM2(2);
-	cout << "m1的值为: " << d1.GetM1() << ", m2的值为: " << d1.GetM2() << endl;
-	// 两个对象相加
-	CInteger d2(3, 4);
-	CInteger d3 = d1 + d2;
-	cout << "m1的值为: " << d3.GetM1() << ", m2的值为: " << d3.GetM2() << endl;
-	CInteger d4 = d3 + 2;
-	cout << "m1的值为: " << d4.GetM1() << ", m2的值为: " << d4.GetM2() << endl;
+	CInteger d1(1);
+	/*CInteger d2;
+	CInteger d3;*/
+	cout << ++d1 << endl;
+	cout << d1 << endl;
+	cout << d1++ << endl;
+	cout << d1 << endl;
 	return 0;
 }
+
+void test7()
+{
+	// 先进行递增，后运算, 即先递增，后输出
+	int a = 0;
+	cout << ++a << endl; // 1
+	cout << a << endl; // 1
+	// 先进行运算即先输出后递增
+	int b = 0;
+	cout << b++ << endl; // 0
+	cout << b << endl; // 1
+}
+
+class CMystring
+{
+private:
+	char m_szBuf[256];
+public:
+	CMystring(const char* sz)
+	{
+		memcpy(this->m_szBuf, sz, strlen(sz) + 1);
+	}
+};
 
 int main() {
 	//int* p1 = func1();
@@ -526,6 +587,7 @@ int main() {
 	// test4();
 	//test5();
 	test6();
+	//test7();
 	cout << "hello world" << endl;
 	return 0;
 }
