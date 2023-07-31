@@ -1056,6 +1056,43 @@ int main()
 	return 0;
 }
 ```
+#### 函数模板
+```c++
+class CInteger
+{
+public:
+    CInteger()
+    {
+        cout << "无参构造" << endl;
+    }
+
+    CInteger(int val)
+    {
+        cout << "有参构造" << endl;
+        this->m_n = val;
+    }
+
+    CInteger operator+(const CInteger& obj)
+    {
+        CInteger temp(this->m_n + obj.m_n);
+        return temp;
+    }
+private:
+    int m_n;
+};
+
+template<class T1, class T2>
+T1 Add(T1 val1, T2 val2)
+{
+    return val1 + val2; // 调用类的运算符重载
+}
+
+void test3()
+{
+    CInteger ret = Add<CInteger, CInteger>(CInteger(1), CInteger(2));
+    cout << "hello world" << endl;
+}
+```
 
 
 
