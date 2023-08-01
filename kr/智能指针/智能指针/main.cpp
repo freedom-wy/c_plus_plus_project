@@ -27,35 +27,54 @@ public:
 	}
 };
 
+// 智能指针
+template <class T>
 class ManagerPtr
 {
 private:
-	CFoo* ptr;
+	T* ptr;
+	int* m_pnRefCount;
 public:
-	ManagerPtr(CFoo* ptr)
+	ManagerPtr(T* ptr)
 	{
 		this->ptr = ptr;
+		this->m_pnRefCount = new int(1);
+	}
+	ManagerPtr(const ManagerPtr& obj)
+	{
+		cout << "拷贝构造" << endl;
+		this->ptr = obj.ptr;
+		this->m_pnRefCount = obj.m_pnRefCount;
+		++(*this->m_pnRefCount);
 	}
 	~ManagerPtr()
 	{
-		if (ptr != NULL)
-		{
-			delete this->ptr;
-			this->ptr = NULL;
-		}
+		--(*this->m_pnRefCount);
+		if (*this->m_pnRefCount == 0)
+			if (ptr != NULL)
+			{
+				delete this->ptr;
+				this->ptr = NULL;
+			}
 	}
 
-	CFoo* operator->()
+	T* operator->()
 	{
 		return this->ptr;
 	}
 };
 
+void Print(ManagerPtr<CFoo> p)
+{
+	cout << p->GetVal() << endl;
+}
+
 int main()
 {
 	// CFoo* cf1 = new CFoo(1);
-	ManagerPtr m1(new CFoo(1));
+	ManagerPtr<CFoo> m1(new CFoo(1));
 	cout << m1->GetVal() << endl;
+	Print(m1);
 	
 	/*CFoo* cf2 = new CFoo(2);
 	ManagerPtr m2(cf2);*/
