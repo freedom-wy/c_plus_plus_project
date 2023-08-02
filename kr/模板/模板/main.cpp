@@ -8,6 +8,8 @@ public:
     Person1() 
     {
         cout << "person1的默认构造方法" << endl;
+        this->m_Name = NULL;
+        this->m_Age = 0;
     }
     Person1(const char* name, int age)
     {
@@ -17,11 +19,25 @@ public:
         this->m_Age = age;
     }
 
+    Person1& operator=(const Person1& obj)
+    {
+        if (this->m_Name != NULL)
+        {
+            delete[] this->m_Name;
+        }
+        this->m_Name = new char[20];
+        memset(this->m_Name, 0, 20);
+        strcpy_s(this->m_Name, strlen(obj.m_Name) + 1, obj.m_Name);
+        this->m_Age = obj.m_Age;
+        return *this;
+    }
+
     /*Person1(string name, int age)
     {
         this->m_Name = name;
         this->m_Age = age;
     }*/
+
     ~Person1()
     {
         cout << "Person1析构" << endl;
@@ -34,6 +50,7 @@ public:
         cout << "名字为: " << this->m_Name << ", 年龄为: " << this->m_Age << endl;
     }
 public:
+    //string m_Name;
     char* m_Name;
     int m_Age;
 };
@@ -232,25 +249,6 @@ public:
         this->m_Capacity = obj.m_Capacity;
     }
 
-    MyArray& operator=(const MyArray& obj)
-    {
-        if (this->pAddress != NULL)
-        {
-            delete[] this->pAddress;
-            this->pAddress = NULL;
-            this->m_Size = 0;
-            this->m_Capacity = 0;
-        }
-
-        this->pAddress = new T[obj.getCapacity()];
-        for (int i = 0; i < obj.getSize(); i++)
-        {
-            this->pAddress[i] = obj.pAddress[i];
-        }
-        this->m_Size = obj.m_Size;
-        this->m_Capacity = obj.m_Capacity;
-        return *this;
-    }
     ~MyArray()
     {
         cout << "析构" << endl;
