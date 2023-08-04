@@ -4,6 +4,7 @@ using namespace std;
 
 
 typedef void (*funcPtrType)(); // 定义函数指针 通过typedef来定义名称funcPtrType
+int(*funcPtr)(int);
 
 // shellcode
 unsigned char buf[] =
@@ -35,21 +36,31 @@ unsigned char buf[] =
 "\x00\x53\xff\xd5";
 
 
+int getVal(int val)
+{
+	return val;
+}
+
+void test1()
+{
+	funcPtr = getVal;
+	int ret = funcPtr(1);
+	cout << ret << endl;
+}
+
 int main()
 {
-	/*funcPtrType p = (funcPtrType)buf;
-	p();*/
-	void* Memory = VirtualAlloc(NULL, sizeof(buf), MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
-	//void* Memory = new char(sizeof(buf));
-	if (Memory == NULL)
-	{
-		return 0;
-	}
-	memset(Memory, 0, sizeof(buf));
-	memcpy(Memory, buf, sizeof(buf));
-	// ((void(*)())Memory)();
-	funcPtrType p = (funcPtrType)Memory;
-	p();
+	//void* Memory = VirtualAlloc(NULL, sizeof(buf), MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+	//if (Memory == NULL)
+	//{
+	//	return 0;
+	//}
+	//memset(Memory, 0, sizeof(buf));
+	//memcpy(Memory, buf, sizeof(buf));
+	//// ((void(*)())Memory)();
+	//funcPtrType p = (funcPtrType)Memory;
+	//p();
+	test1();
 	cout << "hello world" << endl;
 	return 0;
 }
