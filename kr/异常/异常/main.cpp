@@ -78,7 +78,7 @@ class Student1 :public Student
 private:
 	int age;
 public:
-	Student1(string name, int age) :Student(name)
+	Student1(string name, int age) :Student(name) // 子类中调用父类构造方法
 	{
 		this->age = age;
 	}
