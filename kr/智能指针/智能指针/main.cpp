@@ -33,29 +33,39 @@ class ManagerPtr
 {
 private:
 	T* ptr;
-	int* m_pnRefCount;
+	//int* m_pnRefCount;
 public:
 	ManagerPtr(T* ptr)
 	{
+		if (ptr == NULL)
+		{
+			return;
+		}
 		this->ptr = ptr;
-		this->m_pnRefCount = new int(1);
+		//this->m_pnRefCount = new int(1);
 	}
 	ManagerPtr(const ManagerPtr& obj)
 	{
 		cout << "拷贝构造" << endl;
-		this->ptr = obj.ptr;
-		this->m_pnRefCount = obj.m_pnRefCount;
-		++(*this->m_pnRefCount);
+		this->ptr = new T(obj.ptr->GetVal());
+		//this->ptr = obj.ptr;
+		/*this->m_pnRefCount = obj.m_pnRefCount;
+		++(*this->m_pnRefCount);*/
 	}
 	~ManagerPtr()
 	{
-		--(*this->m_pnRefCount);
+		/*--(*this->m_pnRefCount);
 		if (*this->m_pnRefCount == 0)
 			if (ptr != NULL)
 			{
 				delete this->ptr;
 				this->ptr = NULL;
-			}
+			}*/
+		if (ptr != NULL)
+		{
+			delete this->ptr;
+			this->ptr = NULL;
+		}
 	}
 
 	T* operator->()
@@ -64,20 +74,19 @@ public:
 	}
 };
 
-void Print(ManagerPtr<CFoo> p)
+void Print(ManagerPtr<CFoo>& p) // 如果不写&则需要走拷贝构造
 {
 	cout << p->GetVal() << endl;
 }
 
 int main()
 {
-	// CFoo* cf1 = new CFoo(1);
-	ManagerPtr<CFoo> m1(new CFoo(1));
+	CFoo* cf1 = new CFoo(1);
+	ManagerPtr<CFoo> m1(cf1);
 	cout << m1->GetVal() << endl;
 	Print(m1);
-	
-	/*CFoo* cf2 = new CFoo(2);
-	ManagerPtr m2(cf2);*/
+
+	//ManagerPtr<void>m2(NULL);
 
 	cout << "hello world" << endl;
 	return 0;
