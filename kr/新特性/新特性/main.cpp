@@ -44,7 +44,7 @@ CA foo()
 {
 	 // 创建一个函数
 	CA a(1);
-	return a; // 拷贝构造
+	return a; // 如果没有移动构造, 走拷贝构造
 }
 
 void test2()
@@ -57,6 +57,9 @@ void test2()
 int main()
 {
 	//test1();
-	test2();
+	//test2();
+	CA a(12);
+	//CA a1 = a;
+	CA a1 = (CA&&)a;
 	return 0;
 }
