@@ -86,7 +86,10 @@ int main()
 	cout << m1->GetVal() << endl;
 	Print(m1);
 
-	//ManagerPtr<void>m2(NULL);
+	////ManagerPtr<void>m2(NULL);
+
+	//int n [2] = { 1, 2 };
+	//CFoo cf1[2] = { 1, 2 }; // 类数组构造
 
 	cout << "hello world" << endl;
 	return 0;

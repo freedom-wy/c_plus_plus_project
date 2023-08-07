@@ -1100,6 +1100,45 @@ int n = 8; n为左值, 8为右值
 +=返回的是引用, 所以+=为左值
 无名对象或临时对象为右值，能取地址的叫做左值，不能取地址的叫做右值
 ```
+#### 类数组构造
+```c++
+#include <iostream>
+using namespace std;
 
+
+class CFoo
+{
+private:
+	int m_n;
+public:
+	CFoo(int val)
+	{
+		cout << "CFoo有参构造" << endl;
+		this->m_n = val;
+	}
+	~CFoo()
+	{
+		cout << "CFoo析构" << endl;
+	}
+	void SetVal(int val)
+	{
+		this->m_n = val;
+	}
+
+	int GetVal()
+	{
+		return this->m_n;
+	}
+};
+
+int main()
+{
+	int n [2] = { 1, 2 };
+	CFoo cf1[2] = { 1, 2 }; // 类数组构造
+
+	cout << "hello world" << endl;
+	return 0;
+}
+```
 
 
