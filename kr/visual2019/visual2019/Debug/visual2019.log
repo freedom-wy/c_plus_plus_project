@@ -1,7 +1,4 @@
 ﻿  main.cpp
-  old.cpp
-E:\venustech\code\c_plus_plus_project\kr\visual2019\visual2019\old.cpp(421,19): warning C4154: 删除数组表达式；转换到提供的指针
-  正在生成代码...
-E:\venustech\code\c_plus_plus_project\kr\visual2019\visual2019\old.cpp(8): warning C4172: 返回局部变量或临时变量的地址: a
-old.obj : error LNK2005: "void __cdecl test1(void)" (?test1@@YAXXZ) 已经在 main.obj 中定义
-E:\venustech\code\c_plus_plus_project\kr\visual2019\Debug\visual2019.exe : fatal error LNK1169: 找到一个或多个多重定义的符号
+E:\venustech\code\c_plus_plus_project\kr\visual2019\visual2019\main.cpp(421,19): warning C4154: 删除数组表达式；转换到提供的指针
+E:\venustech\code\c_plus_plus_project\kr\visual2019\visual2019\main.cpp(8): warning C4172: 返回局部变量或临时变量的地址: a
+  visual2019.vcxproj -> E:\venustech\code\c_plus_plus_project\kr\visual2019\Debug\visual2019.exe
