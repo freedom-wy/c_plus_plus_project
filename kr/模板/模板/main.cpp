@@ -347,6 +347,7 @@ void test5()
 template<class NameType, class AgeType>
 class Person2
 {
+    friend class Teacher;
 private:
     NameType* name;
     AgeType age;
@@ -419,11 +420,66 @@ public:
     }
 };
 
+class Teacher :public Person2<char, int>
+{
+private:
+    int code;
+public:
+    Teacher()
+    {
+        this->code = 0;
+        cout << "Teacher默认构造" << endl;
+    }
+    Teacher(char* name, int age, int code) :Person2(name, age) // 带继承的有参构造
+    {
+        this->code = code;
+    }
+    Teacher(const Teacher& obj) // 拷贝构造
+    {
+        if (this->name != NULL)
+        {
+            delete[] this->name;
+            this->name = NULL;
+            this->age = 0;
+        }
+
+        this->name = new char[64];
+        memset(this->name, 0, sizeof(this->name));
+        strcpy_s(this->name, strlen(obj.name) + 1, obj.name);
+        this->age = obj.age;
+        this->code = obj.code;
+    }
+    void showInfo()
+    {
+        cout << "姓名: " << this->name << ", 年龄: " << this->age << ", 号码: " << this->code << endl;
+    }
+};
+
 Person2<char, int> Func()
 {
     char name[64] = "abcd";
     Person2<char, int> p4(name, 19);
     return p4;
+}
+
+// 类模板对象做函数参数
+void printPerson2(Person2<char, int>& p) // 指定传入类型
+{
+    p.showInfo();
+}
+
+template<class T1, class T2>
+void printPerson2(Person2<T1, T2>& p) // 参数模板化
+{
+    //p.showInfo();
+    cout << typeid(T1).name() << endl;
+}
+
+template<class T>
+void printPerson2(T& p) // 整个类模板化
+{
+    //p.showInfo();
+    cout << typeid(T).name() << endl;
 }
 
 void test6()
@@ -435,7 +491,16 @@ void test6()
     p3 = p2;
     p3.showInfo();
     Person2<char, int> p5 = Func();
+    printPerson2(p3);
     cout << "hello world" << endl;
+}
+
+void test7()
+{
+    char name[64] = "hello";
+    Teacher t1(name, 18, 1);
+    Teacher t2 = t1;
+    t2.showInfo();
 }
 
 
@@ -447,6 +512,7 @@ int main()
     // test4();
     // test5();
 	// test02();
-    test6();
+    // test6();
+    test7();
     return 0;
 }
