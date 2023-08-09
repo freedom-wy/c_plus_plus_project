@@ -396,7 +396,7 @@ public:
 
         return *this;
     }
-    Person2(Person2&& obj)
+    Person2(Person2&& obj) // ÒÆ¶¯¹¹Ôì
     {
         this->age = obj.age;
         this->name = obj.name;
