@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <cstring>
 using namespace std;
 
@@ -7,7 +7,7 @@ using namespace std;
 //public:
 //    Person1() 
 //    {
-//        cout << "person1µÄÄ¬ÈÏ¹¹Ôì·½·¨" << endl;
+//        cout << "person1çš„é»˜è®¤æ„é€ æ–¹æ³•" << endl;
 //        this->m_Name = NULL;
 //        this->m_Age = 0;
 //    }
@@ -40,14 +40,14 @@ using namespace std;
 //
 //    ~Person1()
 //    {
-//        cout << "Person1Îö¹¹" << endl;
+//        cout << "Person1ææ„" << endl;
 //        delete[] this->m_Name;
 //        this->m_Name = NULL;
 //        this->m_Age = 0;
 //    }
 //    void GetPersonInfo()
 //    {
-//        cout << "Ãû×ÖÎª: " << this->m_Name << ", ÄêÁäÎª: " << this->m_Age << endl;
+//        cout << "åå­—ä¸º: " << this->m_Name << ", å¹´é¾„ä¸º: " << this->m_Age << endl;
 //    }
 //public:
 //    //string m_Name;
@@ -55,7 +55,7 @@ using namespace std;
 //    int m_Age;
 //};
 
-//// ÆÕÍ¨º¯ÊıÄ£°å
+//// æ™®é€šå‡½æ•°æ¨¡æ¿
 //template<class T>
 //bool myCompare(T& a, T& b)
 //{
@@ -121,12 +121,12 @@ using namespace std;
 //public:
 //    CInteger()
 //    {
-//        cout << "ÎŞ²Î¹¹Ôì" << endl;
+//        cout << "æ— å‚æ„é€ " << endl;
 //    }
 //
 //    CInteger(int val)
 //    {
-//        cout << "ÓĞ²Î¹¹Ôì" << endl;
+//        cout << "æœ‰å‚æ„é€ " << endl;
 //        this->m_n = val;
 //    }
 //
@@ -142,7 +142,7 @@ using namespace std;
 //template<class T1, class T2>
 //T1 Add(T1 val1, T2 val2)
 //{
-//    return val1 + val2; // µ÷ÓÃÀàµÄÔËËã·ûÖØÔØ
+//    return val1 + val2; // è°ƒç”¨ç±»çš„è¿ç®—ç¬¦é‡è½½
 //}
 //
 //void test3()
@@ -151,7 +151,7 @@ using namespace std;
 //    cout << "hello world" << endl;
 //}
 //
-//// ÀàÄ£°å
+//// ç±»æ¨¡æ¿
 //template<class AgeType>
 //class Person
 //{
@@ -161,10 +161,10 @@ using namespace std;
 //public:
 //    Person(const char* name, AgeType age)
 //    {
-//        // ¹¹Ôì·½·¨
+//        // æ„é€ æ–¹æ³•
 //        this->name = new char[strlen(name)+1];
 //        memset(this->name, 0, strlen(name) + 1);
-//        strcpy_s(this->name, strlen(name)+1, name); //strcpy_s¿½±´Ê±,µÚ¶ş¸ö²ÎÊıÎªstrlen+1
+//        strcpy_s(this->name, strlen(name)+1, name); //strcpy_sæ‹·è´æ—¶,ç¬¬äºŒä¸ªå‚æ•°ä¸ºstrlen+1
 //        this->age = age;
 //    }
 //
@@ -177,7 +177,7 @@ using namespace std;
 //    {
 //        this->name = new char[strlen(name)+1];
 //        memset(this->name, 0, strlen(name) + 1);
-//        strcpy_s(this->name, strlen(name)+1, name); //strcpy_s¿½±´Ê±,µÚ¶ş¸ö²ÎÊıÎªstrlen+1
+//        strcpy_s(this->name, strlen(name)+1, name); //strcpy_sæ‹·è´æ—¶,ç¬¬äºŒä¸ªå‚æ•°ä¸ºstrlen+1
 //    }
 //
 //    void showPerson()
@@ -200,7 +200,7 @@ using namespace std;
 //template<class T>
 //void printPerson3(T& p)
 //{
-//    // Õû¸öÀàÄ£°å»¯
+//    // æ•´ä¸ªç±»æ¨¡æ¿åŒ–
 //    p.showPerson();
 //}
 //
@@ -231,7 +231,7 @@ using namespace std;
 //
 //    MyArray(MyArray& obj)
 //    {
-//        cout << "¿½±´¹¹Ôì" << endl;
+//        cout << "æ‹·è´æ„é€ " << endl;
 //        if (this->pAddress != NULL)
 //        {
 //            delete[] this->pAddress;
@@ -251,7 +251,7 @@ using namespace std;
 //
 //    ~MyArray()
 //    {
-//        cout << "Îö¹¹" << endl;
+//        cout << "ææ„" << endl;
 //        if (this->m_Capacity != NULL)
 //        {
 //            delete[] this->pAddress;
@@ -261,7 +261,7 @@ using namespace std;
 //        }
 //    }
 //
-//    // Ìí¼ÓÊı¾İ
+//    // æ·»åŠ æ•°æ®
 //    void Push_back(const T& val)
 //    {
 //        if (this->m_Capacity == this->m_Size)
@@ -274,7 +274,7 @@ using namespace std;
 //        }
 //    }
 //
-//    // É¾³ıÊı¾İ
+//    // åˆ é™¤æ•°æ®
 //    void Pop_back()
 //    {
 //        if (this->m_Size == 0)
@@ -334,10 +334,10 @@ void test5()
     pArray[1] = p2;*/
 
     //MyArray<Person1> pArray(2);
-    //Person1 p1("ËïÎò¿Õ", 30);
-    //Person1 p2("º«ĞÅ", 20);
+    //Person1 p1("å­™æ‚Ÿç©º", 30);
+    //Person1 p2("éŸ©ä¿¡", 20);
 
-    ////²åÈëÊı¾İ
+    ////æ’å…¥æ•°æ®
     //pArray.Push_back(p1);
     //pArray.Push_back(p2);
     cout << "hello world" << endl;
@@ -354,7 +354,7 @@ private:
 public:
     Person2()
     {
-        cout << "Person2ÎŞ²Î¹¹Ôì" << endl;
+        cout << "Person2æ— å‚æ„é€ " << endl;
         this->name = NULL;
         this->age = 0;
     }
@@ -397,7 +397,7 @@ public:
 
         return *this;
     }
-    Person2(Person2&& obj) // ÒÆ¶¯¹¹Ôì
+    Person2(Person2&& obj) // ç§»åŠ¨æ„é€ 
     {
         this->age = obj.age;
         this->name = obj.name;
@@ -405,7 +405,7 @@ public:
     }
     ~Person2()
     {
-        cout << "Îö¹¹" << endl;
+        cout << "ææ„" << endl;
 
         if (this->name != NULL)
         {
@@ -416,14 +416,14 @@ public:
     }
     void showInfo()
     {
-        cout << "ĞÕÃû: " << this->name << ", ÄêÁä: " << this->age << endl;
+        cout << "å§“å: " << this->name << ", å¹´é¾„: " << this->age << endl;
     }
 
-    void coutString(); // ÀàÄÚ¶¨Òå·½·¨ÀàÍâÊµÏÖ
+    void coutString(); // ç±»å†…å®šä¹‰æ–¹æ³•ç±»å¤–å®ç°
 };
 
 template<class NameType, class AgeType>
-void Person2<NameType, AgeType>::coutString() // ÀàÍâÊµÏÖ
+void Person2<NameType, AgeType>::coutString() // ç±»å¤–å®ç°
 {
     cout << "Person2" << endl;
 }
@@ -436,13 +436,13 @@ public:
     Teacher()
     {
         this->code = 0;
-        cout << "TeacherÄ¬ÈÏ¹¹Ôì" << endl;
+        cout << "Teacheré»˜è®¤æ„é€ " << endl;
     }
-    Teacher(char* name, int age, int code) :Person2(name, age) // ´ø¼Ì³ĞµÄÓĞ²Î¹¹Ôì
+    Teacher(char* name, int age, int code) :Person2(name, age) // å¸¦ç»§æ‰¿çš„æœ‰å‚æ„é€ 
     {
         this->code = code;
     }
-    Teacher(const Teacher& obj) // ¿½±´¹¹Ôì
+    Teacher(const Teacher& obj) // æ‹·è´æ„é€ 
     {
         if (this->name != NULL)
         {
@@ -459,7 +459,7 @@ public:
     }
     void showInfo()
     {
-        cout << "ĞÕÃû: " << this->name << ", ÄêÁä: " << this->age << ", ºÅÂë: " << this->code << endl;
+        cout << "å§“å: " << this->name << ", å¹´é¾„: " << this->age << ", å·ç : " << this->code << endl;
     }
 };
 
@@ -470,21 +470,21 @@ Person2<char, int> Func()
     return p4;
 }
 
-// ÀàÄ£°å¶ÔÏó×öº¯Êı²ÎÊı
-void printPerson2(Person2<char, int>& p) // Ö¸¶¨´«ÈëÀàĞÍ
+// ç±»æ¨¡æ¿å¯¹è±¡åšå‡½æ•°å‚æ•°
+void printPerson2(Person2<char, int>& p) // æŒ‡å®šä¼ å…¥ç±»å‹
 {
     p.showInfo();
 }
 
 template<class T1, class T2>
-void printPerson2(Person2<T1, T2>& p) // ²ÎÊıÄ£°å»¯
+void printPerson2(Person2<T1, T2>& p) // å‚æ•°æ¨¡æ¿åŒ–
 {
     //p.showInfo();
     cout << typeid(T1).name() << endl;
 }
 
 template<class T>
-void printPerson2(T& p) // Õû¸öÀàÄ£°å»¯
+void printPerson2(T& p) // æ•´ä¸ªç±»æ¨¡æ¿åŒ–
 {
     //p.showInfo();
     cout << typeid(T).name() << endl;
