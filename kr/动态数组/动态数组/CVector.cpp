@@ -13,9 +13,51 @@ CVector::CVector(int val)
 {
 	cout << "有参构造" << endl;
 	this->m_pBuff = new int[val];
+	if (this->m_pBuff == NULL)
+	{
+		return;
+	}
 	memset(this->m_pBuff, 0, sizeof(this->m_pBuff)*val);
 	this->m_nBufLen = val;
 	this->m_nSize = 0;
+}
+
+CVector::CVector(const CVector& obj)
+{
+	cout << "拷贝构造" << endl;
+	this->clear();
+	*this = obj; // 调用等号运算符重载
+}
+
+CVector& CVector::operator=(const CVector& obj)
+{
+	cout << "等号运算符重载" << endl;
+	// 检查是否是自身
+	if (this == &obj)
+	{
+		return *this;
+	}
+	this->clear();
+	/*if (obj.IsEmpty())
+	{
+		return *this;
+	}*/
+
+	this->m_pBuff = new int[obj.m_nBufLen];
+	memset(this->m_pBuff, 0, sizeof(int) * obj.m_nBufLen);
+	memcpy(this->m_pBuff, obj.m_pBuff, sizeof(int) * obj.m_nBufLen);
+	this->m_nBufLen = obj.m_nBufLen;
+	this->m_nSize = obj.m_nSize;
+	return *this;
+}
+
+CVector::CVector(CVector&& obj)
+{
+	this->clear();
+	this->m_pBuff = obj.m_pBuff;
+	this->m_nBufLen = obj.m_nBufLen;
+	this->m_nSize = obj.m_nSize;
+	obj.m_pBuff = NULL;
 }
 
 void CVector::PushHead(int val)
@@ -69,23 +111,27 @@ void CVector::Insert(int nIdx, int val)
 	memcpy(this->m_pBuff + nIdx + 1, this->m_pBuff + nIdx, (this->m_nSize - nIdx) * sizeof(int));
 	this->m_pBuff[nIdx] = val;
 	this->m_nSize++;
-
-	// 插入数据
-	// this->m_pBuff[nIdx] = val; // 当size为0时
-	// 20 1 5 9 8
-	
-
-
 }
 
-CVector::~CVector()
+void CVector::clear()
 {
 	if (this->m_pBuff != NULL)
 	{
 		delete[] this->m_pBuff;
+		this->m_pBuff = NULL;
 		this->m_nBufLen = 0;
 		this->m_nSize = 0;
 	}
+}
+
+bool CVector::IsEmpty()
+{
+	return this->m_nSize == 0;
+}
+
+CVector::~CVector()
+{
+	this->clear();
 }
 
 void test1()
@@ -94,4 +140,7 @@ void test1()
 	cv1.Insert(0, 1);
 	cv1.Insert(1, 2);
 	cv1.Insert(0, 5);
+	CVector cv2 = cv1;
+	CVector cv3 = std::move(cv2); // 移动构造时将cv2析构
+	cout << "hello world" << endl;
 }
