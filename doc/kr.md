@@ -1093,6 +1093,126 @@ void test3()
     cout << "hello world" << endl;
 }
 ```
+```c++
+template<class NameType, class AgeType>
+class Person2
+{
+    friend class Teacher;
+private:
+    NameType* name;
+    AgeType age;
+public:
+    Person2()
+    {
+        cout << "Person2无参构造" << endl;
+        this->name = NULL;
+        this->age = 0;
+    }
+    Person2(NameType* name, AgeType age)
+    {
+        this->name = new char[64];
+        memset(this->name, 0, 64);
+        strcpy_s(this->name, strlen(name) + 1, name);
+        this->age = age;
+    }
+    Person2(const Person2& obj)
+    {
+        if (this->name != NULL)
+        {
+            delete[] this->name;
+            this->name = NULL;
+            this->age = 0;
+        }
+
+
+        this->name = new char[64];
+        memset(this->name, 0, 64);
+        strcpy_s(this->name, strlen(obj.name) + 1, obj.name);
+        this->age = obj.age;
+    }
+    Person2& operator=(const Person2& obj)
+    {
+        if (this->name != NULL)
+        {
+            delete[] this->name;
+            this->name = NULL;
+            this->age = 0;
+        }
+
+
+        this->name = new char[64];
+        memset(this->name, 0, 64);
+        strcpy_s(this->name, strlen(obj.name) + 1, obj.name);
+        this->age = obj.age;
+
+        return *this;
+    }
+    Person2(Person2&& obj) // 移动构造
+    {
+        this->age = obj.age;
+        this->name = obj.name;
+        obj.name = NULL;
+    }
+    ~Person2()
+    {
+        cout << "析构" << endl;
+
+        if (this->name != NULL)
+        {
+            delete []this->name;
+            this->name = NULL;
+            this->age = 0;
+        }
+    }
+    void showInfo()
+    {
+        cout << "姓名: " << this->name << ", 年龄: " << this->age << endl;
+    }
+};
+
+class Teacher :public Person2<char, int>
+{
+private:
+    int code;
+public:
+    Teacher()
+    {
+        this->code = 0;
+        cout << "Teacher默认构造" << endl;
+    }
+    Teacher(char* name, int age, int code) :Person2(name, age) // 带继承的有参构造
+    {
+        this->code = code;
+    }
+    Teacher(const Teacher& obj) // 拷贝构造
+    {
+        if (this->name != NULL)
+        {
+            delete[] this->name;
+            this->name = NULL;
+            this->age = 0;
+        }
+
+        this->name = new char[64];
+        memset(this->name, 0, sizeof(this->name));
+        strcpy_s(this->name, strlen(obj.name) + 1, obj.name);
+        this->age = obj.age;
+        this->code = obj.code;
+    }
+    void showInfo()
+    {
+        cout << "姓名: " << this->name << ", 年龄: " << this->age << ", 号码: " << this->code << endl;
+    }
+};
+
+void test7()
+{
+    char name[64] = "hello";
+    Teacher t1(name, 18, 1);
+    Teacher t2 = t1;
+    t2.showInfo();
+}
+```
 #### 左值和右值
 ```txt
 8, 4, 9.1, 6.5f 这些为右值

@@ -418,7 +418,15 @@ public:
     {
         cout << "姓名: " << this->name << ", 年龄: " << this->age << endl;
     }
+
+    void coutString(); // 类内定义方法类外实现
 };
+
+template<class NameType, class AgeType>
+void Person2<NameType, AgeType>::coutString() // 类外实现
+{
+    cout << "Person2" << endl;
+}
 
 class Teacher :public Person2<char, int>
 {
@@ -501,6 +509,7 @@ void test7()
     Teacher t1(name, 18, 1);
     Teacher t2 = t1;
     t2.showInfo();
+    t2.coutString();
 }
 
 
