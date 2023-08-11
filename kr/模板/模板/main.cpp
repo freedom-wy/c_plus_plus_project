@@ -2,58 +2,58 @@
 #include <cstring>
 using namespace std;
 
-//class Person1
-//{
-//public:
-//    Person1() 
-//    {
-//        cout << "person1的默认构造方法" << endl;
-//        this->m_Name = NULL;
-//        this->m_Age = 0;
-//    }
-//    Person1(const char* name, int age)
-//    {
-//        this->m_Name = new char[20];
-//        memset(this->m_Name, 0, 20);
-//        strcpy_s(this->m_Name, strlen(name)+1, name);
-//        this->m_Age = age;
-//    }
-//
-//    Person1& operator=(const Person1& obj)
-//    {
-//        if (this->m_Name != NULL)
-//        {
-//            delete[] this->m_Name;
-//        }
-//        this->m_Name = new char[20];
-//        memset(this->m_Name, 0, 20);
-//        strcpy_s(this->m_Name, strlen(obj.m_Name) + 1, obj.m_Name);
-//        this->m_Age = obj.m_Age;
-//        return *this;
-//    }
-//
-//    /*Person1(string name, int age)
-//    {
-//        this->m_Name = name;
-//        this->m_Age = age;
-//    }*/
-//
-//    ~Person1()
-//    {
-//        cout << "Person1析构" << endl;
-//        delete[] this->m_Name;
-//        this->m_Name = NULL;
-//        this->m_Age = 0;
-//    }
-//    void GetPersonInfo()
-//    {
-//        cout << "名字为: " << this->m_Name << ", 年龄为: " << this->m_Age << endl;
-//    }
-//public:
-//    //string m_Name;
-//    char* m_Name;
-//    int m_Age;
-//};
+class Person1
+{
+public:
+    Person1() 
+    {
+        cout << "person1的默认构造方法" << endl;
+        this->m_Name = NULL;
+        this->m_Age = 0;
+    }
+    Person1(const char* name, int age)
+    {
+        this->m_Name = new char[20];
+        memset(this->m_Name, 0, 20);
+        strcpy_s(this->m_Name, strlen(name)+1, name);
+        this->m_Age = age;
+    }
+
+    Person1& operator=(const Person1& obj)
+    {
+        if (this->m_Name != NULL)
+        {
+            delete[] this->m_Name;
+        }
+        this->m_Name = new char[20];
+        memset(this->m_Name, 0, 20);
+        strcpy_s(this->m_Name, strlen(obj.m_Name) + 1, obj.m_Name);
+        this->m_Age = obj.m_Age;
+        return *this;
+    }
+
+    /*Person1(string name, int age)
+    {
+        this->m_Name = name;
+        this->m_Age = age;
+    }*/
+
+    ~Person1()
+    {
+        cout << "Person1析构" << endl;
+        delete[] this->m_Name;
+        this->m_Name = NULL;
+        this->m_Age = 0;
+    }
+    void GetPersonInfo()
+    {
+        cout << "名字为: " << this->m_Name << ", 年龄为: " << this->m_Age << endl;
+    }
+public:
+    //string m_Name;
+    char* m_Name;
+    int m_Age;
+};
 
 //// 普通函数模板
 //template<class T>
@@ -214,107 +214,107 @@ using namespace std;
 //    printPerson3(p1);
 //}
 
-//template<class T>
-//class MyArray
-//{
-//private:
-//    T* pAddress;
-//    int m_Capacity;
-//    int m_Size;
-//public:
-//    MyArray(int capacity)
-//    {
-//        this->m_Capacity = capacity;
-//        this->m_Size = 0;
-//        this->pAddress = new T[this->m_Capacity];
-//    }
-//
-//    MyArray(MyArray& obj)
-//    {
-//        cout << "拷贝构造" << endl;
-//        if (this->pAddress != NULL)
-//        {
-//            delete[] this->pAddress;
-//            this->pAddress = NULL;
-//            this->m_Size = 0;
-//            this->m_Capacity = 0;
-//        }
-//
-//        this->pAddress = new T[obj.getCapacity()];
-//        for (int i = 0; i < obj.getSize(); i++)
-//        {
-//            this->pAddress[i] = obj.pAddress[i];
-//        }
-//        this->m_Size = obj.m_Size;
-//        this->m_Capacity = obj.m_Capacity;
-//    }
-//
-//    ~MyArray()
-//    {
-//        cout << "析构" << endl;
-//        if (this->m_Capacity != NULL)
-//        {
-//            delete[] this->pAddress;
-//            this->pAddress = NULL;
-//            this->m_Capacity = 0;
-//            this->m_Size = 0;
-//        }
-//    }
-//
-//    // 添加数据
-//    void Push_back(const T& val)
-//    {
-//        if (this->m_Capacity == this->m_Size)
-//        {
-//            return;
-//        }
-//        else {
-//            this->pAddress[this->m_Size] = val;
-//            this->m_Size++;
-//        }
-//    }
-//
-//    // 删除数据
-//    void Pop_back()
-//    {
-//        if (this->m_Size == 0)
-//        {
-//            return;
-//        }
-//        this->m_Size--;
-//    }
-//
-//    int getCapacity()
-//    {
-//        return this->m_Capacity;
-//    }
-//
-//    int getSize()
-//    {
-//        return this->m_Size;
-//    }
-//
-//    T& operator[](int index)
-//    {
-//        return this->pAddress[index];
-//    }
-//};
+template<class T>
+class MyArray
+{
+private:
+    T* pAddress;
+    int m_Capacity;
+    int m_Size;
+public:
+    MyArray(int capacity)
+    {
+        this->m_Capacity = capacity;
+        this->m_Size = 0;
+        this->pAddress = new T[this->m_Capacity];
+    }
 
-//void printIntArray(MyArray<int>& obj)
-//{
-//    for (int i = 0; i < obj.getSize(); i++)
-//    {
-//        cout << obj[i] << endl;
-//    }
-//}
-//
-//void printPersonArray(MyArray<Person1>& obj)
-//{
-//    for (int i = 0; i < obj.getSize(); i++)
-//    {
-//        obj[i].GetPersonInfo();
-//    }
-//}
+    MyArray(MyArray& obj)
+    {
+        cout << "拷贝构造" << endl;
+        if (this->pAddress != NULL)
+        {
+            delete[] this->pAddress;
+            this->pAddress = NULL;
+            this->m_Size = 0;
+            this->m_Capacity = 0;
+        }
+
+        this->pAddress = new T[obj.getCapacity()];
+        for (int i = 0; i < obj.getSize(); i++)
+        {
+            this->pAddress[i] = obj.pAddress[i];
+        }
+        this->m_Size = obj.m_Size;
+        this->m_Capacity = obj.m_Capacity;
+    }
+
+    ~MyArray()
+    {
+        cout << "析构" << endl;
+        if (this->m_Capacity != NULL)
+        {
+            delete[] this->pAddress;
+            this->pAddress = NULL;
+            this->m_Capacity = 0;
+            this->m_Size = 0;
+        }
+    }
+
+    // 添加数据
+    void Push_back(const T& val)
+    {
+        if (this->m_Capacity == this->m_Size)
+        {
+            return;
+        }
+        else {
+            this->pAddress[this->m_Size] = val;
+            this->m_Size++;
+        }
+    }
+
+    // 删除数据
+    void Pop_back()
+    {
+        if (this->m_Size == 0)
+        {
+            return;
+        }
+        this->m_Size--;
+    }
+
+    int getCapacity()
+    {
+        return this->m_Capacity;
+    }
+
+    int getSize()
+    {
+        return this->m_Size;
+    }
+
+    T& operator[](int index)
+    {
+        return this->pAddress[index];
+    }
+};
+
+void printIntArray(MyArray<int>& obj)
+{
+    for (int i = 0; i < obj.getSize(); i++)
+    {
+        cout << obj[i] << endl;
+    }
+}
+
+void printPersonArray(MyArray<Person1>& obj)
+{
+    for (int i = 0; i < obj.getSize(); i++)
+    {
+        obj[i].GetPersonInfo();
+    }
+}
 
 void test5()
 {
@@ -327,19 +327,15 @@ void test5()
 
     cout << "----------------" << endl;*/
 
-    /*MyArray<Person1>pArray(2);
+    MyArray<Person1>pArray(2);
     Person1 p1("a", 1);
     Person1 p2("b", 2);
-    pArray[0] = p1;
+    /*pArray[0] = p1;
     pArray[1] = p2;*/
 
-    //MyArray<Person1> pArray(2);
-    //Person1 p1("孙悟空", 30);
-    //Person1 p2("韩信", 20);
-
-    ////插入数据
-    //pArray.Push_back(p1);
-    //pArray.Push_back(p2);
+    //插入数据
+    pArray.Push_back(p1);
+    pArray.Push_back(p2);
     cout << "hello world" << endl;
 }
 
@@ -519,9 +515,9 @@ int main()
     // test2();
     // test3();
     // test4();
-    // test5();
+    test5();
 	// test02();
     // test6();
-    test7();
+    // test7();
     return 0;
 }
