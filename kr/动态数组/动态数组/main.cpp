@@ -80,7 +80,11 @@ CVector<T>& CVector<T>::operator=(const CVector<T>& obj)
 
 	this->m_pBuff = new T[obj.m_nBufLen];
 	memset(this->m_pBuff, 0, sizeof(T) * obj.m_nBufLen);
-	memcpy(this->m_pBuff, obj.m_pBuff, sizeof(T) * obj.m_nBufLen);
+	//memcpy(this->m_pBuff, obj.m_pBuff, sizeof(T) * obj.m_nBufLen);
+	for (int i = 0; i < obj.m_nSize; i++)
+	{
+		this->m_pBuff[i] = obj.m_pBuff[i];
+	}
 	this->m_nBufLen = obj.m_nBufLen;
 	this->m_nSize = obj.m_nSize;
 	return *this;
@@ -322,9 +326,11 @@ int main()
 	cv1.PushHead(p3); // 3 2 1
 	cv1.Insert(1, p4); // 3 4 2 1
 	cv1.Insert(2, p5);  // 3 4 5 2 1
-	cv1.PopHead();
-	cv1.Delete(0);
-	cv1.PopHead();
+	CVector<Person>cv2;
+	cv2 = cv1;
+	//cv1.PopHead();
+	//cv1.Delete(0);
+	//cv1.PopHead();
 	cout << "hello world" << endl;
 	return 0;
 }
