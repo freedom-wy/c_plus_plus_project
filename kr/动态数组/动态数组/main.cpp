@@ -19,9 +19,9 @@ public:
 	~CVector(); // 析构
 
 	// 成员方法
-	void PushHead(T val); // 头部插入
-	void PushBack(T val); // 尾部插入
-	void Insert(int nIdx, T val); // 指定位置插入
+	void PushHead(T& val); // 头部插入
+	void PushBack(const T& val); // 尾部插入
+	void Insert(int nIdx, const T& val); // 指定位置插入
 
 	void Delete(int nIdx);
 	void PopHead();
@@ -97,19 +97,19 @@ CVector<T>::CVector(CVector<T>&& obj) // 移动构造
 }
 
 template<class T>
-void CVector<T>::PushHead(T val)
+void CVector<T>::PushHead(T& val)
 {
 	this->Insert(0, val);
 }
 
 template<class T>
-void CVector<T>::PushBack(T val)
+void CVector<T>::PushBack(const T& val)
 {
 	this->Insert(this->m_nSize, val);
 }
 
 template<class T>
-void CVector<T>::Insert(int nIdx, T val)
+void CVector<T>::Insert(int nIdx, const T& val)
 {
 	cout << typeid(T).name() << endl;
 	//cout << "指定位置: " << nIdx << ", 插入: " << val << endl;
@@ -141,15 +141,41 @@ void CVector<T>::Insert(int nIdx, T val)
 		memset(pNewBuf, 0, nNewLen * sizeof(T));
 
 		// 拷贝原来的数据
-		memcpy(pNewBuf, this->m_pBuff, this->m_nSize * sizeof(T));
+		//memcpy(pNewBuf, this->m_pBuff, this->m_nSize * sizeof(T));
+		for (int i = 0; i < this->m_nSize; i++)
+		{
+			pNewBuf[i] = this->m_pBuff[i];
+		}
 		// 删除原来的数据
 		delete[] this->m_pBuff;
 		this->m_pBuff = pNewBuf;
 		this->m_nBufLen = nNewLen;
 	}
 
-	memcpy(this->m_pBuff + nIdx + 1, this->m_pBuff + nIdx, (this->m_nSize - nIdx) * sizeof(T));
-	this->m_pBuff[nIdx] = val;
+	//memcpy(this->m_pBuff + nIdx + 1, this->m_pBuff + nIdx, (this->m_nSize - nIdx) * sizeof(T));
+	// 1 2 3 4 5 0 0 0 0 size=5, len=9 index=1
+	/*
+	m_pBuff[5] = m_pBuff[4] 1 2 3 4 5 5 size - 0
+	m_pBuff[4] = m_pBuff[3] 1 2 3 4 4 5 size - 1
+	m_pBuff[3] = m_pBuff[2] 1 2 3 3 4 5 size - 2
+	m_pBuff[2] = m_pBuff[1] 1 2 2 3 4 5 size - 3
+	m_pBuff[2] = x
+
+	1 0 size=1 len=2 index=0
+	m_pBuff[1] = m_pBuff[0] 1 1
+	m_pBuff[0] = x
+
+
+	for(int i=0;i<size-index;i++)
+	{
+		m_pBuff[size-i]=m_pBuff[size-i-1]
+	}
+	*/
+	for (int i = 0; i < this->m_nSize-nIdx; i++)
+	{
+		this->m_pBuff[this->m_nSize - i] = this->m_pBuff[this->m_nSize - i - 1];
+	}
+	this->m_pBuff[nIdx] = val; //此处执行了等号运算符传递数据,将传入数据赋值给了this
 	this->m_nSize++;
 }
 
@@ -164,7 +190,25 @@ void CVector<T>::Delete(int nIdx)
 		cout << "删除的索引有误" << endl;
 		return;
 	}
-	memcpy(this->m_pBuff + nIdx, this->m_pBuff + nIdx + 1, (this->m_nSize - nIdx - 1) * sizeof(T));
+	//memcpy(this->m_pBuff + nIdx, this->m_pBuff + nIdx + 1, (this->m_nSize - nIdx - 1) * sizeof(T));
+	/*
+	1 2 3 4 5 0 0 0 0 len=9 size = 5 index=1
+	this->m_pBuff[1] = this->m_pBuff[2] 1 3 3 4 5 0 0 0 0
+	this->m_pBuff[2] = this->m_pBuff[3] 1 3 4 4 5 0 0 0 0
+	this->m_pBuff[3] = this->m_pBuff[4] 1 3 4 5 5 0 0 0 0
+	
+	1 2 len=2 size=2 index=0
+
+	for(int i=index;i<size-1;i++)
+	{
+		this->m_pBuff[i] = this->m_pBuff[i+1]
+	}
+
+	*/
+	for (int i = nIdx; i < this->m_nSize-1; i++)
+	{
+		this->m_pBuff[i] = this->m_pBuff[i + 1];
+	}
 	this->m_nSize--;
 }
 
@@ -209,14 +253,55 @@ class Person
 {
 private:
 	int age;
+	char* name;
 public:
 	Person()
 	{
 		cout << "默认构造方法" << endl;
+		this->name = NULL;
+		this->age = 0;
 	}
-	Person(int val)
+	Person(int val, char* name)
 	{
 		this->age = val;
+		this->name = new char[64];
+		memset(this->name, 0, 64);
+		strcpy_s(this->name, strlen(name)+1, name);
+	}
+	Person(const Person& obj)
+	{
+		this->age = obj.age;
+		if (this->name != NULL)
+		{
+			delete[] this->name;
+			this->name = NULL;
+		}
+
+		this->name = new char[64];
+		memset(this->name, 0, 64);
+		strcpy_s(this->name, strlen(obj.name) + 1, obj.name);
+
+	}
+	Person& operator=(const Person& obj)
+	{
+		if (this->name != NULL)
+		{
+			delete[] this->name;
+			this->name = NULL;
+		}
+		this->age = obj.age;
+
+		this->name = new char[64];
+		memset(this->name, 0, 64);
+		strcpy_s(this->name, strlen(obj.name) + 1, obj.name);
+
+		return *this;
+	}
+	~Person()
+	{
+		this->age = 0;
+		delete[] this->name;
+		this->name = NULL;
 	}
 };
 
@@ -226,11 +311,20 @@ int main()
 	cv2.PushBack(1);
 	cv2.PushBack(2);*/
 	CVector<Person>cv1;
-	Person p1(1);
-	Person p2(2);
+	char name1[64] = "hello";
+	Person p1(1, name1);
+	Person p2(2, name1);
+	Person p3(3, name1);
+	Person p4(4, name1);
+	Person p5(5, name1);
 	cv1.PushBack(p1);
-	cv1.PushBack(p2);
-	cv1.PopBack();
+	cv1.PushHead(p2);
+	cv1.PushHead(p3); // 3 2 1
+	cv1.Insert(1, p4); // 3 4 2 1
+	cv1.Insert(2, p5);  // 3 4 5 2 1
+	cv1.PopHead();
+	cv1.Delete(0);
+	cv1.PopHead();
 	cout << "hello world" << endl;
 	return 0;
 }
