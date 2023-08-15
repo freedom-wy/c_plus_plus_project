@@ -1,8 +1,8 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 using namespace std;
 
-// vectorÀí½âÎªÊı×é£¬µü´úÆ÷Àí½âÎªÖ¸Õë
+// vectorç†è§£ä¸ºæ•°ç»„ï¼Œè¿­ä»£å™¨ç†è§£ä¸ºæŒ‡é’ˆ
 
 class Person
 {
@@ -12,7 +12,7 @@ public:
 public:
 	Person()
 	{
-		cout << "ÎŞ²Î¹¹Ôì" << endl;
+		cout << "æ— å‚æ„é€ " << endl;
 		this->name = NULL;
 		this->age = 0;
 	}
@@ -79,7 +79,7 @@ void test1()
 
 	for (vector<Person>::iterator it = v2.begin(); it != v2.end(); it++)
 	{
-		cout << "ĞÕÃû" << (*it).name << ", ÄêÁä" << (*it).age << endl;
+		cout << "å§“å" << (*it).name << ", å¹´é¾„" << (*it).age << endl;
 	}
 	cout << "hello world" << endl;
 }
