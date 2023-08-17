@@ -1,146 +1,91 @@
 ﻿#include <iostream>
 using namespace std;
 
-struct NODE;
-typedef NODE* PNODE;
-
 template<class T>
 class Clist
 {
 public:
-	// 定义节点
-	struct NODE
+	class Node
 	{
-		T m_val; // 数据
-		PNODE m_pPre; // 前驱结点指针
-		PNODE m_pNext; // 后继节点指针
+	public:
+		// 节点属性
+		T m_data;
+		Node* m_pPre;
+		Node* m_pNext;
+	public:
+		Node()
+		{
+			this->m_data = {}; // 根据类型初始化
+			this->m_pPre = NULL;
+			this->m_pNext = NULL;
+		}
+		Node(T val)
+		{
+			this->m_data = val;
+			this->m_pPre = NULL;
+			this->m_pNext = NULL;
+		}
 	};
+private:
+	int m_nSize; // 长度
+	Node* m_pHead; // 头部
+	Node* m_pTail; // 尾部
 public:
-	Clist();
-	Clist(const Clist& obj);
-	Clist& operator=(const Clist& obj);
-	~Clist();
+	void Init()
+	{
+		// 链表初始化
+		this->m_nSize = 0;
+		this->m_pHead = new Node(); // 头部哨兵
+		this->m_pTail = new Node(); // 尾部哨兵
+		this->m_pHead->m_pNext = this->m_pTail;
+		this->m_pTail->m_pPre = this->m_pHead;
+	}
+	Clist()
+	{
+		cout << "链表无参初始化" << endl;
+		this->Init();
+	}
+	/*Clist(const Node& obj)
+	{
+		cout << "链表有参初始化" << endl;
+	}*/
+	void PushHead(const T& val)
+	{
+		this->Insert(this->m_pHead->m_pNext, val);
+	}
+	void PushBack(const T& val)
+	{
+		this->Insert(this->m_pTail, val);
+	}
+	void Insert(Node* pNode, const T& val)
+	{
+		// 在指定位置上插入数据, 默认向前插入
+		Node* pNewNode = new Node(val);
+		// 获取传入节点的前一个节点
+		Node* pPreNode = pNode->m_pPre;
 
-	// 成员方法
-	void PushBack(const T& val);
-	void PushHead(const T& val);
-	void Insert(PNODE pNode, const T& val);
-	void PopHead();
-	void PopBack();
-	void Delete(PNODE pNode); // 删除指定位置的元素
-	void Modify(PNODE pNode, const T& obj); //修改
-	PNODE Find(const T& obj); // 查找
-	void Clear();
-	int GetSize();
-	bool IsEmpty();
+		pPreNode->m_pNext = pNewNode;
+		pNewNode->m_pPre = pPreNode;
+		pNewNode->m_pNext = pNode;
+		pNode->m_pPre = pNewNode;
 
-private:
-	void Reset();
-
-private:
-	PNODE m_pHead; // 头结点指针
-	PNODE m_pTail; // 尾节点指针
-	int m_nSize; // 节点个数
+		this->m_nSize++;
+	}
 };
 
-template<class T>
-Clist<T>::Clist()
-{
-	cout << "默认构造" << endl;
-}
 
-template<class T>
-Clist<T>::Clist(const Clist& obj)
+void test1()
 {
-	cout << "拷贝构造" << endl;
+	Clist<int>c1;
+	c1.PushBack(1);
+	c1.PushBack(2);
+	c1.PushHead(3);
+	c1.PushHead(4);
+	cout << "hello world" << endl;
 }
-
-template<class T>
-Clist<T>& Clist<T>::operator=(const Clist& obj)
-{
-	cout << "重载等号运算符" << endl;
-	return *this;
-}
-
-template<class T>
-Clist<T>::~Clist()
-{
-	this->Reset();
-	cout << "析构" << endl;
-}
-
-template<class T>
-void Clist<T>::PushBack(const T& val)
-{
-}
-
-template<class T>
-void Clist<T>::PushHead(const T& val)
-{
-}
-
-template<class T>
-void Clist<T>::Insert(PNODE pNode, const T& val)
-{
-	if (pNode == NULL)
-	{
-		return;
-	}
-}
-
-template<class T>
-void Clist<T>::PopHead()
-{
-}
-
-template<class T>
-void Clist<T>::PopBack()
-{
-}
-
-template<class T>
-void Clist<T>::Delete(PNODE pNode)
-{
-}
-
-template<class T>
-void Clist<T>::Modify(PNODE pNode, const T& obj)
-{
-}
-
-template<class T>
-PNODE Clist<T>::Find(const T& obj)
-{
-	return nullptr;
-}
-
-template<class T>
-void Clist<T>::Clear()
-{
-}
-
-template<class T>
-int Clist<T>::GetSize()
-{
-	return 0;
-}
-
-template<class T>
-bool Clist<T>::IsEmpty()
-{
-	return false;
-}
-
-template<class T>
-void Clist<T>::Reset()
-{
-	this->m_pHead = NULL;
-	this->m_pTail = NULL;
-	this->m_nSize = 0;
-}
-
 
 int main()
 {
+	test1();
 	return 0;
 }
