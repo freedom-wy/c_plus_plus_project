@@ -57,18 +57,51 @@ public:
 		cout << "链表无参初始化" << endl;
 		this->Init();
 	}
+	Clist(const Clist& obj)
+	{
+		if (*this == obj)
+		{
+			return *this;
+		}
+		//this->Clear();
+		this->Init();
+		// 拷贝构造
+		//*this=obj; // 直接调用等号运算符重载
+		Node* pNode = obj.m_pHead->m_pNext;
+		while (pNode != obj.m_pTail)
+		{
+			this->PushBack(pNode->m_data);
+			pNode = pNode->m_pNext;
+		}
+	}
+	Clist& operator=(const Clist& obj)
+	{
+		if (this == &obj)
+		{
+			return *this;
+		}
+		Node* pNode = obj.m_pHead->m_pNext;
+		while (pNode != obj.m_pTail)
+		{
+			this->PushBack(pNode->m_data);
+			pNode = pNode->m_pNext;
+		}
+		this->Clear(); // 清空自己
+
+		return *this;
+	}
 	/*Clist(const Node& obj)
 	{
 		cout << "链表有参初始化" << endl;
 	}*/
-	~Clist()
+	/*~Clist()
 	{
 		delete this->m_pHead;
 		delete this->m_pTail;
 		this->m_nSize = 0;
 		this->m_pHead = NULL;
 		this->m_pTail = NULL;
-	}
+	}*/
 	void PushHead(const T& val)
 	{
 		this->Insert(this->m_pHead->m_pNext, val);
@@ -140,8 +173,30 @@ public:
 	{
 		this->Delete(this->m_pTail->m_pPre);
 	}
-};
 
+	void Modify(Node* pNode, const T& val)
+	{
+		// 修改
+		if (pNode == NULL || pNode == this->m_pHead || pNode == this->m_pTail)
+		{
+			return;
+		}
+		pNode->m_data = val;
+	}
+
+	void Clear()
+	{
+		while (this->GetSize() != 0)
+		{
+			this->PopBack();
+		}
+	}
+
+	int GetSize()
+	{
+		return this->m_nSize;
+	}
+};
 
 void test1()
 {
@@ -153,20 +208,84 @@ void test1()
 	Clist<int>::Node* n1 = c1.Find(3);
 	c1.Insert(n1, 5); // 4 5 3 1 2
 	Clist<int>::Node* n2 = c1.Find(6);
+
+	Clist<int>c2 = c1;
+	Clist<int>c3;
+	c3 = c1;
 	
-	c1.PopHead();
+	/*c1.PopHead();
 	c1.Delete(n1);
 	c1.Delete(n2);
 	c1.PopBack();
 	c1.PopHead();
 	c1.PopBack();
 
-	c1.PopBack();
+	c1.PopBack();*/
 	cout << "hello world" << endl;
+}
+
+class Person
+{
+private:
+	int age;
+	char* name;
+public:
+	Person()
+	{
+		cout << "默认无参构造" << endl;
+		this->name = NULL;
+		int age = 0;
+	}
+	Person(char* name, int age)
+	{
+		cout << "有参构造" << endl;
+		this->name = new char[64];
+		memset(this->name, 0, 64);
+		strcpy_s(this->name, strlen(name)+1, name);
+		this->age = age;
+	}
+	Person(const Person& obj)
+	{
+		cout << "拷贝构造" << endl;
+		if (this->name != NULL)
+		{
+			delete[] this->name;
+			this->name = NULL;
+		}
+		this->name = new char[64];
+		memset(this->name, 0, 64);
+		strcpy_s(this->name, strlen(obj.name)+1, obj.name);
+		this->age = obj.age;
+	}
+	Person& operator=(const Person& obj)
+	{
+		cout << "拷贝构造" << endl;
+		if (this->name != NULL)
+		{
+			delete[] this->name;
+			this->name = NULL;
+		}
+		this->name = new char[64];
+		memset(this->name, 0, 64);
+		strcpy_s(this->name, strlen(obj.name)+1, obj.name);
+		this->age = obj.age;
+		
+		return *this;
+	}
+};
+
+void test2()
+{
+	char name[64] = "hello";
+	Person p1(name, 1);
+	Person p2 = p1;
+	Person p3;
+	p3 = p2;
 }
 
 int main()
 {
-	test1();
+	//test1();
+	test2();
 	return 0;
 }
