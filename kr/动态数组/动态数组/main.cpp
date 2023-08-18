@@ -317,17 +317,17 @@ int main()
 	CVector<Person>cv1;
 	char name1[64] = "hello";
 	Person p1(1, name1);
-	Person p2(2, name1);
+	/*Person p2(2, name1);
 	Person p3(3, name1);
 	Person p4(4, name1);
-	Person p5(5, name1);
+	Person p5(5, name1);*/
 	cv1.PushBack(p1);
-	cv1.PushHead(p2);
-	cv1.PushHead(p3); // 3 2 1
-	cv1.Insert(1, p4); // 3 4 2 1
-	cv1.Insert(2, p5);  // 3 4 5 2 1
-	CVector<Person>cv2;
-	cv2 = cv1;
+	//cv1.PushHead(p2);
+	//cv1.PushHead(p3); // 3 2 1
+	//cv1.Insert(1, p4); // 3 4 2 1
+	//cv1.Insert(2, p5);  // 3 4 5 2 1
+	/*CVector<Person>cv2;
+	cv2 = cv1;*/
 	//cv1.PopHead();
 	//cv1.Delete(0);
 	//cv1.PopHead();

@@ -30,12 +30,12 @@ public:
 
 	Person& operator=(const Person& obj)
 	{
-		//if (this->name != NULL)
-		//{
-		//	//cout << typeid(*this).name() << endl;
-		//	delete[] this->name;
-		//	this->name = NULL;
-		//}
+		if (this->name != NULL)
+		{
+			//cout << typeid(*this).name() << endl;
+			delete[] this->name;
+			this->name = NULL;
+		}
 
 		this->name = new char[64];
 		memset(this->name, 0, 64);
