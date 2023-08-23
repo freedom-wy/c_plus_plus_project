@@ -8,14 +8,20 @@ class Person
 public:
 	int age;
 	char* name;
-public:
-	Person()
+private:
+	void Init()
 	{
 		this->age = 0;
 		this->name = NULL;
 	}
+public:
+	Person()
+	{
+		this->Init();
+	}
 	Person(int val, char* name)
 	{
+		this->Init();
 		this->age = val;
 		int size = strlen(name) + 1;
 		this->name = new char[size];
@@ -24,6 +30,7 @@ public:
 	}
 	Person(const Person & obj)
 	{
+		this->Init();
 		if (this->name != NULL)
 		{
 			delete[] this->name;

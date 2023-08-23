@@ -57,6 +57,50 @@ public:
 	}
 };
 
+struct Person
+{
+	int age;
+	char* name;
+	Person() :age(0), name(NULL) {};
+	Person(int a, char* n)
+	{
+		age = a;
+		name = new char[strlen(n) + 1];
+		memset(name, 0, strlen(n) + 1);
+		strcpy_s(name, strlen(n)+1, n);
+	}
+	Person(const Person& obj)
+	{
+		if (name != NULL)
+		{
+			delete[] name;
+		}
+		age = obj.age;
+		name = new char[strlen(obj.name) + 1];
+		memset(name, 0, strlen(obj.name) + 1);
+		strcpy_s(name, strlen(obj.name) + 1, obj.name);
+	}
+	Person& operator=(const Person& obj)
+	{
+		if (name != NULL)
+		{
+			delete[] name;
+		}
+		age = obj.age;
+		name = new char[strlen(obj.name) + 1];
+		memset(name, 0, strlen(obj.name) + 1);
+		strcpy_s(name, strlen(obj.name) + 1, obj.name);
+	}
+	~Person()
+	{
+		if (name != NULL)
+		{
+			delete[] name;
+		}
+		age = 0;
+	}
+};
+
 void test1()
 {
 	// 结构体初始化
@@ -85,11 +129,17 @@ void test3()
 	Test* t2 = new Test();
 }
 
+void test4()
+{
+	char name[] = "hello";
+	Person p1(1, name);
+}
 
 int main()
 {
-	test1();
+	//test1();
 	//test2();
 	//test3();
+	test4();
 	return 0;
 }
