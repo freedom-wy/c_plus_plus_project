@@ -9,12 +9,39 @@ class TCList
 public:
     struct Node
     {
-        Node(T val) :m_pPre(nullptr), m_pNext(nullptr), m_data(val) {}
-        Node() :m_pPre(nullptr), m_pNext(nullptr), m_data(0) {}
+        Node(T& val) :m_pPre(nullptr), m_pNext(nullptr), m_data(val) {}
+        //Node() :m_pPre(nullptr), m_pNext(nullptr), m_data(0) {}
+        Node()
+        {
+            m_pPre = NULL;
+            m_pNext = NULL;
+            m_data = {};
+        }
         Node* m_pPre;
         Node* m_pNext;
         T m_data;
     };
+    /*class Node
+    {
+    public:
+        T m_data;
+        Node* m_pPre;
+        Node* m_pNext;
+    public:
+        Node()
+        {
+            this->m_pPre = NULL;
+            this->m_pNext = NULL;
+            this->m_data = {};
+        }
+
+        Node(T& val)
+        {
+            this->m_pPre = NULL;
+            this->m_pNext = NULL;
+            this->m_data = val;
+        }
+    };*/
 public:
     TCList()
     {
@@ -144,8 +171,8 @@ public:
 private:
     void Init()
     {
-        m_pHeadSoldier = new Node;
-        m_pTailSoldier = new Node;
+        m_pHeadSoldier = new Node();
+        m_pTailSoldier = new Node();
         m_pHeadSoldier->m_pNext = m_pTailSoldier;
         m_pTailSoldier->m_pPre = m_pHeadSoldier;
     };
@@ -219,7 +246,7 @@ private:
 int main()
 {
     TCList<CFoo> lst;
-    CFoo foo("hello");
+    CFoo foo("abcd");
     lst.PushTail(foo);
     /*lst.PushTail(CFoo("11111"));
     lst.PushTail(CFoo("222222"));
