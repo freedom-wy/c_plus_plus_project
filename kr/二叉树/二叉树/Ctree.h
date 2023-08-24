@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+// https://www.cs.usfca.edu/~galles/visualization/BST.html
+
 class Ctree
 {
 private:
@@ -49,4 +51,9 @@ public:
 
 	void Insert(int data); // 插入叶子节点
 	Node* Find(int data);
+	void Delete(int data); // 删除
+private:
+	void DelLeaf(Node* pNode); // 删除叶子节点
+	void DelSingleLeaf(Node* pNode); // 删除单分支
+	void DelDoubleLeaf(Node* pNode); // 删除双分支
 };

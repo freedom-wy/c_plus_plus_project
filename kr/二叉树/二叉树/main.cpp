@@ -16,7 +16,12 @@ void test1()
 	c1.Insert(11);
 	c1.Insert(20);
 
-	c1.Find(3);
+	// c1.Find(3);
+	//c1.Delete(7);
+	/*c1.Delete(11);
+	c1.Delete(8);*/
+	c1.Delete(12);
+	c1.Delete(11);
 
 	cout << "hello world" << endl;
 }

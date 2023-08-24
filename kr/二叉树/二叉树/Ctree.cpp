@@ -105,3 +105,93 @@ Ctree::Node* Ctree::Find(int data)
 	}
 	return NULL;
 }
+
+void Ctree::Delete(int data)
+{
+	Node* pNodeToDel = this->Find(data);
+	if (pNodeToDel == NULL)
+	{
+		return;
+	}
+
+	// 删除单独叶子节点
+	if (pNodeToDel->m_pLeft == NULL && pNodeToDel->m_pRight == NULL)
+	{
+		return this->DelLeaf(pNodeToDel);
+	}
+	// 删除单分支节点，节点上移即可
+	if (pNodeToDel->m_pLeft == NULL || pNodeToDel->m_pRight == NULL)
+	{
+		return this->DelSingleLeaf(pNodeToDel);
+	}
+	// 删除双分支节点，在左子树中找右叶子最大值
+	return this->DelDoubleLeaf(pNodeToDel);
+}
+
+void Ctree::DelLeaf(Node* pNode)
+{
+	this->m_Size--;
+	// 判断是左孩子还是右孩子
+	Node* pFatherNode = pNode->m_pParent;
+	if (pFatherNode->m_pLeft == pNode)
+	{
+		pFatherNode->m_pLeft = NULL;
+	}
+	else if (pFatherNode->m_pRight == pNode)
+	{
+		pFatherNode->m_pRight = NULL;
+	}
+
+	delete pNode;
+	pNode = NULL;
+	return;
+}
+
+void Ctree::DelSingleLeaf(Node* pNode)
+{
+	this->m_Size--;
+	
+	Node* pChildNode = pNode->m_pLeft;
+	if (pChildNode != NULL)
+	{
+		pNode->m_pLeft = NULL;
+	}
+	else
+	{
+		pChildNode = pNode->m_pRight;
+		pNode->m_pRight = NULL;
+	}
+
+	if (pNode == this->m_Proot)
+	{
+		pChildNode->m_pParent = NULL;
+		this->m_Proot = pChildNode;
+		return;
+	}
+
+	pNode->m_data = pChildNode->m_data;
+	pChildNode->m_pParent = NULL;
+	delete pChildNode;
+	return;
+}
+
+void Ctree::DelDoubleLeaf(Node* pNode)
+{
+	Node* pMaxNode = pNode->m_pLeft;
+	while (pMaxNode->m_pRight != NULL)
+	{
+		pMaxNode = pMaxNode->m_pRight;
+	}
+
+	pNode->m_data = pMaxNode->m_data;
+
+	if (pMaxNode->m_pLeft != NULL)
+	{
+		this->DelSingleLeaf(pMaxNode);
+	}
+	else
+	{
+		this->DelLeaf(pMaxNode);
+	}
+	
+}
