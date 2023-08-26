@@ -171,8 +171,8 @@ public:
 private:
     void Init()
     {
-        m_pHeadSoldier = new Node();
-        m_pTailSoldier = new Node();
+        m_pHeadSoldier = new Node;
+        m_pTailSoldier = new Node;
         m_pHeadSoldier->m_pNext = m_pTailSoldier;
         m_pTailSoldier->m_pPre = m_pHeadSoldier;
     };
@@ -186,49 +186,27 @@ private:
 class CFoo
 {
 public:
-    CFoo()
-    {
-        cout << "cfoo的默认构造" << endl;
-        this->m_sz = NULL;
-    }
-
+    CFoo() :m_sz(nullptr) {};
     explicit CFoo(const char* sz)
     {
-        if (sz == NULL)
-        {
-            char name[64] = "hello";
-            this->m_sz = name;
-        }
-        else
-        {
-            cout << "cfoo的有参构造" << endl;
-            int nLen = strlen(sz) + 1;
-            m_sz = new char[nLen];
-            strcpy_s(m_sz, nLen, sz);
-        }
+        int nLen = strlen(sz) + 1;
+        m_sz = new char[nLen];
+        strcpy_s(m_sz, nLen, sz);
     }
-
-    CFoo(const CFoo& foo)
-    {
-        cout << "cfoo拷贝构造" << endl;
-        *this = foo;
-    }
-    
-    /*CFoo(CFoo&& foo)
+    CFoo(const CFoo& foo) :m_sz(nullptr) { *this = foo; }
+    CFoo(CFoo&& foo)
     {
         m_sz = foo.m_sz;
         foo.m_sz = nullptr;
-    }*/
-
+    }
     CFoo& operator=(const CFoo& foo)
     {
-        cout << "cfoo等号运算符重载" << endl;
         int nLen = strlen(foo.m_sz) + 1;
         m_sz = new char[nLen];
         strcpy_s(m_sz, nLen, foo.m_sz);
+
         return *this;
     }
-
     ~CFoo()
     {
         if (m_sz != nullptr)
@@ -236,7 +214,7 @@ public:
             delete[]m_sz;
         }
     };
-
+    //const char* Data()const { return m_sz; }
     char* Data() { return m_sz; }
 
 private:

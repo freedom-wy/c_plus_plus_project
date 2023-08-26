@@ -1,0 +1,4 @@
+﻿  main.cpp
+E:\study\code\c_plus_plus_project\kr\链表和迭代器\链表kr\main.cpp(192,1): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+E:\study\code\c_plus_plus_project\kr\链表和迭代器\链表kr\main.cpp(204,1): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  链表kr.vcxproj -> E:\study\code\c_plus_plus_project\kr\链表和迭代器\x64\Debug\链表kr.exe
