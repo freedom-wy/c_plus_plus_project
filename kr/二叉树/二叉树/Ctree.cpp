@@ -128,6 +128,17 @@ void Ctree::Delete(int data)
 	return this->DelDoubleLeaf(pNodeToDel);
 }
 
+void Ctree::Modiry(int oldVal, int newVal)
+{
+	// 修改，删除旧值，插入新值
+	Node* pFindNode = this->Find(oldVal);
+	if (pFindNode != NULL)
+	{
+		this->Delete(oldVal);
+		this->Insert(newVal);
+	}
+}
+
 void Ctree::DelLeaf(Node* pNode)
 {
 	this->m_Size--;

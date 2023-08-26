@@ -52,6 +52,7 @@ public:
 	void Insert(int data); // 插入叶子节点
 	Node* Find(int data);
 	void Delete(int data); // 删除
+	void Modiry(int oldVal, int newVal); // 修改
 private:
 	void DelLeaf(Node* pNode); // 删除叶子节点
 	void DelSingleLeaf(Node* pNode); // 删除单分支
