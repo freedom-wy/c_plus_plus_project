@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <list>
+#include <assert.h>
 using namespace std;
 
 template<class T>
@@ -36,6 +37,35 @@ public:
 			this->m_data = 0;
 			
 		}*/
+	};
+public:
+	class Iterator
+	{
+	public:
+		Iterator() :m_pNode(NULL), m_pHeadNode(NULL), m_pTailNode(NULL) {}; // 无参构造
+		// 有参构造
+		Iterator(Node* m_pNode, Node* m_pHeadNode, Node* m_pTailNode) :
+			m_pNode(m_pNode), m_pHeadNode(m_pHeadNode), m_pTailNode(m_pTailNode) 
+		{};
+
+		// 前置++
+		Iterator& operator++()
+		{
+			assert(this->m_pNode != this->m_pTailNode);
+			this->m_pNode = this->m_pNode->m_pNext;
+			return *this;
+		}
+
+		// 取值
+		T& operator*()
+		{
+			assert(this->m_pNode != this->m_pTailNode);
+			return this->m_pNode->m_data;
+		}
+	private:
+		Node* m_pNode; // 当前节点
+		Node* m_pHeadNode; // 头结点
+		Node* m_pTailNode; // 尾节点
 	};
 private:
 	int m_nSize; // 长度
@@ -75,13 +105,15 @@ public:
 		{
 			return *this;
 		}
+
+		this->Clear(); // 清空自己
+
 		Node* pNode = obj.m_pHead->m_pNext;
 		while (pNode != obj.m_pTail)
 		{
 			this->PushBack(pNode->m_data);
 			pNode = pNode->m_pNext;
 		}
-		this->Clear(); // 清空自己
 
 		return *this;
 	}
@@ -197,6 +229,15 @@ public:
 	{
 		return this->m_nSize;
 	}
+
+	Iterator begin()
+	{
+		return Iterator(this->m_pHead->m_pNext, this->m_pHead, this->m_pTail);
+	}
+	Iterator end()
+	{
+		return Iterator(this->m_pTail, this->m_pHead, this->m_pTail);
+	}
 };
 
 void test1()
@@ -208,20 +249,27 @@ void test1()
 	c1.PushHead(4);
 	Clist<int>::Node* n1 = c1.Find(3);
 	c1.Insert(n1, 5); // 4 5 3 1 2
-	Clist<int>::Node* n2 = c1.Find(6);
+	//Clist<int>::Node* n2 = c1.Find(6);
 
-	/*Clist<int>c2 = c1;
-	Clist<int>c3;
-	c3 = c1;*/
+	Clist<int>::Iterator itr1 = c1.begin();
+	++itr1;
 	
-	/*c1.PopHead();
-	c1.Delete(n1);
-	c1.Delete(n2);
-	c1.PopBack();
-	c1.PopHead();
-	c1.PopBack();
+	Clist<int>::Iterator itr2 = c1.end();
+	//++itr2;
+	*itr2 = 9; // 哨兵节点不能赋值
 
-	c1.PopBack();*/
+	//list<int>c2;
+	//c2.push_back(1);
+	//c2.push_back(2);
+	//c2.push_back(3);
+	//c2.push_back(4);
+	//list<int>::iterator itr1 = c2.begin();
+	//++itr1;
+	//list<int>::iterator itr2 = c2.end();
+	////++itr2; // 报错
+	////*itr2 = 9; // 报错
+
+
 	cout << "hello world" << endl;
 }
 
@@ -343,18 +391,16 @@ public:
 //
 void test2()
 {
-	char name[64] = "hello";
+	/*char name[64] = "hello";
 	Person p1(1, name);
 	Person p2(2, name);
-	Person p3(3, name);
+	Person p3(3, name);*/
 
 	/*list<Person>c1;
 	c1.push_back(p1);*/
 	
-	Clist<Person>c1;
-	c1.PushBack(p1);
-	/*c1.PushBack(p2);
-	c1.PushBack(p3);*/
+	/*Clist<Person>c1;
+	c1.PushBack(p1);*/
 	cout << "hello world" << endl;
 }
 //
@@ -410,8 +456,8 @@ void test2()
 
 int main()
 {
-	// test1();
-	test2();
+	test1();
+	// test2();
 	// test3();
 	return 0;
 }
