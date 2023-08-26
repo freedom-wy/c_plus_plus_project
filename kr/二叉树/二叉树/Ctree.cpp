@@ -139,6 +139,24 @@ void Ctree::Modiry(int oldVal, int newVal)
 	}
 }
 
+void Ctree::Mid()
+{
+	this->MidNode(this->m_Proot);
+}
+
+void Ctree::MidNode(Node* pNode)
+{
+	if (pNode == NULL)
+	{
+		return;
+	}
+
+	// ÏÈ×óº¢×Ó
+	this->MidNode(pNode->m_pLeft);
+	cout << pNode->m_data << " " << endl;
+	this->MidNode(pNode->m_pRight);
+}
+
 void Ctree::DelLeaf(Node* pNode)
 {
 	this->m_Size--;

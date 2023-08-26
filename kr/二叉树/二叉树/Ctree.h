@@ -53,8 +53,12 @@ public:
 	Node* Find(int data);
 	void Delete(int data); // 删除
 	void Modiry(int oldVal, int newVal); // 修改
+
+	void Mid(); // 中序遍历
 private:
 	void DelLeaf(Node* pNode); // 删除叶子节点
 	void DelSingleLeaf(Node* pNode); // 删除单分支
 	void DelDoubleLeaf(Node* pNode); // 删除双分支
+
+	void MidNode(Node* pNode);
 };
