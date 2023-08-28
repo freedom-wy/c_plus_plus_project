@@ -7,8 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "链表和迭代器", "链�
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "链表研究", "链表研究\链表研究.vcxproj", "{23EDDBB2-C493-4BC6-93A0-A5A2114C8FA2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "链表kr", "链表kr\链表kr.vcxproj", "{01B46721-C449-42C4-A8C8-61DD311D4FA2}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "结构体", "结构体\结构体.vcxproj", "{6DF1BE45-B280-4442-969C-8726392FAE5D}"
 EndProject
 Global
@@ -35,14 +33,6 @@ Global
 		{23EDDBB2-C493-4BC6-93A0-A5A2114C8FA2}.Release|x64.Build.0 = Release|x64
 		{23EDDBB2-C493-4BC6-93A0-A5A2114C8FA2}.Release|x86.ActiveCfg = Release|Win32
 		{23EDDBB2-C493-4BC6-93A0-A5A2114C8FA2}.Release|x86.Build.0 = Release|Win32
-		{01B46721-C449-42C4-A8C8-61DD311D4FA2}.Debug|x64.ActiveCfg = Debug|x64
-		{01B46721-C449-42C4-A8C8-61DD311D4FA2}.Debug|x64.Build.0 = Debug|x64
-		{01B46721-C449-42C4-A8C8-61DD311D4FA2}.Debug|x86.ActiveCfg = Debug|Win32
-		{01B46721-C449-42C4-A8C8-61DD311D4FA2}.Debug|x86.Build.0 = Debug|Win32
-		{01B46721-C449-42C4-A8C8-61DD311D4FA2}.Release|x64.ActiveCfg = Release|x64
-		{01B46721-C449-42C4-A8C8-61DD311D4FA2}.Release|x64.Build.0 = Release|x64
-		{01B46721-C449-42C4-A8C8-61DD311D4FA2}.Release|x86.ActiveCfg = Release|Win32
-		{01B46721-C449-42C4-A8C8-61DD311D4FA2}.Release|x86.Build.0 = Release|Win32
 		{6DF1BE45-B280-4442-969C-8726392FAE5D}.Debug|x64.ActiveCfg = Debug|x64
 		{6DF1BE45-B280-4442-969C-8726392FAE5D}.Debug|x64.Build.0 = Debug|x64
 		{6DF1BE45-B280-4442-969C-8726392FAE5D}.Debug|x86.ActiveCfg = Debug|Win32
