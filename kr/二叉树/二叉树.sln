@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "二叉树", "二叉树\二�
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "平衡二叉树", "平衡二叉树\平衡二叉树.vcxproj", "{5E523976-3F96-4C6F-9641-57FDDCA90CD1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "二叉树_obj", "二叉树_obj\二叉树_obj.vcxproj", "{FE45ABEE-EDD8-4A1A-9EBA-E706A1257E9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{5E523976-3F96-4C6F-9641-57FDDCA90CD1}.Release|x64.Build.0 = Release|x64
 		{5E523976-3F96-4C6F-9641-57FDDCA90CD1}.Release|x86.ActiveCfg = Release|Win32
 		{5E523976-3F96-4C6F-9641-57FDDCA90CD1}.Release|x86.Build.0 = Release|Win32
+		{FE45ABEE-EDD8-4A1A-9EBA-E706A1257E9D}.Debug|x64.ActiveCfg = Debug|x64
+		{FE45ABEE-EDD8-4A1A-9EBA-E706A1257E9D}.Debug|x64.Build.0 = Debug|x64
+		{FE45ABEE-EDD8-4A1A-9EBA-E706A1257E9D}.Debug|x86.ActiveCfg = Debug|Win32
+		{FE45ABEE-EDD8-4A1A-9EBA-E706A1257E9D}.Debug|x86.Build.0 = Debug|Win32
+		{FE45ABEE-EDD8-4A1A-9EBA-E706A1257E9D}.Release|x64.ActiveCfg = Release|x64
+		{FE45ABEE-EDD8-4A1A-9EBA-E706A1257E9D}.Release|x64.Build.0 = Release|x64
+		{FE45ABEE-EDD8-4A1A-9EBA-E706A1257E9D}.Release|x86.ActiveCfg = Release|Win32
+		{FE45ABEE-EDD8-4A1A-9EBA-E706A1257E9D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
