@@ -1,4 +1,4 @@
-#include "Ctree.h"
+﻿#include "Ctree.h"
 using namespace std;
 
 
@@ -23,7 +23,10 @@ void test1()
 	/*c1.Delete(12);
 	c1.Delete(11);*/
 
-	c1.Mid();
+	//c1.Mid();
+	c1.LMRLoop();
+	c1.MLRLoop();
+	//c1.LRMLoop();
 
 	cout << "hello world" << endl;
 }

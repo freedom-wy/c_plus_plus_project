@@ -1,10 +1,2 @@
-﻿  main.cpp
-  CStuNameTree.cpp
-  CStuIDTree.cpp
-  CInitFile.cpp
-  CInfoManage.cpp
-  CCourseNameTree.cpp
-  CCourseIDTree.cpp
-  正在生成代码...
-  InfoManage.vcxproj -> E:\study\code\c_plus_plus_project\kr\project\InfoManage\x64\Debug\InfoManage.exe
-  InfoManage.vcxproj -> E:\study\code\c_plus_plus_project\kr\project\InfoManage\x64\Debug\InfoManage.pdb (Full PDB)
+﻿  InfoManage.vcxproj -> E:\venustech\code\c_plus_plus_project\kr\project\InfoManage\x64\Debug\InfoManage.exe
+  InfoManage.vcxproj -> E:\venustech\code\c_plus_plus_project\kr\project\InfoManage\x64\Debug\InfoManage.pdb (Full PDB)

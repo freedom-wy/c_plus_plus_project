@@ -1,5 +1,6 @@
-#pragma once
+ï»¿#pragma once
 #include <iostream>
+#include <stack>
 using namespace std;
 
 // https://www.cs.usfca.edu/~galles/visualization/BST.html
@@ -10,9 +11,9 @@ private:
 	class Node
 	{
 	public:
-		Node* m_pParent; // ¸¸½Úµã
-		Node* m_pLeft; // ×ó½Úµã
-		Node* m_pRight; // ÓÒ½Úµã
+		Node* m_pParent; // çˆ¶èŠ‚ç‚¹
+		Node* m_pLeft; // å·¦èŠ‚ç‚¹
+		Node* m_pRight; // å³èŠ‚ç‚¹
 		int m_data;
 		Node() :m_pParent(NULL), m_pLeft(NULL), m_pRight(NULL), m_data() {};
 		Node(int data) :m_data(data), m_pParent(NULL), m_pLeft(NULL), m_pRight(NULL) {};
@@ -39,7 +40,7 @@ private:
 		}
 	};
 private:
-	Node* m_Proot; // ¸ù½Úµã
+	Node* m_Proot; // æ ¹èŠ‚ç‚¹
 	int m_Size;
 private:
 	void Init();
@@ -47,18 +48,21 @@ public:
 	Ctree();
 	Ctree(const Ctree& obj);
 	Ctree& operator=(const Ctree& obj);
-	virtual ~Ctree(); // Îö¹¹
+	virtual ~Ctree(); // ææ„
 
-	void Insert(int data); // ²åÈëÒ¶×Ó½Úµã
+	void Insert(int data); // æ’å…¥å¶å­èŠ‚ç‚¹
 	Node* Find(int data);
-	void Delete(int data); // É¾³ı
-	void Modiry(int oldVal, int newVal); // ĞŞ¸Ä
+	void Delete(int data); // åˆ é™¤
+	void Modify(int oldVal, int newVal); // ä¿®æ”¹
 
-	void Mid(); // ÖĞĞò±éÀú
+	void Mid(); // ä¸­åºéå†
+	void LMRLoop();
+	void MLRLoop();
+	//void LRMLoop();
 private:
-	void DelLeaf(Node* pNode); // É¾³ıÒ¶×Ó½Úµã
-	void DelSingleLeaf(Node* pNode); // É¾³ıµ¥·ÖÖ§
-	void DelDoubleLeaf(Node* pNode); // É¾³ıË«·ÖÖ§
+	void DelLeaf(Node* pNode); // åˆ é™¤å¶å­èŠ‚ç‚¹
+	void DelSingleLeaf(Node* pNode); // åˆ é™¤å•åˆ†æ”¯
+	void DelDoubleLeaf(Node* pNode); // åˆ é™¤åŒåˆ†æ”¯
 
 	void MidNode(Node* pNode);
 };

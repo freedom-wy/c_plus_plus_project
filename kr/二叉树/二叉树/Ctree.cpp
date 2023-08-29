@@ -1,4 +1,4 @@
-#include "Ctree.h"
+ï»¿#include "Ctree.h"
 void Ctree::Init()
 {
 	this->m_Proot = NULL;
@@ -29,19 +29,19 @@ void Ctree::Insert(int data)
 	Node* pNewNode = new Node(data);
 	if (this->m_Proot == NULL)
 	{
-		// ÎŞ½Úµã
+		// æ— èŠ‚ç‚¹
 		this->m_Proot = pNewNode;
 		this->m_Size++;
 		return;
 	}
 
-	Node* pNode = this->m_Proot; // ½«¸ù½ÚµãÏÈ¸³Öµ¸øÁÙÊ±½Úµã
+	Node* pNode = this->m_Proot; // å°†æ ¹èŠ‚ç‚¹å…ˆèµ‹å€¼ç»™ä¸´æ—¶èŠ‚ç‚¹
 	while (true)
 	{
-		// ÅĞ¶ÏÖµ´óĞ¡
+		// åˆ¤æ–­å€¼å¤§å°
 		if (data < pNode->m_data)
 		{
-			// ×ó²à
+			// å·¦ä¾§
 			if (pNode->m_pLeft == NULL)
 			{
 				pNode->m_pLeft = pNewNode;
@@ -49,11 +49,11 @@ void Ctree::Insert(int data)
 				this->m_Size++;
 				return;
 			}
-			pNode = pNode->m_pLeft; // ½Ó×ÅÏòÒ¶×ÓÑ°ÕÒ
+			pNode = pNode->m_pLeft; // æ¥ç€å‘å¶å­å¯»æ‰¾
 		}
 		else if (data > pNode->m_data)
 		{
-			// ÓÒ²à
+			// å³ä¾§
 			if (pNode->m_pRight == NULL)
 			{
 				pNode->m_pRight = pNewNode;
@@ -61,7 +61,7 @@ void Ctree::Insert(int data)
 				this->m_Size++;
 				return;
 			}
-			pNode = pNode->m_pRight; // ½Ó×ÅÏòÒ¶×ÓÑ°ÕÒ
+			pNode = pNode->m_pRight; // æ¥ç€å‘å¶å­å¯»æ‰¾
 		}
 		else
 		{
@@ -75,27 +75,27 @@ void Ctree::Insert(int data)
 
 Ctree::Node* Ctree::Find(int data)
 {
-	Node* pNode = this->m_Proot; // ½«¸ù½ÚµãÏÈ¸³Öµ¸øÁÙÊ±½Úµã
+	Node* pNode = this->m_Proot; // å°†æ ¹èŠ‚ç‚¹å…ˆèµ‹å€¼ç»™ä¸´æ—¶èŠ‚ç‚¹
 	while (true)
 	{
-		// ÅĞ¶ÏÖµ´óĞ¡
+		// åˆ¤æ–­å€¼å¤§å°
 		if (data < pNode->m_data)
 		{
-			// ×ó²à
+			// å·¦ä¾§
 			if (pNode->m_pLeft == NULL)
 			{
 				break;
 			}
-			pNode = pNode->m_pLeft; // ½Ó×ÅÏòÒ¶×ÓÑ°ÕÒ
+			pNode = pNode->m_pLeft; // æ¥ç€å‘å¶å­å¯»æ‰¾
 		}
 		else if (data > pNode->m_data)
 		{
-			// ÓÒ²à
+			// å³ä¾§
 			if (pNode->m_pRight == NULL)
 			{
 				break;
 			}
-			pNode = pNode->m_pRight; // ½Ó×ÅÏòÒ¶×ÓÑ°ÕÒ
+			pNode = pNode->m_pRight; // æ¥ç€å‘å¶å­å¯»æ‰¾
 		}
 		else
 		{
@@ -114,23 +114,23 @@ void Ctree::Delete(int data)
 		return;
 	}
 
-	// É¾³ıµ¥¶ÀÒ¶×Ó½Úµã
+	// åˆ é™¤å•ç‹¬å¶å­èŠ‚ç‚¹
 	if (pNodeToDel->m_pLeft == NULL && pNodeToDel->m_pRight == NULL)
 	{
 		return this->DelLeaf(pNodeToDel);
 	}
-	// É¾³ıµ¥·ÖÖ§½Úµã£¬½ÚµãÉÏÒÆ¼´¿É
+	// åˆ é™¤å•åˆ†æ”¯èŠ‚ç‚¹ï¼ŒèŠ‚ç‚¹ä¸Šç§»å³å¯
 	if (pNodeToDel->m_pLeft == NULL || pNodeToDel->m_pRight == NULL)
 	{
 		return this->DelSingleLeaf(pNodeToDel);
 	}
-	// É¾³ıË«·ÖÖ§½Úµã£¬ÔÚ×ó×ÓÊ÷ÖĞÕÒÓÒÒ¶×Ó×î´óÖµ
+	// åˆ é™¤åŒåˆ†æ”¯èŠ‚ç‚¹ï¼Œåœ¨å·¦å­æ ‘ä¸­æ‰¾å³å¶å­æœ€å¤§å€¼
 	return this->DelDoubleLeaf(pNodeToDel);
 }
 
-void Ctree::Modiry(int oldVal, int newVal)
+void Ctree::Modify(int oldVal, int newVal)
 {
-	// ĞŞ¸Ä£¬É¾³ı¾ÉÖµ£¬²åÈëĞÂÖµ
+	// ä¿®æ”¹ï¼Œåˆ é™¤æ—§å€¼ï¼Œæ’å…¥æ–°å€¼
 	Node* pFindNode = this->Find(oldVal);
 	if (pFindNode != NULL)
 	{
@@ -144,6 +144,82 @@ void Ctree::Mid()
 	this->MidNode(this->m_Proot);
 }
 
+void Ctree::LMRLoop()
+{
+	stack<Node*>stk;
+	Node* pNode = this->m_Proot;
+	while (true)
+	{
+		while (pNode != NULL)
+		{
+			stk.push(pNode);
+			pNode = pNode->m_pLeft;
+		}
+
+		if (stk.empty())
+		{
+			break;
+		}
+
+		pNode = stk.top();
+		cout << pNode->m_data << endl;
+		stk.pop();
+
+		pNode = pNode->m_pRight;
+	}
+}
+
+void Ctree::MLRLoop()
+{
+	stack<Node*>stk;
+	Node* pNode = this->m_Proot;
+
+	while (true)
+	{
+		while (pNode != NULL)
+		{
+			cout << pNode->m_data << endl;
+			if (pNode->m_pRight != NULL)
+			{
+				stk.push(pNode->m_pRight);
+			}
+			pNode = pNode->m_pLeft;
+		}
+
+		if (stk.empty())
+		{
+			break;
+		}
+
+		pNode = stk.top();
+		stk.pop();
+	}
+}
+
+//void Ctree::LRMLoop()
+//{
+//	stack<Node*>stk;
+//	Node* pPreHandled = NULL;
+//	Node* pNode = this->m_Proot;
+//
+//	while (pNode!=NULL)
+//	{
+//		stk.push(pNode);
+//		pNode = pNode->m_pLeft;
+//	}
+//
+//	Node* pTopNode = stk.top();
+//	if (pTopNode->m_pRight == pPreHandled || pTopNode->m_pRight == NULL)
+//	{
+//		cout << pTopNode->m_data << endl;
+//		pPreHandled = pTopNode;
+//		stk.pop();
+//	}
+//	else {
+//		pNode = pTopNode->m_pRight;
+//	}
+//}
+
 void Ctree::MidNode(Node* pNode)
 {
 	if (pNode == NULL)
@@ -151,7 +227,7 @@ void Ctree::MidNode(Node* pNode)
 		return;
 	}
 
-	// ÏÈ×óº¢×Ó
+	// å…ˆå·¦å­©å­
 	this->MidNode(pNode->m_pLeft);
 	cout << pNode->m_data << " " << endl;
 	this->MidNode(pNode->m_pRight);
@@ -160,7 +236,7 @@ void Ctree::MidNode(Node* pNode)
 void Ctree::DelLeaf(Node* pNode)
 {
 	this->m_Size--;
-	// ÅĞ¶ÏÊÇ×óº¢×Ó»¹ÊÇÓÒº¢×Ó
+	// åˆ¤æ–­æ˜¯å·¦å­©å­è¿˜æ˜¯å³å­©å­
 	Node* pFatherNode = pNode->m_pParent;
 	if (pFatherNode->m_pLeft == pNode)
 	{
