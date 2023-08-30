@@ -6,7 +6,7 @@ using namespace std;
 void test1()
 {
 	AVLTree at;
-	at.Insert(50); 
+	/*at.Insert(50); 
 	at.Insert(30);
 	at.Insert(80);
 	at.Insert(20);
@@ -16,8 +16,19 @@ void test1()
 	at.Insert(25);
 	at.Insert(35);
 	at.Insert(45);
-	at.Insert(90);
-	cout << "hello world" << endl;
+	at.Insert(90);*/
+	at.Insert(9);
+	at.Insert(8);
+	at.Insert(7);
+	at.Insert(6);
+	at.Insert(5);
+	at.Insert(4);
+	at.Insert(3);
+	at.Insert(2);
+	at.Insert(1);
+	/*at.Insert(-1);
+	at.Insert(-2);*/
+ 	cout << "hello world" << endl;
 }
 
 int main()

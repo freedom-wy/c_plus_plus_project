@@ -45,6 +45,9 @@ private:
 private:
 	void Init();
 	void AdjustHeight(Node* pNewNode); // 调整高度
+	void RightRotate(Node* pF); //右旋
+	int CalcHeight(Node* pNode);
+	int GetHeight(Node* pNode);
 public:
 	AVLTree();
 public:
