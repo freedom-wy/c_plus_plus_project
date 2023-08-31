@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <iostream>
 using namespace std;
 
@@ -15,7 +15,7 @@ private:
 		Node* m_pLeft;
 		Node* m_pRight;
 		int m_data;
-		int m_height; // ½Úµã¸ß¶È
+		int m_height; // èŠ‚ç‚¹é«˜åº¦
 	public:
 		Node() :m_pParent(NULL), m_pLeft(NULL), m_pRight(NULL), m_data(), m_height(1) {};
 		Node(int data):m_pParent(NULL), m_pLeft(NULL), m_pRight(NULL), m_data(data), m_height(1) {};
@@ -44,8 +44,8 @@ private:
 	Node* m_Proot;
 private:
 	void Init();
-	void AdjustHeight(Node* pNewNode); // µ÷Õû¸ß¶È
-	void RightRotate(Node* pF); //ÓÒĞı
+	void AdjustHeight(Node* pNewNode); // è°ƒæ•´é«˜åº¦
+	void RightRotate(Node* pF); //å³æ—‹
 	int CalcHeight(Node* pNode);
 	int GetHeight(Node* pNode);
 public:

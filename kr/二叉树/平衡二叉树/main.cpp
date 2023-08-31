@@ -17,7 +17,7 @@ void test1()
 	at.Insert(35);
 	at.Insert(45);
 	at.Insert(90);*/
-	at.Insert(9);
+	/*at.Insert(9);
 	at.Insert(8);
 	at.Insert(7);
 	at.Insert(6);
@@ -25,9 +25,10 @@ void test1()
 	at.Insert(4);
 	at.Insert(3);
 	at.Insert(2);
+	at.Insert(1);*/
 	at.Insert(1);
-	/*at.Insert(-1);
-	at.Insert(-2);*/
+	at.Insert(2);
+	at.Insert(3);
  	cout << "hello world" << endl;
 }
 

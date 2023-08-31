@@ -1,4 +1,4 @@
-#include "avl_tree.h"
+ï»¿#include "avl_tree.h"
 
 
 void AVLTree::Init()
@@ -6,27 +6,31 @@ void AVLTree::Init()
 	this->m_Proot = NULL;
 }
 
-// µ÷Õû¸ß¶È 
+// è°ƒæ•´é«˜åº¦ 
 void AVLTree::AdjustHeight(Node* pNewNode)
 {
-	Node* pFather = pNewNode->m_pParent;
-	Node* pChild = pNewNode;
+	Node* pFather = pNewNode->m_pParent; // 8
+	Node* pChild = pNewNode; // 7
 
 	while (pFather != NULL)
 	{
-		if (GetHeight(pFather) == GetHeight(pChild))
+		if (GetHeight(pFather) == GetHeight(pChild)) // 1
 		{
-			pFather->m_height++;
+			pFather->m_height++; // 8->2
 			if (pFather == this->m_Proot)
 			{
 				break;
 			}
-			pChild = pFather;
-			pFather = pFather->m_pParent;
-			// ÓÒÐý
-			if (GetHeight(pFather->m_pLeft) - GetHeight(pFather->m_pRight) > 1)
+			pChild = pFather; // 8
+			pFather = pFather->m_pParent; // 9
+			// å³æ—‹
+			if (GetHeight(pFather->m_pLeft) - GetHeight(pFather->m_pRight) > 1) // 2-0
 			{
-				this->RightRotate(pFather);
+				this->RightRotate(pFather); // 9
+			}
+			else if (GetHeight(pFather->m_pRight) - GetHeight(pFather->m_pLeft) > 1) // å·¦æ—‹
+			{
+
 			}
 		}
 		else
@@ -36,16 +40,16 @@ void AVLTree::AdjustHeight(Node* pNewNode)
 	}
 }
 
-// ÓÒÐý
+// å³æ—‹
 void AVLTree::RightRotate(Node* pF)
 {
-	Node* pFF = pF->m_pParent;
-	Node* pL = pF->m_pLeft;
-	Node* pC2 = pL->m_pRight;
+	Node* pFF = pF->m_pParent; // NULL
+	Node* pL = pF->m_pLeft; // 8
+	Node* pC2 = pL->m_pRight; // NULL
 
-	// Ðý×ª
+	// æ—‹è½¬
 	pL->m_pParent = pFF;
-	pL->m_pRight = pF;
+	pL->m_pRight = pF; // 7-8-9
 
 	if (pFF != NULL)
 	{
@@ -71,7 +75,7 @@ void AVLTree::RightRotate(Node* pF)
 	pF->m_pLeft = pC2;
 	pF->m_pParent = pL;
 
-	// µ÷Õû¸ß¶È
+	// è°ƒæ•´é«˜åº¦
 	pF->m_height = this->CalcHeight(pF);
 	pL->m_height = this->CalcHeight(pL);
 
@@ -108,7 +112,7 @@ int AVLTree::GetHeight(Node* pNode)
 	
 }
 
-// Ä¬ÈÏ¹¹Ôì
+// é»˜è®¤æž„é€ 
 AVLTree::AVLTree()
 {
 	this->Init();

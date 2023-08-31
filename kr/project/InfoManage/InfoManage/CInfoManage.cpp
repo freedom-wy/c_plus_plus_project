@@ -51,7 +51,7 @@ void CInfoManage::init_file()//³õÊ¼»¯ÎÄ¼ş£¬´Ó×ÊÔ´ÎÄ¼ş»ñµÃÑ§ÉúĞÅÏ¢Óë¿Î³ÌĞÅÏ¢£¬²¢Ë
     //³õÊ¼»¯ÎÄ¼şĞÅÏ¢£¬Ö»ĞèÒª³õÊ¼»¯Ò»´Î¾ÍĞĞÁË£¬ÒÔºó¾Í¿ÉÒÔ×¢ÊÍµô£¬ÓÃÒÑ¾­Éú³É¹ıµÄÎÄ¼şÀ´´´½¨Ê÷
     initFile.read_name_list();
     initFile.read_course_list();
-    initFile.create_select_course();
+    initFile.create_select_course(); // Ñ§ÉúĞÕÃû£¬Ñ¡¿ÎĞÅÏ¢£¬·ÖÊı
     system("cls");
 
     cout << "======================" << endl;

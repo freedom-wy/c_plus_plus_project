@@ -194,7 +194,7 @@ void CInitFile::create_select_course()
         exit(0);
     }
 
-    ofstream writeStuSelectCourse("stu_select_course.bin");
+    ofstream writeStuSelectCourse("stu_select_course.bin"); //创建选课bin文件
     if (writeStuSelectCourse.fail())
     {
         cout << "打开文件stu_select_course.bin失败，请关闭程序，并重试！" << endl;
