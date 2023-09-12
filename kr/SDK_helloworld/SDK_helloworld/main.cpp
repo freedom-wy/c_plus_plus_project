@@ -4,6 +4,8 @@ using namespace std;
 
 // 项目->XXX属性->配置属性->高级->字符集，调整Unicode字符集和多字节字符集。
 
+// 定义窗口类结构（WNDCLASS）->注册窗口类（RegisterClass）->创建窗口（CreateWindow）->显示窗口（ShowWindow）->更新窗口（UpdateWindow）->消息循环（GetMessage->TranslateMessage->DispatchMessage）
+
 // 窗口过程回调函数声明
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
@@ -23,8 +25,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }*/
 
     static TCHAR szAppName[] = TEXT("MyWindows");
-    HWND hwnd;
-    MSG msg;
+    HWND hwnd; // 窗口句柄
+    MSG msg; // 消息
     WNDCLASS wndclass;
 
     // 定义窗口类结构
