@@ -70,8 +70,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 获取消息队列
     while (GetMessage(&msg, NULL, 0, 0))
     {
-        TranslateMessage(&msg);
-        DispatchMessage(&msg);
+        TranslateMessage(&msg); // 翻译消息
+        DispatchMessage(&msg); // 处理消息
     }
 
     return msg.wParam;
