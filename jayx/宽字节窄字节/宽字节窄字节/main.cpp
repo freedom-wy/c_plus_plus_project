@@ -11,80 +11,98 @@ using namespace std;
 void test1()
 {
 	// 窄字节
-	char s1 = 'a'; //1
-	char s2 = 'b'; //1
-	char s3 = '你'; //1
+	char s1 = 'a';
+	char s2 = '你'; // cout 无法输出
 
-	// windows下的char
-	CHAR w1 = 'a';  //1
-	CHAR w2 = 'b';  //1
-	CHAR w3 = '你';  //1
-
-	// 宽字节
-	wchar_t t1 = 'a'; //2
-	wchar_t t2 = 'b'; //2
-	wchar_t t3 = '你'; //2
-
-	// windows下的wchar_t
-	WCHAR r1 = 'a'; //2
-	WCHAR r2 = 'b'; //2
-	WCHAR r3 = '你'; //2
-	// 与项目设置宽窄字节无关
-
-	// TCHAR 通用类型
-	TCHAR ts1 = 'a';
-	TCHAR ts2 = 'b';
-	TCHAR ts3 = '你';
-	// 与项目设置宽窄字节有关，多字节1个字符, unicode2个字符
-
-
-
-	cout << sizeof(s1) << endl;
-	cout << sizeof(s2) << endl;
-	cout << sizeof(s3) << endl;
-
-	cout << sizeof(w1) << endl;
-	cout << sizeof(w2) << endl;
-	cout << sizeof(w3) << endl;
-
-	cout << sizeof(t1) << endl;
-	cout << sizeof(t2) << endl;
-	cout << sizeof(t3) << endl;
-
-	cout << sizeof(r1) << endl;
-	cout << sizeof(r2) << endl;
-	cout << sizeof(r3) << endl;
-
-	cout << sizeof(ts1) << endl;
-	cout << sizeof(ts2) << endl;
-	cout << sizeof(ts3) << endl;
-
-	// 字符串
-	// 窄字节使用strlen, 宽字节使用wcslen, 通用类型使用_tcslen
-	const char* str1 = "abc"; // 4
-	const wchar_t* str2 = L"abc"; // 4
-	const TCHAR* str3 = _T("abc"); // 4
-
-	cout << strlen(str1) << endl;
-	cout << wcslen(str2) << endl;
-	cout << _tcslen(str3) << endl;
-
-	// 计算字符串占用空间大小
-	cout << (strlen(str1) + 1) * sizeof(char) << endl;
-	cout << (wcslen(str2) + 1) * sizeof(wchar_t) << endl;
-	cout << (_tcslen(str3) + 1) * sizeof(TCHAR) << endl;
+	cout << "s1的值为: " << s1 <<
+		", s1的大小为: " << sizeof(s1) <<
+		", s2的值为: " << s2 <<
+		", s2的大小为: " << sizeof(s2) << endl;
 }
 
 void test2()
 {
-	string s1 = "abc";
+	// windows下的窄字节
+	CHAR s1 = 'a';
+	CHAR s2 = '你';
+	cout << "s1的值为: " << s1 <<
+		", s1的大小为: " << sizeof(s1) <<
+		", s2的值为: " << s2 <<
+		", s2的大小为: " << sizeof(s2) << endl;
 }
 
+void testT()
+{
+	// 根据项目设置自动切换
+#ifdef _UNICODE
+	wcout.imbue(locale("chs"));
+	TCHAR s1 = _T('a');
+	TCHAR s2 = _T('你');
+	wcout << "s1的值为: " << s1 <<
+		", s1的大小为: " << sizeof(s1) <<
+		", s2的值为: " << s2 <<
+		", s2的大小为: " << sizeof(s2) << endl;
+#else
+	TCHAR s1 = _T('a');
+	TCHAR s2 = _T('你');
+	cout << "s1的值为: " << s1 <<
+		", s1的大小为: " << sizeof(s1) <<
+		", s2的值为: " << s2 <<
+		", s2的大小为: " << sizeof(s2) << endl;
+#endif
+}
+
+void test3()
+{
+	// 宽字节
+	wcout.imbue(locale("chs"));
+	wchar_t s1 = L'a';
+	wchar_t s2 = L'你';
+	wcout << "s1的值为: " << s1 <<
+		", s1的大小为: " << sizeof(s1) <<
+		", s2的值为: " << s2 <<
+		", s2的大小为: " << sizeof(s2) << endl;
+}
+
+void test4()
+{
+	// 宽字节
+	wcout.imbue(locale("chs")); // 必须设置中文语言环境, 和使用wcout输出
+	WCHAR s1 = L'A'; // 在内存中是16进制的41, ascii表中10进制的65
+	WCHAR s2 = L'你';
+	wcout << "s1的值为: " << s1 <<
+		", s1的大小为: " << sizeof(s1) <<
+		", s2的值为: " << s2 <<
+		", s2的大小为: " << sizeof(s2) << endl;
+}
+
+void test5()
+{
+	// 宽字节和窄字节字符串
+	const char* str1 = "abc"; // 3
+	const wchar_t* str2 = L"abc"; // 3
+
+	cout << strlen(str1) << endl;
+	cout << wcslen(str2) << endl;
+
+
+	// 计算字符串占用空间大小
+	cout << (strlen(str1) + 1) * sizeof(char) << endl; // 4
+	cout << (wcslen(str2) + 1) * sizeof(wchar_t) << endl; // 8
+
+	const TCHAR* str3 = _T("abc"); // 3
+	cout << _tcslen(str3) << endl;
+	cout << (_tcslen(str3) + 1) * sizeof(TCHAR) << endl; // 根据项目设置变化 4或8
+}
 
 
 
 int main()
 {
-	test1();
+	// test1();
+	// test2();
+	testT();
+	// test3();
+	// test4();
 	return 0;
 }

@@ -1,6 +1,8 @@
 ﻿  main.cpp
-E:\venustech\code\c_plus_plus_project\jayx\宽字节窄字节\宽字节窄字节\main.cpp(16,17): warning C4305: “初始化”: 从“int”到“char”截断
-E:\venustech\code\c_plus_plus_project\jayx\宽字节窄字节\宽字节窄字节\main.cpp(16,12): warning C4309: “初始化”: 截断常量值
-E:\venustech\code\c_plus_plus_project\jayx\宽字节窄字节\宽字节窄字节\main.cpp(21,17): warning C4305: “初始化”: 从“int”到“CHAR”截断
-E:\venustech\code\c_plus_plus_project\jayx\宽字节窄字节\宽字节窄字节\main.cpp(21,12): warning C4309: “初始化”: 截断常量值
+E:\venustech\code\c_plus_plus_project\jayx\宽字节窄字节\宽字节窄字节\main.cpp(15,17): warning C4305: “初始化”: 从“int”到“char”截断
+E:\venustech\code\c_plus_plus_project\jayx\宽字节窄字节\宽字节窄字节\main.cpp(15,12): warning C4309: “初始化”: 截断常量值
+E:\venustech\code\c_plus_plus_project\jayx\宽字节窄字节\宽字节窄字节\main.cpp(27,17): warning C4305: “初始化”: 从“int”到“CHAR”截断
+E:\venustech\code\c_plus_plus_project\jayx\宽字节窄字节\宽字节窄字节\main.cpp(27,12): warning C4309: “初始化”: 截断常量值
+E:\venustech\code\c_plus_plus_project\jayx\宽字节窄字节\宽字节窄字节\main.cpp(47,22): warning C4305: “初始化”: 从“int”到“TCHAR”截断
+E:\venustech\code\c_plus_plus_project\jayx\宽字节窄字节\宽字节窄字节\main.cpp(47,13): warning C4309: “初始化”: 截断常量值
   宽字节窄字节.vcxproj -> E:\venustech\code\c_plus_plus_project\jayx\宽字节窄字节\Debug\宽字节窄字节.exe
