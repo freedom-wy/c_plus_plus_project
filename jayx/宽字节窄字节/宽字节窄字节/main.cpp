@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Windows.h>
+#include <stdio.h>
 #include <tchar.h>
 using namespace std;
 
@@ -72,6 +73,11 @@ void test1()
 	cout << (strlen(str1) + 1) * sizeof(char) << endl;
 	cout << (wcslen(str2) + 1) * sizeof(wchar_t) << endl;
 	cout << (_tcslen(str3) + 1) * sizeof(TCHAR) << endl;
+}
+
+void test2()
+{
+	string s1 = "abc";
 }
 
 
