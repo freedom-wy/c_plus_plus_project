@@ -1,0 +1,6 @@
+﻿  main.c
+E:\venustech\code\c_plus_plus_project\jayx\异或加解密\异或加解密\main.c(63,11): warning C4098: “test3”:“void”函数返回值
+E:\venustech\code\c_plus_plus_project\jayx\异或加解密\异或加解密\main.c(68,11): warning C4098: “test3”:“void”函数返回值
+E:\venustech\code\c_plus_plus_project\jayx\异或加解密\异或加解密\main.c(87,11): warning C4098: “test4”:“void”函数返回值
+E:\venustech\code\c_plus_plus_project\jayx\异或加解密\异或加解密\main.c(92,11): warning C4098: “test4”:“void”函数返回值
+  异或加解密.vcxproj -> E:\venustech\code\c_plus_plus_project\jayx\异或加解密\Debug\异或加解密.exe

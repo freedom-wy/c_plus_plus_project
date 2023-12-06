@@ -1,19 +1,19 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <tchar.h>
 using namespace std;
 
-// ÏÈËã
-// ±àÒëÆ÷Ä¬ÈÏµÄ¶ÔÆë·½Ê½Îª8
+// å…ˆç®—
+// ç¼–è¯‘å™¨é»˜è®¤çš„å¯¹é½æ–¹å¼ä¸º8
 // member offset % min(Zp,sizeof(member type)) == 0
 
-// ËãÍêºóËã
-//StructAlign = max(sizeof(member1 type), sizeof(member2 type)¡¤¡¤¡¤, sizeof(membern type));
+// ç®—å®Œåç®—
+//StructAlign = max(sizeof(member1 type), sizeof(member2 type)Â·Â·Â·, sizeof(membern type));
 //StructAlign = min(Zp, StructAlign);
-//sizeof(½á¹¹Ìå±äÁ¿)±ØĞëÂú×ã
-//sizeof(½á¹¹Ìå±äÁ¿) % structAlign == 0;
+//sizeof(ç»“æ„ä½“å˜é‡)å¿…é¡»æ»¡è¶³
+//sizeof(ç»“æ„ä½“å˜é‡) % structAlign == 0;
 
 struct tagPerson
 {
@@ -33,6 +33,6 @@ int _tmain()
 	cout << sizeof(double) << endl;
 	cout << sizeof(__int64) << endl;
 	struct tagPerson t1;
-	cout << "½á¹¹Ìå´óĞ¡Îª: " << sizeof(t1) << endl;
+	cout << "ç»“æ„ä½“å¤§å°ä¸º: " << sizeof(t1) << endl;
 	return 0;
 }
