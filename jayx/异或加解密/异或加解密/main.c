@@ -20,7 +20,7 @@ char* Encrypt(char* str, char* secretKey)
 
 char* Decrypt(char* str, char* secretKey)
 {
-	int str_len = strlen(str);
+	int str_len = 8;
 	// 解密
 	for (size_t i = 0; i < str_len; i++)
 	{

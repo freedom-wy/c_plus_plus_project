@@ -1,8 +1,10 @@
+#include <iostream>
 #include <stdio.h>
 #include <tchar.h>
 #include <string.h>
 #include <stdlib.h>
 #include <Windows.h>
+using namespace std;
 
 
 // _tmain定义在tchar中, 根据项目设置的字符集改变, 窄字节main, 宽字节wmain
@@ -23,9 +25,15 @@ int add_func(int a, int b)
 	return a + b;
 }
 
+//void test()
+//{
+//	cout << "test" << endl;
+//}
+
 int _tmain()
 {
+	//test();
 	add_func(1, 2);
-	MessageBox(NULL, _T("消息框的标题"), _T("消息框的内容"), MB_YESNO);
+	//MessageBox(NULL, _T("消息框的标题"), _T("消息框的内容"), MB_YESNO);
 	return 0;
 }
