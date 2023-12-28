@@ -1,0 +1,8 @@
+﻿  main.cpp
+E:\venustech\code\c_plus_plus_project\jayx\类大小计算\类大小计算\main.cpp(68,17): warning C4584: “G”: 基类“D”已是“E”的基类
+E:\venustech\code\c_plus_plus_project\jayx\类大小计算\类大小计算\main.cpp(25): message : 参见“D”的声明
+E:\venustech\code\c_plus_plus_project\jayx\类大小计算\类大小计算\main.cpp(40): message : 参见“E”的声明
+E:\venustech\code\c_plus_plus_project\jayx\类大小计算\类大小计算\main.cpp(68,17): warning C4584: “G”: 基类“D”已是“F”的基类
+E:\venustech\code\c_plus_plus_project\jayx\类大小计算\类大小计算\main.cpp(25): message : 参见“D”的声明
+E:\venustech\code\c_plus_plus_project\jayx\类大小计算\类大小计算\main.cpp(54): message : 参见“F”的声明
+  类大小计算.vcxproj -> E:\venustech\code\c_plus_plus_project\jayx\类大小计算\Debug\类大小计算.exe
