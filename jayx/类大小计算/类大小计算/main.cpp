@@ -26,6 +26,7 @@ class D
 	// 8
 {
 public:
+	string s1 = "abc";
 	int d1 = 1;
 	virtual void test1()
 	{
@@ -76,9 +77,31 @@ public:
 };
 
 
+int* a = NULL;
+
+void test1()
+{
+	int* nArray = new int[5];
+	// int nArray[5];
+	for (int i = 0; i < 5; i++)
+	{
+		nArray[i] = i;
+	}
+	a = nArray;
+	for (int i = 0; i < 5; i++)
+	{
+		cout << nArray[i] << endl;
+	}
+	return;
+}
+
+
+
+
 int main()
 {
-	/*A a;
+	/*
+	A a;
 	cout << "A对象的大小为: " << sizeof(a) << endl;
 	B b;
 	cout << "B对象的大小为: " << sizeof(b) << endl;
@@ -88,10 +111,18 @@ int main()
 	D d;
 	cout << "D对象的大小为: " << sizeof(d) << endl;
 	E e;
+	cout << e.s1 << endl;
 	cout << "E对象的大小为: " << sizeof(e) << endl;
 	F f;
-	cout << "F对象的大小为: " << sizeof(f) << endl;*/
+	cout << "F对象的大小为: " << sizeof(f) << endl;
 	G g;
 	cout << "G对象的大小为: " << sizeof(g) << endl;
+	*/
+
+	test1();
+	for (size_t i = 0; i < 5; i++)
+	{
+		cout << a[i] << endl;
+	}
 	return 0;
 }
