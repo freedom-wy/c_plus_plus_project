@@ -153,11 +153,11 @@ public:
 
 int main()
 {
-	/*IClass* i1 = new IClass();
+	IClass* i1 = new IClass();
 	i1->h.h_number = 1;
 	IClass* i2 = i1;
 	cout << "h_numberµÄÖµÎª: " << i2->h.h_number << endl;
-	cout << "==============" << endl;*/
+	cout << "==============" << endl;
 	IClass i3;
 	i3.h.h_number = 3;
 	IClass i4 = i3;
