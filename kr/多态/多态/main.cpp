@@ -194,19 +194,32 @@ public:
 	}
 };
 
-
-class Cat : public Animal
+class Panda
 {
 public:
-	virtual void outPrint2()
-	{
-		cout << "CAT2" << endl;
-	}
-
 	virtual void outPrint4()
 	{
-		cout << "CAT4" << endl;
+		cout << "Panda" << endl;
 	}
+};
+
+
+class Cat : public Animal, public Panda
+{
+public:
+	virtual void outPrint5()
+	{
+		cout << "CAT" << endl;
+	}
+	/*virtual void outPrint2()
+	{
+		cout << "CAT2" << endl;
+	}*/
+
+	/*virtual void outPrint4()
+	{
+		cout << "CAT4" << endl;
+	}*/
 };
 
 void test()
@@ -217,21 +230,24 @@ void test()
 
 int main()
 {
-	//Animal a1;  // 虚表指针0x0041AB34--outPrint方法地址0x00411532
-	//Cat c1;  //虚表指针0x0041AB44--outPrint方法地址0x00411532
-	// Animal* a2 = new Animal();  // 虚表指针0x00810E10---outPrint方法地址0x0041ab34
-	//Cat* c2 = new Cat();  // 虚表指针0x00810E40---outPrint方法地址0x0041ab44
+	Cat c1;  // Cat继承了Animal和Panda,虚函数指针有两个，在Cat的第一个虚函数指针为Animal的，虚表中前三个是Animal的虚表，后一个是Cat的
+	c1.outPrint1();
+	c1.outPrint2();
+	// Animal* a2 = new Animal();
+	Cat* c2 = new Cat();
+	c2->outPrint1();
+	c2->outPrint2();
 
 
-	Animal* a2 = new Animal();  // 虚表指针0x00810E10---outPrint方法地址0x0041ab34
-	// 获取虚表指针
-	int vfptrAddress = *(int*)a2;
-	DWORD dwOld = 0;
-	VirtualProtect((void*)vfptrAddress, 0x1000, PAGE_EXECUTE_READWRITE, &dwOld);
-	// 通过索引改变要修改的方法
-	*((int*)vfptrAddress+1) = (int)test;
-	a2->outPrint1();
-	a2->outPrint2();
+	//Animal* a2 = new Animal();  // 虚表指针0x00810E10---outPrint方法地址0x0041ab34
+	//// 获取虚表指针
+	//int vfptrAddress = *(int*)a2;
+	//DWORD dwOld = 0;
+	//VirtualProtect((void*)vfptrAddress, 0x1000, PAGE_EXECUTE_READWRITE, &dwOld);
+	//// 通过索引改变要修改的方法
+	//*((int*)vfptrAddress+1) = (int)test;
+	//a2->outPrint1();
+	//a2->outPrint2();
 	
 	return 0;
 }
